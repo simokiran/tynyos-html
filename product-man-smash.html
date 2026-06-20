@@ -1,0 +1,1697 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TenAlpha Smash — Navy · Tenyos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
+<style>
+/* ── TENYOS TOKENS (DESIGN.md → real palette: Lime + Navy + White) ── */
+:root{
+  --lime:#C4FF0D; --lime-deep:#A6D900;
+  --navy:#0A244A; --navy-2:#12305C; --navy-3:#081B3A; --navy-deep:#07193D;
+  --ink:#1d1d1f; --ink-80:#333; --ink-48:#7a7a7a;
+  --canvas:#fff; --parchment:#f5f3ee; --pearl:#fafafc; --hairline:#e0e0e0; --divider:#f0f0f0;
+  --on-dark:#fff; --muted-dark:#cbd5e6;
+  --f:'Inter',system-ui,sans-serif;
+  --r-sm:8px; --r-md:11px; --r-lg:18px; --r-pill:9999px;
+  --sp-sm:12px; --sp-md:17px; --sp-lg:24px; --sp-xl:32px; --sp-xxl:48px; --sp-section:80px;
+  --product-shadow: drop-shadow(3px 5px 30px rgba(0,0,0,.22));
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--canvas);color:var(--ink);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;width:100%}
+a{text-decoration:none;color:inherit}
+button{font-family:var(--f);cursor:pointer;border:none;background:none}
+
+/* ── TYPOGRAPHY ── */
+.t-hero{font-size:64px;font-weight:600;line-height:1.04;letter-spacing:-1.2px}
+.t-display{font-size:40px;font-weight:600;line-height:1.1;letter-spacing:-.5px}
+.t-display-md{font-size:34px;font-weight:600;line-height:1.47;letter-spacing:-.374px}
+.t-lead{font-size:24px;font-weight:300;line-height:1.4;letter-spacing:0}
+.t-tagline{font-size:21px;font-weight:600;line-height:1.19}
+.t-body-strong{font-size:17px;font-weight:600;line-height:1.24;letter-spacing:-.374px}
+.t-body{font-size:17px;font-weight:400;line-height:1.5;letter-spacing:-.37px}
+.t-cap{font-size:14px;line-height:1.45;letter-spacing:-.22px}
+.t-fine{font-size:12px;letter-spacing:-.12px}
+.eyebrow{font-size:11px;font-weight:600;letter-spacing:2.2px;text-transform:uppercase;color:var(--navy);
+  display:inline-flex;align-items:center;gap:10px;margin-bottom:18px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--lime-deep)}
+.eyebrow.on-dark{color:var(--lime)}
+.eyebrow.on-dark::before{background:var(--lime)}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border-radius:var(--r-pill);font-weight:600;font-size:16px;cursor:pointer;
+  border:1.5px solid transparent;transition:transform .12s,background .15s,color .15s,border-color .15s;
+  padding:13px 26px;line-height:1;white-space:nowrap}
+.btn:active{transform:scale(.96)}
+.btn-primary{background:var(--lime);color:var(--navy)}
+.btn-primary:hover{background:var(--lime-deep)}
+.btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
+.btn-ghost:hover{background:var(--navy);color:#fff}
+.btn-ghost-sm{background:transparent;color:var(--navy);border-color:var(--navy);font-size:14px;padding:10px 20px}
+.btn-ghost-sm:hover{background:var(--navy);color:#fff}
+
+/* ── LAYOUT ── */
+.wrap{max-width:1320px;margin:0 auto;padding:0 32px}
+.tile{padding:var(--sp-section) 0}
+
+/* ── TOP BAR ── */
+.topbar{position:fixed;top:0;left:0;right:0;z-index:110;height:38px;background:var(--navy-deep);
+  display:flex;align-items:center;justify-content:center;gap:8px;padding:0 44px;text-align:center;
+  font-size:12.5px;color:rgba(255,255,255,.92);border-bottom:1px solid rgba(255,255,255,.07)}
+.topbar strong{color:var(--lime);font-weight:700}
+.topbar a{color:#fff;text-decoration:underline;text-underline-offset:2px}
+.topbar .x{position:absolute;right:16px;top:50%;transform:translateY(-50%);background:none;border:none;
+  color:rgba(255,255,255,.55);font-size:18px;line-height:1;cursor:pointer}
+.topbar .x:hover{color:#fff}
+body.nobar .topbar{display:none}
+body.nobar .nav{top:0}
+
+/* ── NAV ── */
+.nav{position:fixed;top:38px;left:0;right:0;z-index:100;height:72px;background:rgba(7,25,61,.96);
+  backdrop-filter:saturate(160%) blur(14px);
+  display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  transition:top .3s,height .3s}
+body.nobar .nav{top:0}
+/* hamburger (mobile) */
+.nav-burger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer}
+.nav-burger span{display:block;height:2px;background:#fff;border-radius:2px;transition:.25s}
+.nav-mobile-menu{display:none;position:fixed;inset:0;z-index:200;background:var(--navy-deep);
+  padding:100px 32px 48px;flex-direction:column;gap:0}
+.nav-mobile-menu.open{display:flex}
+.nav-mobile-menu a{display:block;font-size:24px;font-weight:600;color:#fff;padding:18px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);transition:color .15s}
+.nav-mobile-menu a:hover{color:var(--lime)}
+.nav-mobile-close{position:absolute;top:50px;right:32px;background:none;border:none;
+  color:#fff;font-size:28px;cursor:pointer}
+/* coming-soon pill in nav */
+.nav-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
+  color:var(--navy);background:var(--lime);border-radius:var(--r-pill);padding:2px 7px;
+  vertical-align:middle;margin-left:6px;line-height:1.5}
+.nav-logo img{height:32px;width:auto;display:block}
+.nav-links{display:flex;gap:30px}
+.nav-links a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
+  color:rgba(255,255,255,.9);padding:6px 0;transition:color .15s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--lime);
+  transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
+.nav-links a:hover{color:#fff}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-links a.active{color:#fff}
+.nav-act{display:flex;gap:18px;align-items:center}
+.nav-act a{color:#fff;opacity:.92;display:flex;align-items:center;position:relative;transition:opacity .15s,color .15s}
+.nav-act a:hover{opacity:1;color:var(--lime)}
+.nav-act svg{width:20px;height:20px;display:block;stroke-width:1.7px}
+.cart-count{position:absolute;top:-7px;right:-8px;background:var(--lime);color:var(--navy);font-size:10px;font-weight:700;
+  min-width:16px;height:16px;border-radius:9px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+
+/* ── SUB-NAV / BREADCRUMB ── */
+.sub-nav{position:sticky;top:110px;z-index:90;height:52px;
+  background:rgba(245,243,238,.92);backdrop-filter:saturate(180%) blur(20px);
+  border-bottom:0.5px solid rgba(0,0,0,.08);
+  display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+  transition:top .3s}
+body.nobar .sub-nav{top:72px}
+.breadcrumb{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-48)}
+.breadcrumb a{color:var(--ink-48);transition:color .15s}
+.breadcrumb a:hover{color:var(--navy)}
+.breadcrumb .sep{opacity:.5}
+.breadcrumb .current{color:var(--ink);font-weight:600}
+.sub-nav-right{display:flex;align-items:center;gap:16px}
+.sub-nav-right a{font-size:13px;color:var(--ink-80);transition:color .15s}
+.sub-nav-right a:hover{color:var(--navy)}
+
+/* ── PDP LAYOUT WRAPPER ── */
+.pdp-page{padding-top:162px}
+body.nobar .pdp-page{padding-top:124px}
+
+/* ── PDP MAIN GRID ── */
+.pdp-grid{
+  display:grid;
+  grid-template-columns:1fr 440px;
+  gap:64px;
+  align-items:start;
+  padding:48px 0 64px;
+}
+
+/* ── GALLERY ── */
+.gallery{
+  position:sticky;top:168px;
+  display:flex;flex-direction:row;gap:12px;
+  align-items:flex-start;
+}
+body.nobar .gallery{top:130px}
+
+.gallery-thumbs{
+  display:flex;flex-direction:column;gap:8px;
+  flex-shrink:0;width:72px;
+  max-height:520px;overflow-y:auto;overflow-x:hidden;
+  scrollbar-width:none;
+}
+.gallery-thumbs::-webkit-scrollbar{display:none}
+
+.gallery-main{
+  position:relative;
+  flex:1;
+  aspect-ratio:3/4;
+  background:var(--pearl);
+  border-radius:var(--r-lg);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+  cursor:zoom-in;
+  touch-action:pan-y;
+}
+
+.gallery-main img{
+  width:100%;height:100%;object-fit:cover;
+  transition:opacity .3s ease;
+  pointer-events:none;
+  position:relative;z-index:1;
+  touch-action:pan-y;
+}
+.gallery-main img.switching{opacity:0;transform:scale(.97)}
+.gallery-main.zoomed img{opacity:0}
+
+.gallery-zoom{
+  position:absolute;bottom:16px;right:16px;z-index:2;
+  width:40px;height:40px;border-radius:50%;
+  background:rgba(210,210,215,.7);backdrop-filter:blur(8px);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ink);border:none;cursor:pointer;transition:background .15s
+}
+.gallery-zoom:hover{background:rgba(210,210,215,.95)}
+.gallery-zoom svg{width:18px;height:18px;stroke:var(--ink);stroke-width:1.8;fill:none}
+.gallery-badge{
+  position:absolute;top:16px;left:16px;z-index:2;
+  background:var(--lime);color:var(--navy);
+  font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
+  padding:5px 12px;border-radius:var(--r-pill)
+}
+
+.thumb{
+  width:72px;height:96px;flex-shrink:0;
+  border-radius:var(--r-md);overflow:hidden;
+  background:var(--pearl);cursor:pointer;
+  border:2px solid transparent;
+  outline:2px solid transparent;
+  transition:border-color .18s,outline-color .18s;
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.thumb:hover{border-color:var(--ink-48)}
+.thumb.active{border-color:var(--canvas);outline-color:var(--navy)}
+
+/* ── BUY BOX ── */
+.buybox{display:flex;flex-direction:column;gap:0}
+.buybox-meta{margin-bottom:6px}
+.buybox-meta .sport-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;
+  color:var(--navy);margin-bottom:14px
+}
+.buybox-meta .sport-tag::before{content:"";width:16px;height:1px;background:var(--lime-deep)}
+.buybox h1{font-size:34px;font-weight:600;line-height:1.2;letter-spacing:-.374px;margin-bottom:8px}
+.rating-row{display:flex;align-items:center;gap:10px;margin-bottom:20px}
+.stars{color:var(--lime-deep);font-size:14px;letter-spacing:1px}
+.rating-text{font-size:13px;color:var(--ink-48)}
+.rating-text a{color:var(--navy);border-bottom:1px solid transparent;transition:border-color .15s}
+.rating-text a:hover{border-bottom-color:var(--navy)}
+.price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
+.price-main{font-size:28px;font-weight:600;letter-spacing:-.374px}
+.price-note{font-size:13px;color:var(--ink-48);margin-bottom:24px}
+.divider-line{height:1px;background:var(--divider);margin:20px 0}
+
+/* ── COLOR SWATCHES ── */
+.option-label{font-size:14px;font-weight:600;letter-spacing:-.22px;margin-bottom:10px}
+.option-label span{font-weight:400;color:var(--ink-48);margin-left:6px}
+.swatches{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
+.swatch{
+  width:36px;height:36px;border-radius:50%;cursor:pointer;
+  border:2.5px solid transparent;outline:2px solid transparent;
+  transition:border-color .15s,outline-color .15s,transform .12s;
+  position:relative
+}
+.swatch:hover{transform:scale(1.08)}
+.swatch.active{border-color:var(--canvas);outline-color:var(--navy)}
+.swatch.s-navy{background:#0A244A}
+.swatch.s-white{background:#fff;border-color:var(--hairline)}
+.swatch.s-white.active{border-color:var(--canvas);outline-color:var(--navy)}
+.swatch.s-lime{background:#C4FF0D;border-color:#C4FF0D}
+.swatch.s-pink{background:#FF3D8A}
+
+/* ── SIZE SELECTOR ── */
+.sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
+.size-chip{
+  min-width:50px;height:44px;padding:0 14px;
+  border-radius:var(--r-pill);font-size:14px;font-weight:400;letter-spacing:-.22px;
+  color:var(--ink);background:var(--canvas);
+  border:1px solid var(--hairline);cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s,transform .1s;
+  display:flex;align-items:center;justify-content:center
+}
+.size-chip:hover{border-color:var(--navy)}
+.size-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.size-chip:active{transform:scale(.95)}
+.size-chip.oos{color:var(--ink-48);background:var(--parchment);cursor:not-allowed;text-decoration:line-through}
+.size-guide-link{font-size:13px;color:var(--navy);border-bottom:1px solid transparent;
+  transition:border-color .15s;display:inline-flex;align-items:center;gap:5px;margin-bottom:20px}
+.size-guide-link:hover{border-bottom-color:var(--navy)}
+.size-guide-link svg{width:14px;height:14px;stroke:currentColor;stroke-width:1.8;fill:none}
+
+/* ── QUANTITY ── */
+.qty-row{display:flex;align-items:center;gap:16px;margin-bottom:20px}
+.qty-label{font-size:14px;font-weight:600;letter-spacing:-.22px;color:var(--ink)}
+.qty-ctrl{display:flex;align-items:center;border:1px solid var(--hairline);border-radius:var(--r-pill);overflow:hidden;height:44px}
+.qty-ctrl button{width:44px;height:44px;font-size:20px;font-weight:300;color:var(--ink);
+  background:transparent;border:none;cursor:pointer;transition:background .15s;line-height:1;
+  display:flex;align-items:center;justify-content:center}
+.qty-ctrl button:hover{background:var(--parchment)}
+.qty-val{width:40px;text-align:center;font-size:16px;font-weight:600;color:var(--ink);
+  background:transparent;border:none;outline:none}
+
+/* ── CTA STACK ── */
+.cta-stack{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
+.btn-add-cart{
+  width:100%;padding:16px 24px;border-radius:var(--r-pill);
+  background:var(--lime);color:var(--navy);
+  font-size:17px;font-weight:600;letter-spacing:-.374px;
+  border:none;cursor:pointer;transition:background .15s,transform .12s;
+  display:flex;align-items:center;justify-content:center;gap:10px
+}
+.btn-add-cart:hover{background:var(--lime-deep)}
+.btn-add-cart:active{transform:scale(.98)}
+.btn-add-cart svg{width:20px;height:20px;stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0}
+.btn-wishlist{
+  width:100%;padding:14px 24px;border-radius:var(--r-pill);
+  background:transparent;color:var(--navy);
+  font-size:16px;font-weight:600;
+  border:1.5px solid var(--navy);cursor:pointer;transition:background .15s,color .15s,transform .12s;
+  display:flex;align-items:center;justify-content:center;gap:10px
+}
+.btn-wishlist:hover{background:var(--navy);color:#fff}
+.btn-wishlist:active{transform:scale(.98)}
+.btn-wishlist svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0}
+.cta-assurance{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-48);justify-content:center}
+.cta-assurance svg{width:14px;height:14px;stroke:var(--ink-48);stroke-width:2;fill:none}
+
+/* ── TRUST BADGES ── */
+.trust-row{display:flex;gap:20px;flex-wrap:wrap;padding:20px 0;border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);margin-bottom:20px}
+.trust-item{display:flex;align-items:center;gap:8px;font-size:12.5px;color:var(--ink-80);flex:1;min-width:80px}
+.trust-item svg{width:18px;height:18px;stroke:var(--navy);stroke-width:1.8;fill:none;flex-shrink:0}
+
+/* ── ACCORDION ── */
+.accordion{border-top:1px solid var(--divider)}
+.acc-item{border-bottom:1px solid var(--divider)}
+.acc-head{
+  width:100%;padding:18px 0;display:flex;align-items:center;justify-content:space-between;
+  font-size:15px;font-weight:600;letter-spacing:-.3px;color:var(--ink);
+  background:transparent;border:none;cursor:pointer;text-align:left;
+  transition:color .15s
+}
+.acc-head:hover{color:var(--navy)}
+.acc-head .ico{width:20px;height:20px;flex-shrink:0;transition:transform .25s ease}
+.acc-head .ico line{stroke:var(--ink);stroke-width:1.8}
+.acc-item.open .acc-head .ico{transform:rotate(45deg)}
+.acc-body{max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.acc-item.open .acc-body{max-height:600px;padding-bottom:18px}
+.acc-body p,.acc-body li{font-size:15px;line-height:1.6;color:var(--ink-80)}
+.acc-body ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.acc-body ul li{display:flex;align-items:flex-start;gap:10px}
+.acc-body ul li::before{content:"";width:6px;height:6px;background:var(--lime-deep);border-radius:50%;flex-shrink:0;margin-top:8px}
+.spec-table{width:100%;border-collapse:collapse}
+.spec-table tr{border-bottom:1px solid var(--divider)}
+.spec-table tr:last-child{border-bottom:none}
+.spec-table td{padding:10px 0;font-size:14px;line-height:1.5;vertical-align:top}
+.spec-table td:first-child{font-weight:600;color:var(--ink);width:140px;padding-right:16px}
+.spec-table td:last-child{color:var(--ink-80)}
+
+/* ── PRODUCT DETAIL TILE ── */
+.pdp-detail{background:var(--parchment);padding:64px 0}
+.pdp-detail-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.pdp-detail-copy h2{font-size:34px;font-weight:600;line-height:1.2;letter-spacing:-.374px;margin-bottom:20px}
+.pdp-detail-copy p{font-size:17px;line-height:1.6;color:var(--ink-80);margin-bottom:16px}
+.feature-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:24px}
+.feature-list li{display:flex;align-items:flex-start;gap:14px}
+.feature-list li .icon-wrap{
+  width:38px;height:38px;border-radius:50%;background:var(--navy);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0
+}
+.feature-list li .icon-wrap svg{width:18px;height:18px;stroke:var(--lime);stroke-width:2;fill:none}
+.feature-list li .feat-text strong{display:block;font-size:15px;font-weight:600;letter-spacing:-.3px;margin-bottom:2px}
+.feature-list li .feat-text span{font-size:14px;color:var(--ink-48);line-height:1.5}
+.pdp-detail-img{position:relative;display:flex;align-items:center;justify-content:center}
+.pdp-detail-img img{max-width:75%;height:auto;filter:var(--product-shadow)}
+
+/* ── TECH PANELS ── */
+.tech-strip{background:var(--navy-2);padding:64px 0}
+.tech-strip-inner{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid rgba(255,255,255,.08)}
+.tpanel{padding:36px 28px;border-right:1px solid rgba(255,255,255,.08);position:relative;transition:background .2s}
+.tpanel:hover{background:rgba(255,255,255,.03)}
+.tpanel:nth-child(3n){border-right:none}
+.tpanel::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:var(--lime);transform:scaleX(0);transform-origin:left;transition:transform .3s}
+.tpanel:hover::before{transform:scaleX(1)}
+.tnum{font-size:13px;color:var(--lime);font-weight:600;letter-spacing:1px}
+.tpanel h3{font-size:18px;font-weight:600;color:#fff;margin:14px 0 8px}
+.tpanel p{font-size:14px;line-height:1.6;color:rgba(255,255,255,.55)}
+
+/* ── VOUS AIMEREZ AUSSI ── */
+.related{background:var(--canvas);padding:64px 0}
+.related-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:32px;flex-wrap:wrap}
+.related-head h2{font-size:28px;font-weight:600;letter-spacing:-.374px}
+.related-head a{font-size:14px;color:var(--navy);border-bottom:1px solid transparent;transition:border-color .15s;white-space:nowrap}
+.related-head a:hover{border-bottom-color:var(--navy)}
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.pcard{background:var(--canvas);border:1px solid var(--hairline);border-radius:var(--r-lg);padding:22px;text-align:center;transition:border-color .2s,transform .2s;display:block;color:var(--ink)}
+.pcard:hover{border-color:var(--lime-deep);transform:translateY(-3px)}
+.pcard .ph{position:relative;aspect-ratio:3/4;background:var(--parchment);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;margin-bottom:16px;overflow:hidden}
+.pcard .ph img{width:100%;height:100%;object-fit:cover;transition:transform .3s}
+.pcard:hover .ph img{transform:scale(1.04)}
+.pcard .pname{font-size:15px;font-weight:600;letter-spacing:-.37px;margin-bottom:2px}
+.pcard .pcat{font-size:12px;color:var(--ink-48);margin-bottom:8px}
+.pcard .pprice{font-size:15px;font-weight:600;color:var(--ink)}
+.pcard .badge{position:absolute;top:10px;left:10px;background:var(--lime);color:var(--navy);font-size:10px;font-weight:700;padding:3px 8px;border-radius:var(--r-pill)}
+
+/* ── FLOATING STICKY BAR ── */
+.sticky-bar{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  height:64px;
+  background:rgba(245,243,238,.92);backdrop-filter:saturate(180%) blur(20px);
+  border-top:0.5px solid rgba(0,0,0,.08);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;
+  transform:translateY(100%);transition:transform .3s ease
+}
+.sticky-bar.visible{transform:translateY(0)}
+.sticky-bar-left{display:flex;align-items:center;gap:16px}
+.sticky-bar-left img{height:40px;width:40px;object-fit:cover;border-radius:8px;background:var(--parchment)}
+.sticky-bar-name{font-size:15px;font-weight:600;letter-spacing:-.3px}
+.sticky-bar-price{font-size:15px;color:var(--ink-48)}
+.sticky-bar-right{display:flex;align-items:center;gap:12px}
+.sticky-bar-sizes{display:flex;gap:6px}
+.sticky-bar-sizes .chip-sm{
+  height:36px;min-width:40px;padding:0 12px;
+  border-radius:var(--r-pill);font-size:13px;font-weight:400;
+  color:var(--ink);background:var(--canvas);
+  border:1px solid var(--hairline);cursor:pointer;
+  transition:background .15s,border-color .15s,color .15s;
+  display:flex;align-items:center;justify-content:center
+}
+.sticky-bar-sizes .chip-sm:hover{border-color:var(--navy)}
+.sticky-bar-sizes .chip-sm.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.btn-sticky-cart{
+  padding:12px 24px;border-radius:var(--r-pill);
+  background:var(--lime);color:var(--navy);
+  font-size:15px;font-weight:600;border:none;cursor:pointer;
+  transition:background .15s,transform .12s;white-space:nowrap
+}
+.btn-sticky-cart:hover{background:var(--lime-deep)}
+.btn-sticky-cart:active{transform:scale(.97)}
+
+/* ── FOOTER ── */
+.foot{background:var(--navy-deep);color:rgba(255,255,255,.7)}
+.foot-top{display:grid;grid-template-columns:1.7fr 1fr 1fr 1fr 1fr;gap:40px;padding:72px 0 48px;border-bottom:1px solid rgba(255,255,255,.08)}
+.foot-brand img{height:30px;width:auto;margin-bottom:16px}
+.foot-brand p{color:rgba(255,255,255,.55);max-width:30ch;font-size:14px;line-height:1.65}
+.foot-social{display:flex;gap:10px;margin-top:20px}
+.foot-social a{width:38px;height:38px;border-radius:50%;border:1px solid rgba(255,255,255,.16);
+  display:flex;align-items:center;justify-content:center;color:#fff;transition:.15s}
+.foot-social a:hover{background:var(--lime);color:var(--navy);border-color:var(--lime)}
+.foot h4{color:#fff;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;margin-bottom:16px}
+.foot ul{list-style:none}.foot li{margin-bottom:11px}
+.foot-top a{color:rgba(255,255,255,.6);font-size:14px;transition:.15s}.foot-top a:hover{color:var(--lime)}
+.foot-pay{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:22px 0;
+  border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.foot-pay .pays{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.pay-badge{font-size:11px;font-weight:700;letter-spacing:.5px;color:rgba(255,255,255,.85);
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:6px 10px}
+.foot-pay .secure{font-size:12.5px;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px}
+.foot-bottom{display:flex;align-items:center;justify-content:space-between;padding:22px 0 40px;
+  font-size:12.5px;color:rgba(255,255,255,.5);flex-wrap:wrap;gap:14px}
+.foot-bottom-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-bottom a{color:rgba(255,255,255,.5)}.foot-bottom a:hover{color:#fff}
+.foot-lang{display:flex;gap:6px;align-items:center}
+.foot-lang a{padding:3px 8px;border-radius:6px}
+.foot-lang a.on{background:rgba(196,255,13,.15);color:var(--lime)}
+
+/* ── SCROLL FADE ── */
+.fade{opacity:0;transform:translateY(20px);transition:opacity .55s ease,transform .55s ease}
+.fade.d1{transition-delay:.07s}.fade.d2{transition-delay:.14s}.fade.d3{transition-delay:.21s}
+.fade.in{opacity:1;transform:none}
+
+/* ──────────────────────────────────────
+   RESPONSIVE
+────────────────────────────────────── */
+@media(max-width:1100px){
+  .pdp-grid{grid-template-columns:1fr 400px;gap:40px}
+  .pdp-detail-inner{gap:48px}
+  .related-grid{grid-template-columns:repeat(3,1fr)}
+}
+@media(max-width:900px){
+  .pdp-grid{grid-template-columns:1fr;gap:32px;max-width:100%;overflow-x:hidden}
+  .gallery{position:static !important;top:auto !important;flex-direction:column;gap:10px}
+  .gallery-main{width:100%;aspect-ratio:3/4;cursor:default}
+  .gallery-thumbs{flex-direction:row;width:100%;max-height:none;overflow-x:auto;overflow-y:visible;padding-bottom:4px;scrollbar-width:none}
+  .gallery-thumbs::-webkit-scrollbar{display:none}
+  .pdp-detail-inner{grid-template-columns:1fr;gap:32px}
+  .pdp-detail-img{display:none}
+  .tech-strip-inner{grid-template-columns:1fr}
+  .tpanel{border-right:none;border-bottom:1px solid rgba(255,255,255,.08)}
+  .tpanel:last-child{border-bottom:none}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+  .foot-top{grid-template-columns:1fr 1fr}
+  .nav-links{display:none}
+  .nav-burger{display:flex}
+  .sticky-bar{padding:0 20px}
+  .sticky-bar-sizes{display:none}
+  .sub-nav{padding:0 20px}
+  .wrap{padding:0 20px}
+}
+@media(max-width:560px){
+  .pdp-page{padding-top:148px}
+  .related-grid{grid-template-columns:1fr 1fr}
+  .trust-row{gap:10px}
+  .trust-item{min-width:70px;font-size:11.5px}
+  .buybox h1{font-size:28px}
+  .sticky-bar{height:56px}
+  .foot-top{grid-template-columns:1fr}
+  /* video section mobile */
+  .vid-grid{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding-bottom:12px;overscroll-behavior-x:contain}
+  .vid-grid::-webkit-scrollbar{height:3px}
+  .vid-grid::-webkit-scrollbar-thumb{background:var(--divider);border-radius:2px}
+  .vid-card{min-width:52vw;scroll-snap-align:start}
+  .vid-lb-stage video{max-height:80vh}
+  .vid-lb-prev{left:6px}
+  .vid-lb-next{right:6px}
+  /* buybox full-width on mobile */
+  .buybox{padding:0}
+  .size-grid{grid-template-columns:repeat(4,1fr)}
+  .swatches{gap:8px}
+  .price-main{font-size:24px}
+  .qty-row{gap:12px}
+  .cta-stack{gap:10px}
+  .btn-add-cart,.btn-wishlist{width:100%;justify-content:center}
+  .vid-sec-head h2{font-size:15px}
+  .pdp-page{padding-top:110px}
+  .pdp-page,.pdp-grid,.buybox{max-width:100%;overflow-x:hidden}
+}
+@media(max-width:430px){
+  .buybox h1{font-size:24px}
+  .price-main{font-size:22px}
+  .size-chip{min-width:36px;height:36px;font-size:12px}
+  .trust-row{flex-wrap:wrap}
+  .trust-item{flex:0 0 calc(50% - 5px)}
+}
+/* ── VIDEO SECTION (in-column, under accordion) ── */
+.vid-sec{margin-top:32px;padding-top:24px;border-top:1px solid var(--divider)}
+.vid-sec-head{margin-bottom:16px}
+.vid-sec-head h2{font-size:17px;font-weight:600;letter-spacing:-.3px;color:var(--navy);margin-bottom:0;line-height:1.2}
+.vid-grid{display:flex;gap:16px}
+.vid-card{flex:1;border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;background:#000;aspect-ratio:9/16;min-width:0}
+.vid-card video{width:100%;height:100%;object-fit:cover;display:block}
+.vid-play-btn{position:absolute;bottom:14px;left:14px;width:44px;height:44px;border-radius:50%;background:rgba(10,36,74,.72);border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .15s,transform .15s;pointer-events:none}
+.vid-play-btn svg{width:18px;height:18px;fill:#fff;margin-left:2px}
+.vid-card:hover .vid-play-btn{background:rgba(10,36,74,.92);transform:scale(1.07)}
+.vid-card-label{position:absolute;bottom:14px;right:14px;background:rgba(10,36,74,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 10px;border-radius:var(--r-pill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+/* video lightbox */
+.vid-lb{display:none;position:fixed;inset:0;z-index:700;background:rgba(7,25,61,.95);flex-direction:column;align-items:center;justify-content:center}
+.vid-lb.open{display:flex}
+.vid-lb-backdrop{position:absolute;inset:0;z-index:0;cursor:zoom-out}
+.vid-lb-close{position:absolute;top:18px;right:18px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
+.vid-lb-close:hover{background:rgba(255,255,255,.25)}
+.vid-lb-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
+.vid-lb-mute{position:absolute;top:18px;left:18px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
+.vid-lb-mute:hover{background:rgba(255,255,255,.25)}
+.vid-lb-mute svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
+.vid-lb-stage{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;max-height:calc(100vh - 80px);max-width:min(420px,calc(100vw - 120px))}
+.vid-lb-stage video{width:100%;max-height:calc(100vh - 80px);border-radius:12px;object-fit:contain;background:#000}
+.vid-lb-prev,.vid-lb-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .15s}
+.vid-lb-prev:hover,.vid-lb-next:hover{background:rgba(196,255,13,.25);color:#C4FF0D;transform:translateY(-50%) scale(1.06)}
+.vid-lb-prev svg,.vid-lb-next svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none}
+.vid-lb-prev{left:16px}
+.vid-lb-next{right:16px}
+.vid-lb-counter{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:10;font-size:13px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.55);font-family:'Inter',system-ui,sans-serif}
+</style>
+</head>
+<body>
+<script>
+/* ── TenyosCart — shared cart module (localStorage) ── */
+const TenyosCart = {
+  KEY: 'tenyos_cart_v1',
+  get() { try { return JSON.parse(localStorage.getItem(this.KEY)) || []; } catch(e){ return []; } },
+  save(items) { localStorage.setItem(this.KEY, JSON.stringify(items)); },
+  add(item) {
+    const items = this.get();
+    const existing = items.find(i => i.id === item.id);
+    if (existing) { existing.qty = Math.min(10, existing.qty + item.qty); }
+    else { items.push(item); }
+    this.save(items);
+    this.refreshUI();
+    CartDrawer.open();
+  },
+  remove(id) {
+    const items = this.get().filter(i => i.id !== id);
+    this.save(items);
+    this.refreshUI();
+  },
+  updateQty(id, delta) {
+    const items = this.get();
+    const item = items.find(i => i.id === id);
+    if (item) { item.qty = Math.max(1, Math.min(10, item.qty + delta)); this.save(items); }
+    this.refreshUI();
+  },
+  total() { return this.get().reduce((s, i) => s + i.price * i.qty, 0); },
+  count() { return this.get().reduce((s, i) => s + i.qty, 0); },
+  refreshUI() {
+    document.querySelectorAll('.cart-count').forEach(el => {
+      const n = this.count();
+      el.textContent = n;
+      el.style.display = n > 0 ? '' : 'none';
+    });
+    CartDrawer.render();
+  }
+};
+
+const CartDrawer = {
+  open() {
+    document.getElementById('cartDrawer').style.transform = 'translateX(0)';
+    document.getElementById('cartOverlay').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    this.render();
+  },
+  close() {
+    document.getElementById('cartDrawer').style.transform = 'translateX(100%)';
+    document.getElementById('cartOverlay').style.display = 'none';
+    document.body.style.overflow = '';
+  },
+  toggle() {
+    const dr = document.getElementById('cartDrawer');
+    const t = dr.style.transform;
+    if (t === 'translateX(0px)' || t === 'translateX(0)') this.close(); else this.open();
+  },
+  render() {
+    const items = TenyosCart.get();
+    const itemsEl = document.getElementById('cartItems');
+    const footerEl = document.getElementById('cartFooter');
+    if (!itemsEl || !footerEl) return;
+    if (items.length === 0) {
+      itemsEl.innerHTML = `<div style="text-align:center;padding:48px 0;color:#888;">
+        <svg viewBox="0 0 24 24" width="48" height="48" stroke="#ccc" stroke-width="1.5" fill="none" style="display:block;margin:0 auto 16px"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
+        <p style="font-size:15px;font-weight:500;color:#444;margin-bottom:6px;">Votre panier est vide</p>
+        <p style="font-size:13px;color:#999;">Découvrez notre collection</p>
+      </div>`;
+      footerEl.innerHTML = '';
+      return;
+    }
+    itemsEl.innerHTML = items.map(item => `
+      <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f0f0f4;">
+        <div style="width:72px;height:96px;border-radius:10px;overflow:hidden;background:#f5f5f7;flex-shrink:0;">
+          <img src="${item.thumb}" alt="${item.productName}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.background='#e8e8ec'">
+        </div>
+        <div style="flex:1;min-width:0;">
+          <div style="font-size:14px;font-weight:600;color:#0A244A;margin-bottom:2px;letter-spacing:-.2px;">${item.productName}</div>
+          <div style="font-size:12px;color:#888;margin-bottom:10px;">${item.colorway} · Taille ${item.size}</div>
+          <div style="display:flex;align-items:center;justify-content:space-between;">
+            <div style="display:flex;align-items:center;gap:0;border:1px solid #e0e0e8;border-radius:8px;overflow:hidden;">
+              <button onclick="TenyosCart.updateQty('${item.id}',-1)" style="width:32px;height:32px;border:none;background:none;cursor:pointer;font-size:16px;color:#0A244A;">−</button>
+              <span style="font-size:13px;font-weight:600;min-width:24px;text-align:center;color:#0A244A;">${item.qty}</span>
+              <button onclick="TenyosCart.updateQty('${item.id}',1)" style="width:32px;height:32px;border:none;background:none;cursor:pointer;font-size:16px;color:#0A244A;">+</button>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;">
+              <span style="font-size:14px;font-weight:700;color:#0A244A;">${(item.price * item.qty).toFixed(0)} MAD</span>
+              <button onclick="TenyosCart.remove('${item.id}')" style="width:28px;height:28px;border:none;background:none;cursor:pointer;color:#bbb;display:flex;align-items:center;justify-content:center;border-radius:6px;" aria-label="Supprimer">
+                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    const total = TenyosCart.total();
+    const FREE_SHIPPING = 600;
+    const pct = Math.min(100, (total / FREE_SHIPPING) * 100);
+    const remaining = Math.max(0, FREE_SHIPPING - total);
+    footerEl.innerHTML = `
+      <div style="margin-bottom:16px;">
+        <div style="display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:6px;">
+          <span>${remaining > 0 ? `Plus que <strong style="color:#0A244A">${remaining.toFixed(0)} MAD</strong> pour la livraison offerte` : '<strong style="color:#1D9E75">✓ Livraison offerte !</strong>'}</span>
+        </div>
+        <div style="height:4px;background:#f0f0f4;border-radius:2px;overflow:hidden;">
+          <div style="height:100%;width:${pct}%;background:#C4FF0D;border-radius:2px;transition:width .4s ease;"></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
+        <span style="font-size:15px;font-weight:600;color:#0A244A;">Sous-total</span>
+        <span style="font-size:17px;font-weight:700;color:#0A244A;">${total.toFixed(0)} MAD</span>
+      </div>
+      <div style="display:flex;gap:10px;">
+        <button onclick="CartDrawer.close()" style="flex:1;height:48px;border:2px solid #0A244A;background:#fff;color:#0A244A;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.2px;">Voir le panier</button>
+        <button style="flex:1;height:48px;border:none;background:#C4FF0D;color:#0A244A;border-radius:9999px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.2px;">Commander</button>
+      </div>
+    `;
+  }
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+  if (!document.getElementById('cartDrawer')) {
+    document.body.insertAdjacentHTML('beforeend', `
+      <div id="cartOverlay" style="display:none;position:fixed;inset:0;background:rgba(10,36,74,.45);z-index:800;cursor:pointer;"></div>
+      <aside id="cartDrawer" aria-label="Panier" role="dialog" style="position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;z-index:801;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(10,36,74,.18);">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #e8e8ec;">
+          <span style="font-size:18px;font-weight:700;color:#0A244A;letter-spacing:-.3px;">Panier</span>
+          <button id="cartClose" style="width:36px;height:36px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#0A244A;" aria-label="Fermer le panier">
+            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+        <div id="cartItems" style="flex:1;overflow-y:auto;padding:16px 24px;"></div>
+        <div id="cartFooter" style="border-top:1px solid #e8e8ec;padding:16px 24px 24px;"></div>
+      </aside>
+    `);
+  }
+  document.getElementById('cartOverlay').addEventListener('click', () => CartDrawer.close());
+  document.getElementById('cartClose').addEventListener('click', () => CartDrawer.close());
+  const cartIcon = document.querySelector('a[aria-label="Panier"]');
+  if (cartIcon) cartIcon.addEventListener('click', e => { e.preventDefault(); CartDrawer.toggle(); });
+  document.addEventListener('keydown', e => {
+    const dr = document.getElementById('cartDrawer');
+    if (e.key === 'Escape' && dr && (dr.style.transform === 'translateX(0px)' || dr.style.transform === 'translateX(0)')) CartDrawer.close();
+  });
+  TenyosCart.refreshUI();
+});
+</script>
+
+<!-- ── CLUB PROMO BAR ── -->
+<div class="topbar">
+  <span>Rejoins le <strong>Club Tenyos</strong> — <strong>-10 %</strong> sur ta première commande · Livraison offerte dès <strong>600 MAD</strong></span>
+  <a href="#">S'inscrire</a>
+  <button class="x" aria-label="Fermer" onclick="document.body.classList.add('nobar')">×</button>
+</div>
+
+<!-- ── NAVIGATION ── -->
+<nav class="nav" id="mainNav">
+  <a class="nav-logo" href="index.html"><img src="assets/img/logo-wordmark-lime.png" alt="Tenyos"></a>
+  <div class="nav-links">
+    <a href="category.html" class="active">Homme</a>
+    <a href="#">Femme<span class="nav-soon">bientôt</span></a>
+    <a href="category-junior.html">Junior</a>
+    <a href="category.html">Padel</a>
+    <a href="category.html">Tennis</a>
+  </div>
+  <div class="nav-act">
+    <a href="#" aria-label="Recherche">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+    </a>
+    <a href="#" aria-label="Mon compte">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a6 6 0 016-6h4a6 6 0 016 6v1"/></svg>
+    </a>
+    <a href="#" aria-label="Panier" style="position:relative">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
+      <span class="cart-count">2</span>
+    </a>
+    <!-- Mobile hamburger -->
+    <div class="nav-burger" id="burger" role="button" aria-label="Menu" tabindex="0">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- Mobile menu -->
+<div class="nav-mobile-menu" id="mobileMenu">
+  <button class="nav-mobile-close" id="mobileClose" aria-label="Fermer">×</button>
+  <a href="category.html">Homme</a>
+  <a href="#">Femme <span style="color:var(--lime);font-size:14px">· bientôt</span></a>
+  <a href="category-junior.html">Junior</a>
+  <a href="category.html">Padel</a>
+  <a href="category.html">Tennis</a>
+  <a href="#" style="margin-top:16px;font-size:16px;color:var(--lime)">Soldes</a>
+</div>
+
+<!-- ── SUB-NAV / BREADCRUMB ── -->
+<div class="sub-nav">
+  <nav class="breadcrumb" aria-label="Fil d'Ariane">
+    <a href="index.html">Accueil</a>
+    <span class="sep">›</span>
+    <a href="#">Homme</a>
+    <span class="sep">›</span>
+    <a href="#">Padel &amp; Tennis</a>
+    <span class="sep">›</span>
+    <span class="current">TenAlpha Smash</span>
+  </nav>
+  <div class="sub-nav-right">
+    <a href="#">Guide des tailles</a>
+    <a href="#">Retours gratuits</a>
+  </div>
+</div>
+
+<!-- ── PDP MAIN ── -->
+<main class="pdp-page">
+  <div class="wrap">
+    <div class="pdp-grid">
+
+      <!-- ── GALLERY ── -->
+      <div class="gallery fade">
+        <div class="gallery-main" id="galleryMain">
+          <span class="gallery-badge">Smash</span>
+          <img id="mainImg"
+            src="assets/img/products/Tenyos_TenAlpha_smash_Navy_blue.webp"
+            alt="TenAlpha Smash — Navy, vue avant">
+          <button class="gallery-zoom" aria-label="Agrandir l'image">
+            <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
+          </button>
+        </div>
+        <div class="gallery-thumbs" id="galleryThumbs"></div>
+      </div>
+
+      <!-- ── BUY BOX ── -->
+      <div class="buybox fade d1">
+
+        <!-- Sport + product name -->
+        <div class="buybox-meta">
+          <div class="sport-tag">Homme · Padel &amp; Tennis</div>
+          <h1>TenAlpha<br>Smash</h1>
+        </div>
+
+        <!-- Rating -->
+        <div class="rating-row">
+          <span class="stars">★★★★★</span>
+          <span class="rating-text">
+            4,8 · <a href="#reviews">38 avis</a>
+          </span>
+        </div>
+
+        <!-- Price -->
+        <div class="price-row">
+          <span class="price-main">249 MAD</span>
+        </div>
+        <p class="price-note">Prix TTC · Livraison offerte dès 600 MAD</p>
+
+        <div class="divider-line"></div>
+
+        <!-- Colour swatches -->
+        <div>
+          <p class="option-label">Coloris <span id="colorLabel">Navy</span></p>
+          <div class="swatches">
+            <button class="swatch s-navy active" aria-label="Navy"  onclick="selectColor(this,'navy')"></button>
+            <button class="swatch s-white"        aria-label="Blanc" onclick="selectColor(this,'white')"></button>
+            <button class="swatch s-lime"         aria-label="Lime"  onclick="selectColor(this,'lime')"></button>
+            <button class="swatch s-pink"         aria-label="Rose"  onclick="selectColor(this,'pink')"></button>
+          </div>
+        </div>
+
+        <!-- Size selector -->
+        <div>
+          <p class="option-label">Taille <span id="sizeLabel">—</span></p>
+          <div class="sizes">
+            <button class="size-chip" onclick="selectSize(this,'XS')">XS</button>
+            <button class="size-chip" onclick="selectSize(this,'S')">S</button>
+            <button class="size-chip" onclick="selectSize(this,'M')">M</button>
+            <button class="size-chip" onclick="selectSize(this,'L')">L</button>
+            <button class="size-chip" onclick="selectSize(this,'XL')">XL</button>
+            <button class="size-chip oos" disabled>XXL</button>
+          </div>
+          <a href="#" class="size-guide-link">
+            <svg viewBox="0 0 24 24"><path d="M2 8h20M2 12h8M2 16h6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
+            Guide des tailles
+          </a>
+        </div>
+
+        <!-- Quantity -->
+        <div class="qty-row">
+          <span class="qty-label">Quantité</span>
+          <div class="qty-ctrl">
+            <button aria-label="Réduire" onclick="changeQty(-1)">−</button>
+            <span class="qty-val" id="qtyVal">1</span>
+            <button aria-label="Augmenter" onclick="changeQty(1)">+</button>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="cta-stack">
+          <button class="btn-add-cart" onclick="handleAddToCart()">
+            <svg viewBox="0 0 24 24"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
+            Ajouter au panier
+          </button>
+          <button class="btn-wishlist">
+            <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+            Ajouter aux favoris
+          </button>
+        </div>
+        <p class="cta-assurance">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          Paiement sécurisé · NAPS · 3D Secure
+        </p>
+
+        <!-- Trust badges -->
+        <div class="trust-row">
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M12 11v3h4"/></svg>
+            Livraison 3–5 jours
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 102.13-9.36L1 10"/></svg>
+            Retours sous 30 jours
+          </div>
+          <div class="trust-item">
+            <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            Qualité garantie
+          </div>
+        </div>
+
+        <!-- Accordion -->
+        <div class="accordion">
+
+          <div class="acc-item open">
+            <button class="acc-head" onclick="toggleAcc(this)">
+              Description
+              <svg class="ico" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="acc-body">
+              <p>Le TenAlpha Smash — le graphisme éclaboussé <strong>!</strong> qui ne passe pas inaperçu. Collection Dry-Speed : léger, respirant, conçu pour bouger. Sur le court ou en dehors, il affiche le style Tenyos sans compromis.</p>
+              <p style="margin-top:12px">La matière Dry-Speed™ évacue la transpiration en continu. Le graphisme signature imprimé résiste aux lavages répétés. La coupe Athletic Fit libère les épaules et accompagne chaque frappe sans tirer. Disponible en quatre coloris.</p>
+            </div>
+          </div>
+
+          <div class="acc-item open">
+            <button class="acc-head" onclick="toggleAcc(this)">
+              Composition &amp; matière
+              <svg class="ico" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="acc-body">
+              <table class="spec-table">
+                <tr><td>Matière</td><td>87 % polyester recyclé · 13 % élasthanne</td></tr>
+                <tr><td>Coupe</td><td>Athletic Fit — coupe ajustée, épaules structurées</td></tr>
+                <tr><td>Technologie</td><td>Dry-Speed™ (évacuation de la transpiration)</td></tr>
+                <tr><td>Protection</td><td>UPF 30+ (protection solaire)</td></tr>
+                <tr><td>Étirement</td><td>4 directions</td></tr>
+                <tr><td>Col</td><td>Col rond renforcé anti-déformation</td></tr>
+                <tr><td>Coutures</td><td>Flatlock — zéro frottement</td></tr>
+                <tr><td>Graphisme</td><td>Impression Dry-Speed™ — résistante aux lavages</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <div class="acc-item open">
+            <button class="acc-head" onclick="toggleAcc(this)">
+              Entretien
+              <svg class="ico" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="acc-body">
+              <ul>
+                <li>Lavage machine à 30 °C, cycle délicat</li>
+                <li>Ne pas utiliser d'assouplissant (altère la performance Dry-Speed™)</li>
+                <li>Séchage à l'air libre recommandé pour préserver le graphisme</li>
+                <li>Ne pas repasser directement sur l'impression</li>
+                <li>Ne pas mettre au sèche-linge à haute température</li>
+                <li>Lavage à l'envers pour préserver les couleurs</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="acc-item open">
+            <button class="acc-head" onclick="toggleAcc(this)">
+              Livraison &amp; retours
+              <svg class="ico" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            </button>
+            <div class="acc-body">
+              <ul>
+                <li>Livraison standard 3–5 jours ouvrés · Gratuite dès 600 MAD</li>
+                <li>Livraison express 1–2 jours ouvrés · 35 MAD</li>
+                <li>Retours gratuits sous 30 jours — article non porté, étiquettes intactes</li>
+                <li>Échanges de taille sans frais pour la première demande</li>
+                <li>Remboursement sous 5 jours ouvrés après réception</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <!-- end accordion -->
+
+        <!-- ── VIDEO IN COLUMN — Le TenAlpha Smash en action ── -->
+        <!-- VIDEO: tenalpha-lookbook.mp4 — real Tenyos lookbook clip (1080×1920 portrait 9:16, 21s). Reused across all 3 cards until individual clips are produced. -->
+        <div class="vid-sec fade">
+          <div class="vid-sec-head">
+            <div class="eyebrow" style="display:flex;align-items:center;gap:8px;margin-bottom:8px">Lookbook</div>
+            <h2>Le style en mouvement</h2>
+          </div>
+          <div class="vid-grid" id="vidGrid">
+            <!-- Card 1 -->
+            <div class="vid-card" data-index="0" onclick="VidLB.open(0)">
+              <video src="assets/videos/tenalpha-lookbook.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <div class="vid-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <span class="vid-card-label">Padel · Smash</span>
+            </div>
+            <!-- Card 2 -->
+            <div class="vid-card" data-index="1" onclick="VidLB.open(1)">
+              <video src="assets/videos/tenalpha-lookbook.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <div class="vid-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <span class="vid-card-label">Tennis · Court</span>
+            </div>
+            <!-- Card 3 -->
+            <div class="vid-card" data-index="2" onclick="VidLB.open(2)">
+              <video src="assets/videos/tenalpha-lookbook.mp4" autoplay muted loop playsinline preload="metadata"></video>
+              <div class="vid-play-btn">
+                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+              </div>
+              <span class="vid-card-label">Dry-Speed™ · Détail</span>
+            </div>
+          </div>
+        </div>
+        <!-- end video in column -->
+
+      </div>
+      <!-- end buybox -->
+
+    </div>
+    <!-- end pdp-grid -->
+  </div>
+  <!-- end wrap -->
+
+  <!-- ── VIDEO LIGHTBOX ── -->
+  <div class="vid-lb" id="vidLb" aria-modal="true" role="dialog" aria-label="Vidéo produit">
+    <div class="vid-lb-backdrop" id="vidLbBackdrop"></div>
+    <button class="vid-lb-close" id="vidLbClose" aria-label="Fermer">
+      <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <button class="vid-lb-mute" id="vidLbMute" aria-label="Couper le son">
+      <svg id="vidMuteIcon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
+    </button>
+    <div class="vid-lb-counter" id="vidLbCounter"></div>
+    <button class="vid-lb-prev" id="vidLbPrev" aria-label="Vidéo précédente">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <div class="vid-lb-stage">
+      <video id="vidLbVideo" src="" playsinline controls></video>
+    </div>
+    <button class="vid-lb-next" id="vidLbNext" aria-label="Vidéo suivante">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- ── PRODUCT DETAIL TILE ── -->
+  <section class="pdp-detail fade">
+    <div class="wrap">
+      <div class="pdp-detail-inner">
+        <div class="pdp-detail-copy fade">
+          <div class="eyebrow">Dry-Speed Technology</div>
+          <h2>Le style qui<br>ne s'efface pas</h2>
+          <p>Le TenAlpha Smash, c'est le t-shirt qu'on remarque dès l'entrée sur le court. Le graphisme signature <strong>!</strong> éclaboussé sur le devant — imprimé avec la technologie Dry-Speed™ qui résiste aux lavages répétés autant qu'à un échange en fond de court.</p>
+          <p>Même tissu, même coupe, même performance que le TenAlpha Performance — avec le style en plus. Pour ceux qui ne séparent pas le jeu de l'attitude.</p>
+          <ul class="feature-list">
+            <li>
+              <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 8v4l3 3"/></svg></div>
+              <div class="feat-text">
+                <strong>Dry-Speed™ — séchage ultra-rapide</strong>
+                <span>Évacue la transpiration vers l'extérieur. Sec en moins de 20 min.</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
+              <div class="feat-text">
+                <strong>Graphisme résistant</strong>
+                <span>Impression Dry-Speed™ — tient les couleurs après 50 lavages.</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-wrap"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 000 20"/><path d="M2 12h20"/></svg></div>
+              <div class="feat-text">
+                <strong>UPF 30+</strong>
+                <span>Protection solaire intégrée pour les longues sessions en plein air.</span>
+              </div>
+            </li>
+            <li>
+              <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+              <div class="feat-text">
+                <strong>Coutures Flatlock</strong>
+                <span>Zéro frottement contre la peau même après 3 sets.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="pdp-detail-img fade d1">
+          <img src="assets/img/products/Tenyos_TenAlpha_Man_Smash_Navy_Action_heygen.webp"
+               alt="TenAlpha Smash Navy — action sur le court">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── TECH STRIP ── -->
+  <section class="tech-strip fade">
+    <div class="wrap">
+      <div class="tech-strip-inner">
+        <div class="tpanel">
+          <div class="tnum">01</div>
+          <h3>Dry-Speed™ Wicking</h3>
+          <p>Capillaires à micro-canal intégrés au fil. La transpiration remonte en surface et s'évapore — reste sec jusqu'au dernier point.</p>
+        </div>
+        <div class="tpanel">
+          <div class="tnum">02</div>
+          <h3>Impression durable</h3>
+          <p>Le graphisme signature <strong style="color:var(--lime)">!</strong> — imprimé Dry-Speed™ qui tient la couleur et le contraste après des dizaines de lavages.</p>
+        </div>
+        <div class="tpanel">
+          <div class="tnum">03</div>
+          <h3>Stretch 4D + UPF 30+</h3>
+          <p>Tissage croisé 4 axes pour les smashes sans résistance. Trame serrée qui bloque 97 % des UV en plein soleil.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── VOUS AIMEREZ AUSSI ── -->
+  <section class="related fade">
+    <div class="wrap">
+      <div class="related-head">
+        <div>
+          <div class="eyebrow">Vous aimerez aussi</div>
+          <h2>Complète ta tenue</h2>
+        </div>
+        <a href="#">Voir toute la collection →</a>
+      </div>
+      <div class="related-grid">
+        <a class="pcard" href="product.html">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Navy_Blue_Front.webp" alt="TenAlpha Performance — Navy"></div>
+          <div class="pname">TenAlpha Performance</div>
+          <div class="pcat">Homme · Padel &amp; Tennis</div>
+          <div class="pprice">249 MAD</div>
+        </a>
+        <a class="pcard" href="#">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_smash_Green.webp" alt="TenAlpha Smash — Lime"></div>
+          <div class="pname">TenAlpha Smash</div>
+          <div class="pcat">Homme · Lime</div>
+          <div class="pprice">249 MAD</div>
+        </a>
+        <a class="pcard" href="#">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_smash_White.webp" alt="TenAlpha Smash — Blanc"></div>
+          <div class="pname">TenAlpha Smash</div>
+          <div class="pcat">Homme · Blanc</div>
+          <div class="pprice">249 MAD</div>
+        </a>
+        <a class="pcard" href="product-junior.html">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_OnModel.webp" alt="TenAlpha Junior Smash"></div>
+          <div class="pname">TenAlpha Junior Smash</div>
+          <div class="pcat">Junior · Padel &amp; Tennis</div>
+          <div class="pprice">179 MAD</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ── FOOTER ── -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <img src="assets/img/logo-wordmark-lime.png" alt="Tenyos">
+        <p>Padel &amp; tennis sportswear. Try it. Make it. Play it.</p>
+        <div class="foot-social">
+          <a href="#" aria-label="Instagram"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="#" aria-label="TikTok"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3c.3 2.2 1.8 3.9 4 4.2v3c-1.5 0-2.9-.4-4-1.1V15a6 6 0 11-6-6c.3 0 .7 0 1 .1v3.1c-.3-.1-.7-.2-1-.2a3 3 0 103 3V3h3z"/></svg></a>
+          <a href="#" aria-label="Facebook"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M14 9h3V6h-3c-2 0-3.5 1.5-3.5 3.5V11H8v3h2.5v7h3v-7H16l.5-3h-3V9.5C13.5 9.2 13.7 9 14 9z"/></svg></a>
+          <a href="#" aria-label="YouTube"><svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M22 8.5a3 3 0 00-2-2C18 6 12 6 12 6s-6 0-8 .5a3 3 0 00-2 2C2 10 2 12 2 12s0 2 .5 3.5a3 3 0 002 2C6 18 12 18 12 18s6 0 8-.5a3 3 0 002-2C22 14 22 12 22 12s0-2-.5-3.5zM10 15V9l5 3-5 3z"/></svg></a>
+        </div>
+      </div>
+      <div><h4>Boutique</h4><ul>
+        <li><a href="#">Nouveautés</a></li><li><a href="#">Meilleures ventes</a></li><li><a href="#">TenAlpha Tee</a></li>
+        <li><a href="#">T-shirts</a></li><li><a href="#">Manches longues</a></li><li><a href="#">Accessoires</a></li><li><a href="#">Soldes</a></li>
+      </ul></div>
+      <div><h4>Collections</h4><ul>
+        <li><a href="category.html">Homme</a></li>
+        <li><a href="#">Femme <span style="color:var(--lime);font-size:11px">· bientôt</span></a></li>
+        <li><a href="category-junior.html">Junior</a></li>
+        <li><a href="category.html">Padel</a></li>
+        <li><a href="category.html">Tennis</a></li>
+        <li><a href="#">Club 50+ (Seniors)</a></li>
+      </ul></div>
+      <div><h4>Aide</h4><ul>
+        <li><a href="#">Nous contacter</a></li><li><a href="#">Livraison</a></li><li><a href="#">Retours &amp; échanges</a></li>
+        <li><a href="#">Guide des tailles</a></li><li><a href="#">Suivi de commande</a></li><li><a href="#">FAQ</a></li>
+      </ul></div>
+      <div><h4>Tenyos</h4><ul>
+        <li><a href="#">Notre histoire</a></li><li><a href="#">Durabilité</a></li><li><a href="#">Clubs &amp; pros</a></li>
+        <li><a href="#">Grossiste</a></li><li><a href="#">Carrières</a></li><li><a href="#">Presse</a></li>
+      </ul></div>
+    </div>
+    <div class="foot-pay">
+      <span class="secure">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+        Paiement sécurisé — NAPS · 3D Secure
+      </span>
+      <span class="pays">
+        <span class="pay-badge">NAPS</span><span class="pay-badge">VISA</span><span class="pay-badge">Mastercard</span><span class="pay-badge">CMI</span>
+      </span>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Tenyos. Tous droits réservés.</span>
+      <div class="foot-bottom-links">
+        <a href="#">Confidentialité</a><a href="#">Conditions</a><a href="#">Cookies</a>
+        <span class="foot-lang"><a href="#" class="on">🇫🇷 FR</a><a href="#">🇬🇧 EN</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ── FLOATING STICKY BAR ── -->
+<div class="sticky-bar" id="stickyBar">
+  <div class="sticky-bar-left">
+    <img src="assets/img/products/Tenyos_TenAlpha_smash_Navy_blue.webp" id="stickyImg" alt="TenAlpha Smash">
+    <div>
+      <div class="sticky-bar-name">TenAlpha Smash — Navy</div>
+      <div class="sticky-bar-price">249 MAD</div>
+    </div>
+  </div>
+  <div class="sticky-bar-right">
+    <div class="sticky-bar-sizes">
+      <button class="chip-sm" onclick="selectStickySize(this,'XS')">XS</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'S')">S</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'M')">M</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'L')">L</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'XL')">XL</button>
+    </div>
+    <button class="btn-sticky-cart">Ajouter au panier</button>
+  </div>
+</div>
+
+<!-- ── LIGHTBOX ── -->
+<div id="lightbox" aria-modal="true" role="dialog" aria-label="Galerie produit">
+  <div id="lbBackdrop"></div>
+  <button id="lbClose" aria-label="Fermer">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+  </button>
+  <div id="lbCounter"></div>
+  <button id="lbPrev" aria-label="Image précédente">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+  </button>
+  <button id="lbNext" aria-label="Image suivante">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+  </button>
+  <div id="lbStage"><img id="lbImg" src="" alt=""></div>
+  <div id="lbRail"></div>
+</div>
+
+<style>
+#lightbox{display:none;position:fixed;inset:0;z-index:600;background:rgba(7,25,61,.96);flex-direction:column;align-items:center;justify-content:center}
+#lightbox.open{display:flex}
+#lbBackdrop{position:absolute;inset:0;z-index:0;cursor:zoom-out}
+#lbClose{position:absolute;top:20px;right:20px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
+#lbClose:hover{background:rgba(255,255,255,.22)}
+#lbClose svg{width:20px;height:20px}
+#lbCounter{position:absolute;top:24px;left:50%;transform:translateX(-50%);z-index:10;font-size:13px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.6);font-family:'Inter',system-ui,sans-serif}
+#lbPrev,#lbNext{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .15s}
+#lbPrev:hover,#lbNext:hover{background:rgba(196,255,13,.25);color:#C4FF0D;transform:translateY(-50%) scale(1.06)}
+#lbPrev:active,#lbNext:active{transform:translateY(-50%) scale(.96)}
+#lbPrev svg,#lbNext svg{width:24px;height:24px}
+#lbPrev{left:24px}
+#lbNext{right:24px}
+#lbPrev:disabled,#lbNext:disabled{opacity:.2;pointer-events:none}
+#lbStage{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;max-height:calc(100vh - 160px);max-width:calc(100vw - 140px);flex:1}
+#lbImg{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:6px;transition:opacity .2s ease,transform .2s ease;cursor:default}
+#lbImg.lb-switching{opacity:0;transform:scale(.97)}
+#lbRail{position:relative;z-index:10;display:flex;gap:8px;padding:12px 24px 20px;overflow-x:auto;scrollbar-width:none;max-width:100vw;flex-shrink:0}
+#lbRail::-webkit-scrollbar{display:none}
+.lb-thumb{width:56px;height:74px;flex-shrink:0;border-radius:6px;overflow:hidden;border:2px solid rgba(255,255,255,.15);outline:2px solid transparent;cursor:pointer;transition:border-color .15s,outline-color .15s,transform .15s;background:#1a2a40}
+.lb-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+.lb-thumb:hover{border-color:rgba(255,255,255,.5);transform:scale(1.06)}
+.lb-thumb.active{border-color:#C4FF0D;outline-color:rgba(196,255,13,.3)}
+@media(max-width:600px){#lbPrev{left:8px;width:44px;height:44px}#lbNext{right:8px;width:44px;height:44px}#lbStage{max-width:100vw;max-height:calc(100vh - 180px)}}
+</style>
+
+<script>
+/* ────────────────────────────────────────────
+   COLORWAY DATA — TenAlpha Smash (Man)
+   4 images per colorway: Front, Côté, Dos, Action
+   Front = flat graphic shot (on-model, colourful backdrop)
+──────────────────────────────────────────── */
+const COLORWAYS = {
+  navy: {
+    label: 'Navy',
+    images: [
+      { src:'assets/img/products/Tenyos_TenAlpha_smash_Navy_blue.webp',          alt:'Vue avant — Navy' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Navy_Side_heygen.webp',  alt:'Vue côté — Navy' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Navy_Back_heygen.webp',  alt:'Vue dos — Navy' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Navy_Action_heygen.webp',alt:'Action court — Navy' },
+    ]
+  },
+  white: {
+    label: 'Blanc',
+    images: [
+      { src:'assets/img/products/Tenyos_TenAlpha_smash_White.webp',                alt:'Vue avant — Blanc' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_White_Side_heygen.webp', alt:'Vue côté — Blanc' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_White_Back_heygen.webp', alt:'Vue dos — Blanc' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_White_Action_heygen.webp',alt:'Action court — Blanc' },
+    ]
+  },
+  lime: {
+    label: 'Lime',
+    images: [
+      { src:'assets/img/products/Tenyos_TenAlpha_smash_Green.webp',                alt:'Vue avant — Lime' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Lime_Side_heygen.webp',  alt:'Vue côté — Lime' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Lime_Back_heygen.webp',  alt:'Vue dos — Lime' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Lime_Action_heygen.webp',alt:'Action court — Lime' },
+    ]
+  },
+  pink: {
+    label: 'Rose',
+    images: [
+      { src:'assets/img/products/Tenyos_TenAlpha_smash_Pink.webp',                 alt:'Vue avant — Rose' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Pink_Side_heygen.webp',  alt:'Vue côté — Rose' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Pink_Back_heygen.webp',  alt:'Vue dos — Rose' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Man_Smash_Pink_Action_heygen.webp',alt:'Action court — Rose' },
+    ]
+  }
+};
+
+/* ── INIT GALLERY (Navy on page load — TenAlpha Smash) ── */
+function initGallery(){
+  const cw = COLORWAYS.navy;
+  const container = document.getElementById('galleryThumbs');
+  container.innerHTML = '';
+  cw.images.forEach((imgData, i) => {
+    const b = document.createElement('button');
+    b.className = 'thumb' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', imgData.alt);
+    b.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}">`;
+    b.addEventListener('click', () => switchImg(b, imgData.src, imgData.alt));
+    container.appendChild(b);
+  });
+}
+document.addEventListener('DOMContentLoaded', function(){
+  initGallery();
+  /* ── COLORWAY DEEP-LINK: ?color=navy|white|lime|pink ── */
+  const param = new URLSearchParams(location.search).get('color');
+  if(param && COLORWAYS[param] && param !== 'navy'){
+    const swatch = document.querySelector('.swatch.s-' + param);
+    if(swatch) selectColor(swatch, param);
+  }
+});
+
+/* ── SCROLL FADE ── */
+const io = new IntersectionObserver(es => es.forEach(e => {
+  if(e.isIntersecting) e.target.classList.add('in');
+}), {threshold:.1});
+document.querySelectorAll('.fade').forEach(el => io.observe(el));
+
+/* ── GALLERY SWITCH ── */
+function switchImg(btn, src, alt){
+  setMainImg(src, alt);
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+function setMainImg(src, alt){
+  const img = document.getElementById('mainImg');
+  const gm  = document.getElementById('galleryMain');
+  img.classList.add('switching');
+  gm.style.backgroundImage = '';
+  gm.classList.remove('zoomed');
+  setTimeout(() => {
+    img.src = src;
+    if(alt) img.alt = alt;
+    img.classList.remove('switching');
+  }, 260);
+}
+
+/* ── COLOUR SELECT ── */
+function selectColor(btn, colorKey){
+  const cw = COLORWAYS[colorKey];
+  if(!cw) return;
+
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('colorLabel').textContent = cw.label;
+
+  const thumbContainer = document.querySelector('.gallery-thumbs');
+  thumbContainer.innerHTML = '';
+  cw.images.forEach((imgData, i) => {
+    const b = document.createElement('button');
+    b.className = 'thumb' + (i === 0 ? ' active' : '');
+    b.setAttribute('aria-label', imgData.alt);
+    b.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}">`;
+    b.addEventListener('click', () => switchImg(b, imgData.src, imgData.alt));
+    thumbContainer.appendChild(b);
+  });
+
+  setMainImg(cw.images[0].src, cw.images[0].alt);
+  document.getElementById('stickyImg').src = cw.images[0].src;
+  document.querySelector('.sticky-bar-name').textContent =
+    'TenAlpha Smash — ' + cw.label;
+}
+
+/* ── SIZE SELECT ── */
+function selectSize(btn, size){
+  document.querySelectorAll('.size-chip:not(.oos)').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('sizeLabel').textContent = size;
+  document.querySelectorAll('.chip-sm').forEach(c => {
+    c.classList.toggle('active', c.textContent === size);
+  });
+}
+function selectStickySize(btn, size){
+  document.querySelectorAll('.chip-sm').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.size-chip:not(.oos)').forEach(c => {
+    c.classList.toggle('active', c.textContent === size);
+  });
+  document.getElementById('sizeLabel').textContent = size;
+}
+
+/* ── QUANTITY ── */
+let qty = 1;
+function changeQty(d){ qty = Math.max(1, Math.min(10, qty + d)); document.getElementById('qtyVal').textContent = qty; }
+
+/* ── ADD TO CART ── */
+function handleAddToCart(){
+  const sizeEl = document.querySelector('.size-chip.active');
+  if (!sizeEl) {
+    document.querySelectorAll('.size-chip:not(.oos)').forEach(c => {
+      c.style.borderColor = '#c0392b';
+      setTimeout(() => c.style.borderColor = '', 900);
+    });
+    return;
+  }
+  const color = document.getElementById('colorLabel')?.textContent || 'Navy';
+  const size = sizeEl.textContent.trim();
+  const qty = parseInt(document.getElementById('qtyVal')?.textContent || '1');
+  const thumb = document.getElementById('mainImg')?.src || '';
+  const productName = 'TenAlpha Smash';
+  const price = 249;
+  const id = `${productName.replace(/\s+/g,'-').toLowerCase()}-${color}-${size}`;
+  TenyosCart.add({ id, productName, colorway: color, size, price, qty, thumb });
+  const btn = document.querySelector('.btn-add-cart');
+  const orig = btn.innerHTML;
+  btn.textContent = '✓ Ajouté au panier';
+  btn.style.background = 'var(--navy)'; btn.style.color = '#fff';
+  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; }, 1800);
+}
+
+/* ── ACCORDION ── */
+function toggleAcc(btn){ btn.closest('.acc-item').classList.toggle('open'); }
+
+/* ── STICKY BAR ── */
+const stickyBar = document.getElementById('stickyBar');
+const buyBox    = document.querySelector('.buybox');
+const stickyObs = new IntersectionObserver(([e]) => {
+  stickyBar.classList.toggle('visible', !e.isIntersecting);
+}, {threshold:0, rootMargin:'0px 0px -100px 0px'});
+if(buyBox) stickyObs.observe(buyBox);
+
+/* ── HOVER ZOOM (adidas-style, desktop only) ── */
+(function(){
+  const gm = document.getElementById('galleryMain');
+  if(!gm) return;
+  if(!window.matchMedia('(pointer:fine)').matches) return;
+
+  gm.addEventListener('mouseenter', function(){
+    const src = document.getElementById('mainImg').src;
+    gm.style.backgroundImage  = `url('${src}')`;
+    gm.style.backgroundSize   = '220%';
+    gm.style.backgroundRepeat = 'no-repeat';
+    gm.style.cursor           = 'crosshair';
+    gm.classList.add('zoomed');
+  });
+  gm.addEventListener('mousemove', function(e){
+    if(!gm.classList.contains('zoomed')) return;
+    const rect = gm.getBoundingClientRect();
+    const xPct = ((e.clientX - rect.left) / rect.width)  * 100;
+    const yPct = ((e.clientY - rect.top)  / rect.height) * 100;
+    gm.style.backgroundPosition = `${xPct}% ${yPct}%`;
+  });
+  gm.addEventListener('mouseleave', function(){
+    gm.classList.remove('zoomed');
+    gm.style.backgroundImage    = '';
+    gm.style.backgroundSize     = '';
+    gm.style.backgroundRepeat   = '';
+    gm.style.backgroundPosition = '';
+    gm.style.cursor             = 'zoom-in';
+  });
+})();
+
+/* ── LIGHTBOX ── */
+const LB = {
+  images: [], index: 0,
+  open(images, startIndex){
+    this.images = images; this.index = startIndex;
+    this._buildRail();
+    this._showImage(startIndex, false);
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+    this._updateArrows();
+  },
+  close(){ document.getElementById('lightbox').classList.remove('open'); document.body.style.overflow = ''; },
+  go(newIndex){
+    if(newIndex < 0 || newIndex >= this.images.length) return;
+    this._showImage(newIndex, true); this.index = newIndex;
+    this._updateArrows(); this._updateRailActive();
+  },
+  prev(){ this.go(this.index - 1); },
+  next(){ this.go(this.index + 1); },
+  _showImage(idx, animate){
+    const img = document.getElementById('lbImg');
+    const counter = document.getElementById('lbCounter');
+    const data = this.images[idx];
+    if(animate){
+      img.classList.add('lb-switching');
+      setTimeout(() => { img.src = data.src; img.alt = data.alt; img.classList.remove('lb-switching'); }, 180);
+    } else { img.src = data.src; img.alt = data.alt; }
+    counter.textContent = `${idx + 1} / ${this.images.length}`;
+  },
+  _buildRail(){
+    const rail = document.getElementById('lbRail'); rail.innerHTML = '';
+    this.images.forEach((imgData, i) => {
+      const btn = document.createElement('button');
+      btn.className = 'lb-thumb' + (i === this.index ? ' active' : '');
+      btn.setAttribute('aria-label', imgData.alt);
+      btn.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}" loading="lazy">`;
+      btn.addEventListener('click', (e) => { e.stopPropagation(); LB.go(i); });
+      rail.appendChild(btn);
+    });
+  },
+  _updateRailActive(){
+    document.querySelectorAll('.lb-thumb').forEach((t, i) => t.classList.toggle('active', i === this.index));
+    const active = document.querySelector('.lb-thumb.active');
+    if(active) active.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+  },
+  _updateArrows(){
+    document.getElementById('lbPrev').disabled = this.images.length <= 1;
+    document.getElementById('lbNext').disabled = this.images.length <= 1;
+  }
+};
+
+function getLightboxState(){
+  const activeSwatch = document.querySelector('.swatch.active');
+  let colorKey = 'navy';
+  if(activeSwatch){
+    if(activeSwatch.classList.contains('s-white'))     colorKey = 'white';
+    else if(activeSwatch.classList.contains('s-lime')) colorKey = 'lime';
+    else if(activeSwatch.classList.contains('s-pink')) colorKey = 'pink';
+  }
+  const images = COLORWAYS[colorKey].images;
+  const currentFile = document.getElementById('mainImg').src.split('/').pop();
+  let startIndex = images.findIndex(img => img.src.split('/').pop() === currentFile);
+  if(startIndex < 0) startIndex = 0;
+  return { images, startIndex };
+}
+
+document.querySelector('.gallery-zoom').addEventListener('click', function(e){
+  e.stopPropagation();
+  const { images, startIndex } = getLightboxState();
+  LB.open(images, startIndex);
+});
+/* Open lightbox — tap/click on main image with scroll-gesture guard */
+(function(){
+  var touchStartX = null, touchStartY = null;
+  var gm = document.getElementById('galleryMain');
+  gm.addEventListener('touchstart', function(e){
+    touchStartX = e.touches[0].clientX;
+    touchStartY = e.touches[0].clientY;
+  }, {passive: true});
+  gm.addEventListener('click', function(e){
+    if(e.target.closest('#lbClose, .gallery-zoom')) return;
+    if(touchStartY !== null){
+      var dx = e.clientX - touchStartX, dy = e.clientY - touchStartY;
+      touchStartX = null; touchStartY = null;
+      if(Math.sqrt(dx*dx + dy*dy) > 12) return;
+    }
+    var state = getLightboxState();
+    LB.open(state.images, state.startIndex);
+  });
+})();
+document.getElementById('lbBackdrop').addEventListener('click', () => LB.close());
+document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); LB.prev(); });
+document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); LB.next(); });
+document.getElementById('lbClose').addEventListener('click', (e) => { e.stopPropagation(); LB.close(); });
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('lightbox');
+  if(!lb.classList.contains('open')) return;
+  if(e.key === 'Escape')      LB.close();
+  if(e.key === 'ArrowLeft')  { e.preventDefault(); LB.prev(); }
+  if(e.key === 'ArrowRight') { e.preventDefault(); LB.next(); }
+});
+
+(function(){
+  let startX = 0;
+  const stage = document.getElementById('lbStage');
+  stage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener('touchend',   e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 50){ dx < 0 ? LB.next() : LB.prev(); }
+  });
+})();
+
+/* Mobile burger */
+(function(){
+  const burger = document.getElementById('burger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const mobileClose = document.getElementById('mobileClose');
+  if(burger){ burger.addEventListener('click', () => mobileMenu.classList.toggle('open')); burger.addEventListener('keydown', e => { if(e.key==='Enter') mobileMenu.classList.toggle('open'); }); }
+  if(mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+})();
+
+/* ── VIDEO LIGHTBOX ── */
+const VID_SRCS = [
+  { src: 'assets/videos/tenalpha-lookbook.mp4', label: 'Padel · Smash' },
+  { src: 'assets/videos/tenalpha-lookbook.mp4', label: 'Tennis · Court' },
+  { src: 'assets/videos/tenalpha-lookbook.mp4', label: 'Dry-Speed™ · Détail' }
+];
+
+const VidLB = {
+  idx: 0,
+  muted: false,
+
+  open(idx){
+    this.idx = idx;
+    const lb = document.getElementById('vidLb');
+    const vid = document.getElementById('vidLbVideo');
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    vid.src = VID_SRCS[idx].src;
+    vid.muted = this.muted;
+    vid.play().catch(()=>{});
+    this._updateCounter();
+    this._updateMuteIcon();
+    this._pauseCards();
+  },
+
+  close(){
+    const lb = document.getElementById('vidLb');
+    const vid = document.getElementById('vidLbVideo');
+    lb.classList.remove('open');
+    document.body.style.overflow = '';
+    vid.pause();
+    vid.src = '';
+    this._resumeCards();
+  },
+
+  go(newIdx){
+    this.idx = ((newIdx % VID_SRCS.length) + VID_SRCS.length) % VID_SRCS.length;
+    const vid = document.getElementById('vidLbVideo');
+    vid.src = VID_SRCS[this.idx].src;
+    vid.muted = this.muted;
+    vid.play().catch(()=>{});
+    this._updateCounter();
+    this._updateMuteIcon();
+  },
+
+  toggleMute(){
+    this.muted = !this.muted;
+    const vid = document.getElementById('vidLbVideo');
+    vid.muted = this.muted;
+    this._updateMuteIcon();
+  },
+
+  _updateCounter(){
+    document.getElementById('vidLbCounter').textContent = `${this.idx + 1} / ${VID_SRCS.length}`;
+  },
+
+  _updateMuteIcon(){
+    const icon = document.getElementById('vidMuteIcon');
+    if(this.muted){
+      icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
+    } else {
+      icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/>';
+    }
+  },
+
+  _pauseCards(){
+    document.querySelectorAll('.vid-card video').forEach(v => v.pause());
+  },
+
+  _resumeCards(){
+    document.querySelectorAll('.vid-card video').forEach(v => { v.muted = true; v.play().catch(()=>{}); });
+  }
+};
+
+document.getElementById('vidLbBackdrop').addEventListener('click', () => VidLB.close());
+document.getElementById('vidLbClose').addEventListener('click', () => VidLB.close());
+document.getElementById('vidLbMute').addEventListener('click', () => VidLB.toggleMute());
+document.getElementById('vidLbPrev').addEventListener('click', () => VidLB.go(VidLB.idx - 1));
+document.getElementById('vidLbNext').addEventListener('click', () => VidLB.go(VidLB.idx + 1));
+
+document.addEventListener('keydown', e => {
+  const lb = document.getElementById('vidLb');
+  if(!lb.classList.contains('open')) return;
+  if(e.key === 'Escape')      VidLB.close();
+  if(e.key === 'ArrowLeft')  { e.preventDefault(); VidLB.go(VidLB.idx - 1); }
+  if(e.key === 'ArrowRight') { e.preventDefault(); VidLB.go(VidLB.idx + 1); }
+});
+
+/* touch-swipe for video lightbox */
+(function(){
+  let startX = 0;
+  const stage = document.querySelector('.vid-lb-stage');
+  if(!stage) return;
+  stage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
+  stage.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - startX;
+    if(Math.abs(dx) > 48){ dx < 0 ? VidLB.go(VidLB.idx + 1) : VidLB.go(VidLB.idx - 1); }
+  });
+})();
+
+/* ── MOBILE: accordions closed by default ── */
+document.addEventListener('DOMContentLoaded', function(){
+  if(window.matchMedia('(max-width:768px)').matches){
+    document.querySelectorAll('.acc-item').forEach(function(item){
+      item.classList.remove('open');
+    });
+  }
+});
+
+/* ── VIDEO: play only when in view (prevents scroll jank from offscreen decode) ── */
+(function(){
+  var isMobile = window.matchMedia('(max-width:768px)').matches;
+  if(!isMobile) return;
+
+  document.querySelectorAll('.vid-card video').forEach(function(v){
+    v.autoplay = false;
+    v.pause();
+  });
+
+  var vidObs = new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      var v = entry.target;
+      if(entry.isIntersecting){
+        v.muted = true;
+        v.play().catch(function(){});
+      } else {
+        v.pause();
+      }
+    });
+  }, { threshold: 0.25 });
+
+  document.querySelectorAll('.vid-card video').forEach(function(v){
+    vidObs.observe(v);
+  });
+})();
+</script>
+</body>
+</html>
