@@ -135,7 +135,7 @@ body.nobar .nav{top:0}
   padding:9px 0;border-bottom:1px solid var(--divider);
   white-space:nowrap;transition:background .12s,color .12s,padding-left .12s;text-shadow:none;letter-spacing:.2px}
 .nav-mega-col a:last-child{border-bottom:none}
-.nav-mega-col a:hover{background:var(--parchment);padding-left:6px}
+.nav-mega-col a:hover{background:var(--parchment);color:var(--navy);box-shadow:inset 3px 0 0 var(--lime);padding-left:9px}
 .nav-mega-col a.active{font-weight:700}
 .nav-mega-sep{width:1px;background:var(--hairline);margin:0 20px;flex-shrink:0}
 .nav-promos-link{position:relative;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
@@ -144,6 +144,7 @@ body.nobar .nav{top:0}
 .nav-promos-link::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;
   background:var(--lime);transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
 .nav-promos-link:hover::after{transform:scaleX(1)}
+a.nav-promos-link:hover{color:var(--lime)}
 
 /* ── MOBILE NAV ACCORDION ── */
 .mob-acc{border-bottom:1px solid rgba(255,255,255,.08)}
@@ -159,6 +160,17 @@ body.nobar .nav{top:0}
 .mob-acc-body a:last-child{border-bottom:none}
 .mob-nav-logo{margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);padding-bottom:8px}
 .mob-nav-logo img{height:26px;width:auto;opacity:.6}
+/* Flat always-expanded mobile sport sections */
+.mob-sport-block{border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:6px}
+.mob-sport-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--lime);padding:20px 0 8px;opacity:.9}
+.mob-sport-block a{display:block;font-size:20px;font-weight:600;color:rgba(255,255,255,.85);
+  padding:11px 0 11px 16px;border-bottom:1px solid rgba(255,255,255,.05);transition:color .15s}
+.mob-sport-block a:last-child{border-bottom:none}
+.mob-sport-block a:hover{color:var(--lime)}
+.mob-promos-link{display:block;font-size:24px;font-weight:600;color:var(--lime);
+  padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .15s}
+.mob-promos-link:hover{color:var(--lime-deep)}
 .nav-logo img{height:32px;width:auto;display:block}
 .nav-links{display:flex;gap:30px}
 .nav-links a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
@@ -853,27 +865,19 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Mobile menu -->
 <div class="nav-mobile-menu" id="mobileMenu">
   <button class="nav-mobile-close" id="mobileClose" aria-label="Fermer">×</button>
-  <div class="mob-acc" id="mobPadel">
-    <button class="mob-acc-head" onclick="toggleMobAcc('mobPadel')">Padel
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="mob-acc-body">
-      <a href="category.html">Adultes</a>
-      <a href="category-junior.html">Juniors</a>
-      <a href="category-junior.html">Kids</a>
-    </div>
+  <div class="mob-sport-block">
+    <span class="mob-sport-lbl">Padel</span>
+    <a href="category.html">Adultes</a>
+    <a href="category-junior.html">Juniors</a>
+    <a href="category-junior.html">Kids</a>
   </div>
-  <div class="mob-acc" id="mobTennis">
-    <button class="mob-acc-head" onclick="toggleMobAcc('mobTennis')">Tennis
-      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-    <div class="mob-acc-body">
-      <a href="category.html">Adultes</a>
-      <a href="category-junior.html">Juniors</a>
-      <a href="category-junior.html">Kids</a>
-    </div>
+  <div class="mob-sport-block">
+    <span class="mob-sport-lbl">Tennis</span>
+    <a href="category.html">Adultes</a>
+    <a href="category-junior.html">Juniors</a>
+    <a href="category-junior.html">Kids</a>
   </div>
-  <a href="category.html" style="color:var(--lime)">Promos</a>
+  <a href="category.html" class="mob-promos-link">Promos</a>
   <div class="mob-nav-logo"><img src="assets/img/logo-wordmark-lime.png" alt="Tenyos"></div>
 </div>
 
