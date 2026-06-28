@@ -64,7 +64,7 @@ button{font-family:var(--f);cursor:pointer;border:none;background:none}
 .tile-navy-2{background:var(--navy-2);color:#fff}
 
 /* ── TOP PROMO BAR ── */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:110;height:38px;background:var(--navy-deep);
+.topbar{position:fixed;top:0;left:0;right:0;z-index:110;min-height:38px;background:var(--navy-deep);
   display:flex;align-items:center;justify-content:center;gap:8px;padding:0 44px;text-align:center;
   font-size:12.5px;color:rgba(255,255,255,.92);border-bottom:1px solid rgba(255,255,255,.07)}
 .topbar strong{color:var(--lime);font-weight:700}
@@ -444,6 +444,14 @@ body.nobar .filters{top:132px}
   .pcard .qadd{left:8px;right:8px;bottom:8px;padding:9px;font-size:12px}
   .shop-layout,.shop-inner,.pgrid{max-width:100%;overflow-x:hidden}
 }
+@media(max-width:640px){
+  .topbar{height:auto;min-height:38px;padding:9px 40px;flex-wrap:wrap;text-align:center;line-height:1.5;justify-content:center}
+  .nav{top:50px}
+  body.nobar .nav{top:0}
+  .sub-nav{top:122px}
+  body.nobar .sub-nav{top:72px}
+  .cat-header{padding-top:174px !important}
+}
 /* ── QUICK-ADD POPOVER (matches WP .qadd-pop) ── */
 .pcard{overflow:visible;position:relative;}
 .pcard .qadd-pop{
@@ -708,8 +716,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- ── PROMO TOP BAR ── -->
 <div class="topbar" id="topbar">
-  <span>Rejoins le <strong>Club Tenyos</strong> — <strong>-10 %</strong> sur ta première commande · Livraison offerte dès <strong>600 MAD</strong></span>
-  <a href="#">S'inscrire</a>
+  <span>Rejoins la <strong>Tenyos Community</strong> — <strong>-10 %</strong> sur ta 1ère commande · <a href="#">S'inscrire</a></span>
   <button class="x" aria-label="Fermer" onclick="document.body.classList.add('nobar');document.getElementById('topbar').style.display='none'">×</button>
 </div>
 
@@ -1147,7 +1154,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a href="#">T-shirts</a></li>
         <li><a href="#">Manches longues</a></li>
         <li><a href="#">Accessoires</a></li>
-        <li><a href="#">Soldes</a></li>
+        <li><a href="#">Promos</a></li>
       </ul></div>
       <div><h4>Collections</h4><ul>
         <li><a href="category.html">Padel · Adultes</a></li>

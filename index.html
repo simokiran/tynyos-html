@@ -203,7 +203,7 @@ a{text-decoration:none;color:inherit}
 .fade.in{opacity:1;transform:none}
 
 /* Top club promo bar */
-.topbar{position:fixed;top:0;left:0;right:0;z-index:110;height:38px;background:var(--navy-deep);
+.topbar{position:fixed;top:0;left:0;right:0;z-index:110;min-height:38px;background:var(--navy-deep);
   display:flex;align-items:center;justify-content:center;gap:8px;padding:0 44px;text-align:center;
   font-size:12.5px;color:rgba(255,255,255,.92);border-bottom:1px solid rgba(255,255,255,.07)}
 .topbar strong{color:var(--lime);font-weight:700}
@@ -397,6 +397,11 @@ a.nav-promos-link:hover{color:var(--lime)}
   .t-hero{font-size:26px;letter-spacing:-.5px}
   .hero-cta .btn{width:100%;text-align:center;justify-content:center}
   .topbar{font-size:10.5px;padding:0 28px}
+}
+@media(max-width:640px){
+  .topbar{height:auto;min-height:38px;padding:9px 40px;flex-wrap:wrap;text-align:center;line-height:1.5;justify-content:center}
+  .nav{top:50px}
+  body.nobar .nav{top:0}
 }
 /* ── QUICK-ADD POPOVER (matches WP .qadd-pop) ── */
 .pcard{overflow:visible;position:relative;}
@@ -680,8 +685,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- CLUB PROMO BAR -->
 <div class="topbar">
-  <span>Rejoins le <strong>Club Tenyos</strong> — <strong>-10 %</strong> sur ta première commande · Livraison offerte dès <strong>600 MAD</strong></span>
-  <a href="#">S'inscrire</a>
+  <span>Rejoins la <strong>Tenyos Community</strong> — <strong>-10 %</strong> sur ta 1ère commande · <a href="#">S'inscrire</a></span>
   <button class="x" aria-label="Close" onclick="document.body.classList.add('nobar')">×</button>
 </div>
 
@@ -834,7 +838,7 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="tabs" id="ptabs">
         <button class="tab active" data-tab="new">Nouveautés</button>
         <button class="tab" data-tab="best">Meilleures ventes</button>
-        <button class="tab" data-tab="sale">Soldes</button>
+        <button class="tab" data-tab="sale">Promos</button>
       </div>
     </div>
     <div class="car fade d1" id="pcar">
@@ -935,7 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
       </div>
       <div><h4>Boutique</h4><ul>
         <li><a href="#">Nouveautés</a></li><li><a href="#">Meilleures ventes</a></li><li><a href="#">TenAlpha Performance</a></li>
-        <li><a href="category.html">T-shirts</a></li><li><a href="#">Manches longues</a></li><li><a href="#">Accessoires</a></li><li><a href="category.html">Soldes</a></li>
+        <li><a href="category.html">T-shirts</a></li><li><a href="#">Manches longues</a></li><li><a href="#">Accessoires</a></li><li><a href="category.html">Promos</a></li>
       </ul></div>
       <div><h4>Collections</h4><ul>
         <li><a href="category.html">Padel · Adultes</a></li>
