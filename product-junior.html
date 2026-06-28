@@ -88,7 +88,7 @@ body.nobar .nav{top:0}
 .nav-burger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer}
 .nav-burger span{display:block;height:2px;background:#fff;border-radius:2px;transition:.25s}
 .nav-mobile-menu{display:none;position:fixed;inset:0;z-index:200;background:var(--navy-deep);
-  padding:100px 32px 48px;flex-direction:column;gap:0}
+  padding:100px 32px 48px;flex-direction:column;gap:0;overflow-y:auto}
 .nav-mobile-menu.open{display:flex}
 .nav-mobile-menu a{display:block;font-size:24px;font-weight:600;color:#fff;padding:18px 0;
   border-bottom:1px solid rgba(255,255,255,.08);transition:color .15s}
@@ -99,6 +99,41 @@ body.nobar .nav{top:0}
 .nav-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
   color:var(--navy);background:var(--lime);border-radius:var(--r-pill);padding:2px 7px;
   vertical-align:middle;margin-left:6px;line-height:1.5}
+/* ── DESKTOP NAV DROPDOWN ── */
+.nav-item{position:relative}
+.nav-item>a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
+  color:rgba(255,255,255,.9);padding:6px 0;transition:color .15s;
+  display:flex;align-items:center;gap:5px;cursor:pointer}
+.nav-item>a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--lime);
+  transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
+.nav-item>a:hover{color:#fff}
+.nav-item:hover>a::after,.nav-item>a.active::after{transform:scaleX(1)}
+.nav-item>a .drop-caret{width:10px;height:10px;stroke:currentColor;stroke-width:2;fill:none;transition:transform .2s;flex-shrink:0}
+.nav-item:hover>a .drop-caret{transform:rotate(180deg)}
+.nav-drop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+  background:#fff;border-radius:var(--r-md);box-shadow:0 8px 32px rgba(10,36,74,.18);
+  min-width:160px;padding:8px 0;opacity:0;pointer-events:none;
+  transition:opacity .18s ease,transform .18s ease;transform:translateX(-50%) translateY(-4px)}
+.nav-item:hover .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-drop a{display:block;font-size:13px;font-weight:500;color:var(--navy);padding:10px 20px;
+  white-space:nowrap;transition:background .12s,color .12s;letter-spacing:.2px;text-shadow:none}
+.nav-drop a:hover{background:var(--parchment);color:var(--navy)}
+.nav-drop .drop-label{font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--ink-48);padding:8px 20px 4px;display:block}
+/* ── MOBILE NAV ACCORDION ── */
+.mob-acc{border-bottom:1px solid rgba(255,255,255,.08)}
+.mob-acc-head{width:100%;background:none;border:none;display:flex;align-items:center;
+  justify-content:space-between;font-size:24px;font-weight:600;color:#fff;padding:18px 0;
+  cursor:pointer;text-align:left;font-family:var(--f)}
+.mob-acc-head:hover{color:var(--lime)}
+.mob-acc-head svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0;transition:transform .25s}
+.mob-acc.open .mob-acc-head svg{transform:rotate(180deg)}
+.mob-acc-body{overflow:hidden;max-height:0;transition:max-height .3s ease}
+.mob-acc.open .mob-acc-body{max-height:300px}
+.mob-acc-body a{font-size:18px;padding:12px 0 12px 20px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mob-acc-body a:last-child{border-bottom:none}
+.mob-nav-logo{margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);padding-bottom:8px}
+.mob-nav-logo img{height:26px;width:auto;opacity:.6}
 .nav-logo img{height:32px;width:auto;display:block}
 .nav-links{display:flex;gap:30px}
 .nav-links a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
@@ -717,11 +752,28 @@ document.addEventListener('DOMContentLoaded', () => {
 <nav class="nav" id="mainNav">
   <a class="nav-logo" href="index.html"><img src="assets/img/logo-wordmark-lime.png" alt="Tenyos"></a>
   <div class="nav-links">
-    <a href="category.html">Homme</a>
-    <a href="#">Femme<span class="nav-soon">bientôt</span></a>
-    <a href="category-junior.html" class="active">Junior</a>
-    <a href="category.html">Padel</a>
-    <a href="category.html">Tennis</a>
+    <div class="nav-item">
+      <a href="category.html">Padel
+        <svg class="drop-caret" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-drop">
+        <span class="drop-label">Padel</span>
+        <a href="category.html">Adultes</a>
+        <a href="category-junior.html" class="active">Juniors</a>
+        <a href="category-junior.html">Kids</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="category.html">Tennis
+        <svg class="drop-caret" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-drop">
+        <span class="drop-label">Tennis</span>
+        <a href="category.html">Adultes</a>
+        <a href="category-junior.html">Juniors</a>
+        <a href="category-junior.html">Kids</a>
+      </div>
+    </div>
   </div>
   <div class="nav-act">
     <a href="#" aria-label="Recherche">
@@ -744,12 +796,27 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Mobile menu -->
 <div class="nav-mobile-menu" id="mobileMenu">
   <button class="nav-mobile-close" id="mobileClose" aria-label="Fermer">×</button>
-  <a href="category.html">Homme</a>
-  <a href="#">Femme <span style="color:var(--lime);font-size:14px">· bientôt</span></a>
-  <a href="category-junior.html">Junior</a>
-  <a href="category.html">Padel</a>
-  <a href="category.html">Tennis</a>
-  <a href="#" style="margin-top:16px;font-size:16px;color:var(--lime)">Soldes</a>
+  <div class="mob-acc" id="mobPadel">
+    <button class="mob-acc-head" onclick="toggleMobAcc('mobPadel')">Padel
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-acc-body">
+      <a href="category.html">Adultes</a>
+      <a href="category-junior.html">Juniors</a>
+      <a href="category-junior.html">Kids</a>
+    </div>
+  </div>
+  <div class="mob-acc" id="mobTennis">
+    <button class="mob-acc-head" onclick="toggleMobAcc('mobTennis')">Tennis
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-acc-body">
+      <a href="category.html">Adultes</a>
+      <a href="category-junior.html">Juniors</a>
+      <a href="category-junior.html">Kids</a>
+    </div>
+  </div>
+  <div class="mob-nav-logo"><img src="assets/img/logo-wordmark-lime.png" alt="Tenyos"></div>
 </div>
 
 <!-- ── SUB-NAV / BREADCRUMB ── -->
@@ -757,9 +824,7 @@ document.addEventListener('DOMContentLoaded', () => {
   <nav class="breadcrumb" aria-label="Fil d'Ariane">
     <a href="index.html">Accueil</a>
     <span class="sep">›</span>
-    <a href="#">Junior</a>
-    <span class="sep">›</span>
-    <a href="#">Padel &amp; Tennis</a>
+    <a href="category-junior.html">Padel · Juniors</a>
     <span class="sep">›</span>
     <span class="current">TenAlpha Junior Smash</span>
   </nav>
@@ -828,13 +893,13 @@ document.addEventListener('DOMContentLoaded', () => {
         <div>
           <p class="option-label">Taille <span id="sizeLabel">—</span></p>
           <div class="sizes">
-            <button class="size-chip" onclick="selectSize(this,'6-7 ans')">6–7 ans</button>
-            <button class="size-chip" onclick="selectSize(this,'8-9 ans')">8–9 ans</button>
-            <button class="size-chip" onclick="selectSize(this,'10-11 ans')">10–11 ans</button>
-            <button class="size-chip" onclick="selectSize(this,'12-13 ans')">12–13 ans</button>
-            <button class="size-chip oos" disabled>14–15 ans</button>
+            <button class="size-chip" onclick="selectSize(this,'XS')"><span>XS</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">122–128 cm</small></button>
+            <button class="size-chip" onclick="selectSize(this,'S')"><span>S</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">128–137 cm</small></button>
+            <button class="size-chip" onclick="selectSize(this,'M')"><span>M</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">137–147 cm</small></button>
+            <button class="size-chip" onclick="selectSize(this,'L')"><span>L</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">147–158 cm</small></button>
+            <button class="size-chip" onclick="selectSize(this,'XL')"><span>XL</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">158–170 cm</small></button>
           </div>
-          <a href="#" class="size-guide-link">
+          <a href="#" class="size-guide-link" onclick="openSizeGuide(event)">
             <svg viewBox="0 0 24 24"><path d="M2 8h20M2 12h8M2 16h6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
             Guide des tailles Junior
           </a>
@@ -1119,7 +1184,7 @@ document.addEventListener('DOMContentLoaded', () => {
         <a class="pcard" href="product.html">
           <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Navy_Blue_Front.webp" alt="TenAlpha Tee — Adulte"></div>
           <div class="pname">TenAlpha Tee</div>
-          <div class="pcat">Homme · Padel &amp; Tennis</div>
+          <div class="pcat">Adultes · Padel &amp; Tennis</div>
           <div class="pprice">249 MAD</div>
         </a>
       </div>
@@ -1147,12 +1212,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a href="#">T-shirts</a></li><li><a href="#">Manches longues</a></li><li><a href="#">Accessoires</a></li><li><a href="#">Soldes</a></li>
       </ul></div>
       <div><h4>Collections</h4><ul>
-        <li><a href="category.html">Homme</a></li>
-        <li><a href="#">Femme <span style="color:var(--lime);font-size:11px">· bientôt</span></a></li>
-        <li><a href="category-junior.html">Junior</a></li>
-        <li><a href="category.html">Padel</a></li>
-        <li><a href="category.html">Tennis</a></li>
-        <li><a href="#">Club 50+ (Seniors)</a></li>
+        <li><a href="category.html">Padel · Adultes</a></li>
+        <li><a href="category-junior.html">Padel · Juniors</a></li>
+        <li><a href="category-junior.html">Padel · Kids</a></li>
+        <li><a href="category.html">Tennis · Adultes</a></li>
+        <li><a href="category-junior.html">Tennis · Juniors</a></li>
+        <li><a href="category-junior.html">Tennis · Kids</a></li>
       </ul></div>
       <div><h4>Aide</h4><ul>
         <li><a href="#">Nous contacter</a></li><li><a href="#">Livraison</a></li><li><a href="#">Retours &amp; échanges</a></li>
@@ -1198,16 +1263,71 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
   <div class="sticky-bar-right">
     <div class="sticky-bar-sizes">
-      <button class="chip-sm" onclick="selectStickySize(this,'6-7 ans')">6–7</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'8-9 ans')">8–9</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'10-11 ans')">10–11</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'12-13 ans')">12–13</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'XS')">XS</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'S')">S</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'M')">M</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'L')">L</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'XL')">XL</button>
     </div>
     <button class="btn-sticky-cart">Ajouter au panier</button>
   </div>
 </div>
 
 <!-- ── LIGHTBOX ── -->
+<!-- ── SIZE GUIDE MODAL ── -->
+<div id="sizeGuideModal" aria-modal="true" role="dialog" aria-label="Guide des tailles"
+  style="display:none;position:fixed;inset:0;z-index:900;background:rgba(10,36,74,.5);align-items:center;justify-content:center;padding:20px">
+  <div style="background:#fff;border-radius:var(--r-lg);max-width:640px;width:100%;max-height:90vh;overflow-y:auto;position:relative">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:24px 28px 16px;border-bottom:1px solid var(--hairline)">
+      <h2 style="font-size:20px;font-weight:700;color:var(--navy)">Guide des tailles</h2>
+      <button onclick="closeSizeGuide()" style="width:36px;height:36px;border:none;background:none;cursor:pointer;font-size:22px;color:var(--ink-48);display:flex;align-items:center;justify-content:center;border-radius:50%" aria-label="Fermer">×</button>
+    </div>
+    <div style="padding:24px 28px">
+      <p style="font-size:13px;color:var(--ink-48);margin-bottom:24px">Mesurez la hauteur et comparez avec le tableau ci-dessous.</p>
+      <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Juniors</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:28px">
+        <thead><tr style="background:var(--parchment)">
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Taille</th>
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Hauteur (cm)</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">XS</td><td style="padding:10px 14px">122–128</td></tr>
+          <tr style="border-bottom:1px solid var(--hairline);background:var(--pearl)"><td style="padding:10px 14px">S</td><td style="padding:10px 14px">128–137</td></tr>
+          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">M</td><td style="padding:10px 14px">137–147</td></tr>
+          <tr style="border-bottom:1px solid var(--hairline);background:var(--pearl)"><td style="padding:10px 14px">L</td><td style="padding:10px 14px">147–158</td></tr>
+          <tr><td style="padding:10px 14px">XL</td><td style="padding:10px 14px">158–170</td></tr>
+        </tbody>
+      </table>
+      <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Kids</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px">
+        <thead><tr style="background:var(--parchment)">
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Taille</th>
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Hauteur (cm)</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">5</td><td style="padding:10px 14px">110–116</td></tr>
+          <tr><td style="padding:10px 14px;background:var(--pearl)">6</td><td style="padding:10px 14px;background:var(--pearl)">116–122</td></tr>
+        </tbody>
+      </table>
+      <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;margin-top:28px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Adultes</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px">
+        <thead><tr style="background:var(--parchment)">
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Taille</th>
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Poitrine (cm)</th>
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Taille (cm)</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">XS</td><td style="padding:10px 14px">82–86</td><td style="padding:10px 14px">64–68</td></tr>
+          <tr style="border-bottom:1px solid var(--hairline);background:var(--pearl)"><td style="padding:10px 14px">S</td><td style="padding:10px 14px">86–90</td><td style="padding:10px 14px">68–72</td></tr>
+          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">M</td><td style="padding:10px 14px">90–95</td><td style="padding:10px 14px">72–77</td></tr>
+          <tr style="border-bottom:1px solid var(--hairline);background:var(--pearl)"><td style="padding:10px 14px">L</td><td style="padding:10px 14px">95–102</td><td style="padding:10px 14px">77–84</td></tr>
+          <tr><td style="padding:10px 14px">XL</td><td style="padding:10px 14px">102–110</td><td style="padding:10px 14px">84–92</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
 <div id="lightbox" aria-modal="true" role="dialog" aria-label="Galerie produit">
   <div id="lbBackdrop"></div>
   <button id="lbClose" aria-label="Fermer">
@@ -1482,6 +1602,10 @@ function handleAddToCart(){
 }
 
 /* ── ACCORDION ── */
+function toggleMobAcc(id){const el=document.getElementById(id);if(!el)return;el.classList.toggle('open');}
+function openSizeGuide(e){e.preventDefault();const m=document.getElementById('sizeGuideModal');if(m){m.style.display='flex';document.body.style.overflow='hidden';}}
+function closeSizeGuide(){const m=document.getElementById('sizeGuideModal');if(m){m.style.display='none';document.body.style.overflow='';}}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSizeGuide();});
 function toggleAcc(btn){ btn.closest('.acc-item').classList.toggle('open'); }
 
 /* ── STICKY BAR ── */

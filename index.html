@@ -218,7 +218,7 @@ body.nobar .nav{top:0}
 .nav-burger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer}
 .nav-burger span{display:block;height:2px;background:#fff;border-radius:2px;transition:.25s}
 .nav-mobile-menu{display:none;position:fixed;inset:0;z-index:200;background:var(--navy-deep);
-  padding:100px 32px 48px;flex-direction:column;gap:0}
+  padding:100px 32px 48px;flex-direction:column;gap:0;overflow-y:auto}
 .nav-mobile-menu.open{display:flex}
 .nav-mobile-menu a{display:block;font-size:24px;font-weight:600;color:#fff;padding:18px 0;
   border-bottom:1px solid rgba(255,255,255,.08);transition:color .15s}
@@ -229,6 +229,48 @@ body.nobar .nav{top:0}
 .nav-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
   color:var(--navy);background:var(--lime);border-radius:var(--r-pill);padding:2px 7px;
   vertical-align:middle;margin-left:6px;line-height:1.5}
+
+/* ── DESKTOP NAV DROPDOWN ── */
+.nav-item{position:relative}
+.nav-item>a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
+  color:rgba(255,255,255,.9);padding:6px 0;transition:color .15s;text-shadow:0 1px 10px rgba(7,25,61,.4);
+  display:flex;align-items:center;gap:5px;cursor:pointer}
+.nav-item>a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;background:var(--lime);
+  transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
+.nav.scrolled .nav-item>a{text-shadow:none}
+.nav-item>a:hover{color:#fff}
+.nav-item:hover>a::after,.nav-item>a.active::after{transform:scaleX(1)}
+.nav-item>a .drop-caret{width:10px;height:10px;stroke:currentColor;stroke-width:2;fill:none;
+  transition:transform .2s;flex-shrink:0}
+.nav-item:hover>a .drop-caret{transform:rotate(180deg)}
+.nav-drop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
+  background:#fff;border-radius:var(--r-md);box-shadow:0 8px 32px rgba(10,36,74,.18);
+  min-width:160px;padding:8px 0;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;
+  transform:translateX(-50%) translateY(-4px)}
+.nav-item:hover .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
+.nav-drop a{display:block;font-size:13px;font-weight:500;color:var(--navy);padding:10px 20px;
+  white-space:nowrap;transition:background .12s,color .12s;letter-spacing:.2px;text-shadow:none}
+.nav-drop a:hover{background:var(--parchment);color:var(--navy)}
+.nav-drop .drop-divider{height:1px;background:var(--hairline);margin:4px 0}
+.nav-drop .drop-label{font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
+  color:var(--ink-48);padding:8px 20px 4px;display:block}
+
+/* ── MOBILE NAV ACCORDION ── */
+.mob-acc{border-bottom:1px solid rgba(255,255,255,.08)}
+.mob-acc-head{width:100%;background:none;border:none;display:flex;align-items:center;
+  justify-content:space-between;font-size:24px;font-weight:600;color:#fff;padding:18px 0;
+  cursor:pointer;text-align:left;font-family:var(--f)}
+.mob-acc-head:hover{color:var(--lime)}
+.mob-acc-head svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;
+  flex-shrink:0;transition:transform .25s}
+.mob-acc.open .mob-acc-head svg{transform:rotate(180deg)}
+.mob-acc-body{overflow:hidden;max-height:0;transition:max-height .3s ease}
+.mob-acc.open .mob-acc-body{max-height:300px}
+.mob-acc-body a{font-size:18px;padding:12px 0 12px 20px;border-bottom:1px solid rgba(255,255,255,.05)}
+.mob-acc-body a:last-child{border-bottom:none}
+/* Mobile nav logo at bottom */
+.mob-nav-logo{margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);padding-bottom:8px}
+.mob-nav-logo img{height:26px;width:auto;opacity:.6}
 
 /* Carousels (shared) */
 .car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
@@ -610,11 +652,28 @@ document.addEventListener('DOMContentLoaded', () => {
 <nav class="nav" id="mainNav">
   <a class="nav-logo" href="index.html"><img src="assets/img/logo-wordmark-lime.png" alt="Tenyos"></a>
   <div class="nav-links">
-    <a href="category.html">Homme</a>
-    <a href="#">Femme<span class="nav-soon">bientôt</span></a>
-    <a href="category-junior.html">Junior</a>
-    <a href="category.html">Padel</a>
-    <a href="category.html">Tennis</a>
+    <div class="nav-item">
+      <a href="category.html">Padel
+        <svg class="drop-caret" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-drop">
+        <span class="drop-label">Padel</span>
+        <a href="category.html">Adultes</a>
+        <a href="category-junior.html">Juniors</a>
+        <a href="category-junior.html">Kids</a>
+      </div>
+    </div>
+    <div class="nav-item">
+      <a href="category.html">Tennis
+        <svg class="drop-caret" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      </a>
+      <div class="nav-drop">
+        <span class="drop-label">Tennis</span>
+        <a href="category.html">Adultes</a>
+        <a href="category-junior.html">Juniors</a>
+        <a href="category-junior.html">Kids</a>
+      </div>
+    </div>
   </div>
   <div class="nav-act">
     <a href="#" aria-label="Recherche"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg></a>
@@ -630,12 +689,27 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- Mobile menu -->
 <div class="nav-mobile-menu" id="mobileMenu">
   <button class="nav-mobile-close" id="mobileClose" aria-label="Fermer">×</button>
-  <a href="category.html">Homme</a>
-  <a href="#">Femme <span style="color:var(--lime);font-size:14px">· bientôt</span></a>
-  <a href="category-junior.html">Junior</a>
-  <a href="category.html">Padel</a>
-  <a href="category.html">Tennis</a>
-  <a href="#" style="margin-top:16px;font-size:16px;color:var(--lime)">Soldes</a>
+  <div class="mob-acc" id="mobPadel">
+    <button class="mob-acc-head" onclick="toggleMobAcc('mobPadel')">Padel
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-acc-body">
+      <a href="category.html">Adultes</a>
+      <a href="category-junior.html">Juniors</a>
+      <a href="category-junior.html">Kids</a>
+    </div>
+  </div>
+  <div class="mob-acc" id="mobTennis">
+    <button class="mob-acc-head" onclick="toggleMobAcc('mobTennis')">Tennis
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </button>
+    <div class="mob-acc-body">
+      <a href="category.html">Adultes</a>
+      <a href="category-junior.html">Juniors</a>
+      <a href="category-junior.html">Kids</a>
+    </div>
+  </div>
+  <div class="mob-nav-logo"><img src="assets/img/logo-wordmark-lime.png" alt="Tenyos"></div>
 </div>
 
 <!-- HERO (slider mode — hero.type='slider'; single-photo = one slide) -->
@@ -691,16 +765,19 @@ document.addEventListener('DOMContentLoaded', () => {
 <section class="tile tile-parch" id="audience">
   <div class="wrap">
     <div class="head fade"><div class="eyebrow">Collections</div><h2 class="t-display">Trouvez votre style</h2>
-      <p class="t-body">Pensé pour chaque joueur — Homme dès maintenant ; Femme &amp; Junior très bientôt.</p></div>
+      <p class="t-body">Padel &amp; Tennis — pour chaque âge, pour chaque joueur.</p></div>
     <div class="grid-3 fade d1">
       <a class="cat" href="category.html">
-        <img src="assets/img/adultes.jpg" alt="Collection Homme">
-        <span class="lbl">Homme<small>Voir la collection</small></span>
+        <img src="assets/img/adultes.jpg" alt="Collection Adultes">
+        <span class="lbl">Adultes<small>Voir la collection</small></span>
       </a>
-      <div class="cat soon"><div><div class="name">Femme</div><span class="badge">Bientôt</span></div></div>
       <a class="cat" href="category-junior.html">
-        <img src="assets/img/adultes.jpg" alt="Collection Junior">
-        <span class="lbl">Junior<small>Voir la collection</small></span>
+        <img src="assets/img/adultes.jpg" alt="Collection Juniors">
+        <span class="lbl">Juniors<small>XS – XL · 122–170 cm</small></span>
+      </a>
+      <a class="cat" href="category-junior.html">
+        <img src="assets/img/adultes.jpg" alt="Collection Kids">
+        <span class="lbl">Kids<small>Tailles 5 &amp; 6 · 110–122 cm</small></span>
       </a>
     </div>
   </div>
@@ -833,12 +910,12 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a href="category.html">T-shirts</a></li><li><a href="#">Manches longues</a></li><li><a href="#">Accessoires</a></li><li><a href="category.html">Soldes</a></li>
       </ul></div>
       <div><h4>Collections</h4><ul>
-        <li><a href="category.html">Homme</a></li>
-        <li><a href="#">Femme <span style="color:var(--lime);font-size:11px">· bientôt</span></a></li>
-        <li><a href="category-junior.html">Junior</a></li>
-        <li><a href="category.html">Padel</a></li>
-        <li><a href="category.html">Tennis</a></li>
-        <li><a href="#">Club 50+ (Seniors)</a></li>
+        <li><a href="category.html">Padel · Adultes</a></li>
+        <li><a href="category-junior.html">Padel · Juniors</a></li>
+        <li><a href="category-junior.html">Padel · Kids</a></li>
+        <li><a href="category.html">Tennis · Adultes</a></li>
+        <li><a href="category-junior.html">Tennis · Juniors</a></li>
+        <li><a href="category-junior.html">Tennis · Kids</a></li>
       </ul></div>
       <div><h4>Aide</h4><ul>
         <li><a href="#">Nous contacter</a></li><li><a href="#">Livraison</a></li><li><a href="#">Retours &amp; échanges</a></li>
@@ -886,6 +963,8 @@ const mobileMenu=document.getElementById('mobileMenu');
 const mobileClose=document.getElementById('mobileClose');
 if(burger){burger.addEventListener('click',()=>mobileMenu.classList.toggle('open'));burger.addEventListener('keydown',e=>{if(e.key==='Enter')mobileMenu.classList.toggle('open')});}
 if(mobileClose)mobileClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
+/* mobile nav accordion */
+function toggleMobAcc(id){const el=document.getElementById(id);if(!el)return;el.classList.toggle('open');}
 /* product tabs (visual) */
 document.querySelectorAll('#ptabs .tab').forEach(t=>t.addEventListener('click',()=>{
   document.querySelectorAll('#ptabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
