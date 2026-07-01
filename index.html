@@ -930,42 +930,25 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<!-- MEMBERSHIP / TENYOS COMMUNITY -->
-<section class="member" id="member">
+<!-- TENYOS COMMUNITY (merged from member + newsletter — single signup section) -->
+<section class="tile tile-navy center" id="member">
   <div class="wrap fade">
-    <div class="eyebrow">Tenyos Community</div>
-    <h2 class="t-display">Rejoins la Tenyos Community</h2>
-    <p>-10 % sur ta 1ère commande, accès anticipé aux drops, prix membres et livraison prioritaire.</p>
-    <div class="perks">
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>-10 % 1ʳᵉ commande</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Accès anticipé aux drops</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Prix membres</span>
-      <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Livraison prioritaire</span>
+    <div class="eyebrow on-dark" style="justify-content:center">Tenyos Community</div>
+    <h2 class="t-display" style="color:#fff">Try it. Make it. Play it.</h2>
+    <p class="t-body" style="color:var(--muted-dark);margin-top:8px;max-width:44ch;margin-left:auto;margin-right:auto">Rejoins la Tenyos Community — drops en avant-première, accès anticipé &amp; prix membres.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin:28px 0">
+      <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(196,255,13,.12);border:1px solid rgba(196,255,13,.3);color:#fff;border-radius:9999px;padding:9px 18px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4FF0D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>-10 % 1ʳᵉ commande</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(196,255,13,.12);border:1px solid rgba(196,255,13,.3);color:#fff;border-radius:9999px;padding:9px 18px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4FF0D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Accès anticipé aux drops</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(196,255,13,.12);border:1px solid rgba(196,255,13,.3);color:#fff;border-radius:9999px;padding:9px 18px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4FF0D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Prix membres</span>
+      <span style="display:inline-flex;align-items:center;gap:8px;background:rgba(196,255,13,.12);border:1px solid rgba(196,255,13,.3);color:#fff;border-radius:9999px;padding:9px 18px;font-size:13px;font-weight:600"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C4FF0D" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Livraison prioritaire</span>
     </div>
-    <form class="member-form" onsubmit="joinCommunity(event)">
-      <input type="email" placeholder="Votre email" aria-label="Email" id="memberEmail" required>
+    <form class="news" onsubmit="joinCommunity(event)">
+      <input type="email" placeholder="Votre email" aria-label="Email" id="communityEmail" required>
       <button class="btn btn-primary" type="submit">Je m'inscris</button>
     </form>
   </div>
 </section>
-<script>
-function joinCommunity(e) {
-  e.preventDefault();
-  const email = document.getElementById('memberEmail').value;
-  window.location.href = 'inscription.html' + (email ? '?email=' + encodeURIComponent(email) : '');
-}
-</script>
-
-<!-- NEWSLETTER -->
-<section class="tile tile-navy center">
-  <div class="wrap">
-    <div class="eyebrow on-dark" style="justify-content:center">Tenyos Community</div>
-    <h2 class="t-display" style="color:#fff">Try it. Make it. Play it.</h2>
-    <p class="t-body" style="color:var(--muted-dark);margin-top:8px">Drops en avant-première, accès anticipé &amp; prix membres — directement dans ta boîte mail.</p>
-    <form class="news" onsubmit="joinNewsletterCommunity(event)"><input type="email" placeholder="Votre email" aria-label="Email" id="newsEmail" required><button class="btn btn-primary" type="submit">Je m'inscris</button></form>
-    <script>function joinNewsletterCommunity(e){e.preventDefault();const em=document.getElementById('newsEmail').value;window.location.href='inscription.html'+(em?'?email='+encodeURIComponent(em):'');}</script>
-  </div>
-</section>
+<script>function joinCommunity(e){e.preventDefault();const em=document.getElementById('communityEmail').value;window.location.href='inscription.html'+(em?'?email='+encodeURIComponent(em):'');}</script>
 
 <!-- FOOTER -->
 <footer class="foot">
