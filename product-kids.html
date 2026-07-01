@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TenAlpha Junior Smash — Lime · Tenyos</title>
+<title>TenAlpha Kids Smash — Tenyos</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,600;0,14..32,700&display=swap" rel="stylesheet">
@@ -53,9 +53,6 @@ button{font-family:var(--f);cursor:pointer;border:none;background:none}
 .btn-primary:hover{background:var(--lime-deep)}
 .btn-ghost{background:transparent;color:var(--navy);border-color:var(--navy)}
 .btn-ghost:hover{background:var(--navy);color:#fff}
-.btn-ghost-sm{background:transparent;color:var(--navy);border-color:var(--navy);font-size:14px;padding:10px 20px}
-.btn-ghost-sm:hover{background:var(--navy);color:#fff}
-.btn-pill-large{font-size:18px;font-weight:300;padding:16px 32px}
 
 /* ── LAYOUT ── */
 .wrap{max-width:1320px;margin:0 auto;padding:0 32px}
@@ -84,7 +81,6 @@ body.nobar .nav{top:0}
   border-bottom:1px solid rgba(255,255,255,.08);
   transition:top .3s,height .3s}
 body.nobar .nav{top:0}
-/* hamburger (mobile) */
 .nav-burger{display:none;flex-direction:column;gap:5px;width:24px;cursor:pointer}
 .nav-burger span{display:block;height:2px;background:#fff;border-radius:2px;transition:.25s}
 .nav-mobile-menu{display:none;position:fixed;inset:0;z-index:200;background:var(--navy-deep);
@@ -95,11 +91,6 @@ body.nobar .nav{top:0}
 .nav-mobile-menu a:hover{color:var(--lime)}
 .nav-mobile-close{position:absolute;top:50px;right:32px;background:none;border:none;
   color:#fff;font-size:28px;cursor:pointer}
-/* coming-soon pill in nav */
-.nav-soon{display:inline-block;font-size:10px;font-weight:700;letter-spacing:.8px;text-transform:uppercase;
-  color:var(--navy);background:var(--lime);border-radius:var(--r-pill);padding:2px 7px;
-  vertical-align:middle;margin-left:6px;line-height:1.5}
-/* ── DESKTOP NAV DROPDOWN ── */
 .nav-item{position:relative}
 .nav-item>a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
   color:rgba(255,255,255,.9);padding:6px 0;transition:color .15s;
@@ -108,19 +99,6 @@ body.nobar .nav{top:0}
   transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
 .nav-item>a:hover{color:#fff}
 .nav-item:hover>a::after,.nav-item>a.active::after{transform:scaleX(1)}
-.nav-item>a .drop-caret{width:10px;height:10px;stroke:currentColor;stroke-width:2;fill:none;transition:transform .2s;flex-shrink:0}
-.nav-item:hover>a .drop-caret{transform:rotate(180deg)}
-.nav-drop{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);
-  background:#fff;border-radius:var(--r-md);box-shadow:0 8px 32px rgba(10,36,74,.18);
-  min-width:160px;padding:8px 0;opacity:0;pointer-events:none;
-  transition:opacity .18s ease,transform .18s ease;transform:translateX(-50%) translateY(-4px)}
-.nav-item:hover .nav-drop{opacity:1;pointer-events:auto;transform:translateX(-50%) translateY(0)}
-.nav-drop a{display:block;font-size:13px;font-weight:500;color:var(--navy);padding:10px 20px;
-  white-space:nowrap;transition:background .12s,color .12s;letter-spacing:.2px;text-shadow:none}
-.nav-drop a:hover{background:var(--parchment);color:var(--navy)}
-.nav-drop .drop-label{font-size:10px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
-  color:var(--ink-48);padding:8px 20px 4px;display:block}
-/* ── MEGA-MENU ── */
 .nav-mega-group{position:relative;display:flex;gap:30px;align-items:center}
 .nav-mega-group::after{content:"";position:absolute;top:100%;left:0;right:0;height:16px}
 .nav-mega{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%) translateY(-4px);
@@ -140,27 +118,11 @@ body.nobar .nav{top:0}
 .nav-mega-sep{width:1px;background:var(--hairline);margin:0 20px;flex-shrink:0}
 .nav-promos-link{position:relative;font-size:12px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;
   color:var(--lime);padding:6px 0;transition:color .15s;text-shadow:0 1px 10px rgba(7,25,61,.4)}
-.nav.scrolled .nav-promos-link{text-shadow:none}
 .nav-promos-link::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:2px;
   background:var(--lime);transform:scaleX(0);transform-origin:center;transition:transform .25s ease}
 .nav-promos-link:hover::after{transform:scaleX(1)}
 a.nav-promos-link:hover{color:var(--lime)}
-
-/* ── MOBILE NAV ACCORDION ── */
-.mob-acc{border-bottom:1px solid rgba(255,255,255,.08)}
-.mob-acc-head{width:100%;background:none;border:none;display:flex;align-items:center;
-  justify-content:space-between;font-size:24px;font-weight:600;color:#fff;padding:18px 0;
-  cursor:pointer;text-align:left;font-family:var(--f)}
-.mob-acc-head:hover{color:var(--lime)}
-.mob-acc-head svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0;transition:transform .25s}
-.mob-acc.open .mob-acc-head svg{transform:rotate(180deg)}
-.mob-acc-body{overflow:hidden;max-height:0;transition:max-height .3s ease}
-.mob-acc.open .mob-acc-body{max-height:300px}
-.mob-acc-body a{font-size:18px;padding:12px 0 12px 20px;border-bottom:1px solid rgba(255,255,255,.05)}
-.mob-acc-body a:last-child{border-bottom:none}
-.mob-nav-logo{margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);padding-bottom:8px}
-.mob-nav-logo img{height:48px;width:auto;opacity:.9}
-/* Flat always-expanded mobile sport sections */
+/* Flat mobile sections */
 .mob-sport-block{border-bottom:1px solid rgba(255,255,255,.08);padding-bottom:6px}
 .mob-sport-lbl{display:block;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;
   color:var(--lime);padding:20px 0 8px;opacity:.9}
@@ -171,6 +133,8 @@ a.nav-promos-link:hover{color:var(--lime)}
 .mob-promos-link{display:block;font-size:24px;font-weight:600;color:rgba(255,255,255,.85);
   padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .15s}
 .mob-promos-link:hover{color:var(--lime)}
+.mob-nav-logo{margin-top:auto;padding-top:32px;border-top:1px solid rgba(255,255,255,.1);padding-bottom:8px}
+.mob-nav-logo img{height:48px;width:auto;opacity:.9}
 .nav-logo img{height:32px;width:auto;display:block}
 .nav-links{display:flex;gap:30px}
 .nav-links a{position:relative;font-size:12px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
@@ -204,7 +168,7 @@ body.nobar .sub-nav{top:72px}
 .sub-nav-right a:hover{color:var(--navy)}
 
 /* ── PDP LAYOUT WRAPPER ── */
-.pdp-page{padding-top:162px} /* topbar(38) + nav(72) + subnav(52) */
+.pdp-page{padding-top:162px}
 body.nobar .pdp-page{padding-top:124px}
 
 /* ── PDP MAIN GRID ── */
@@ -217,71 +181,30 @@ body.nobar .pdp-page{padding-top:124px}
   min-width:0;
 }
 
-/* ── GALLERY — MOBILE-FIRST (static, column stack) ── */
-.gallery{
-  display:flex;flex-direction:column;gap:10px;
-  min-width:0;width:100%;
-}
-
-/* Mobile thumbnail row — horizontal, no vertical scroll context */
-.gallery-thumbs{
-  display:flex;flex-direction:row;gap:8px;
-  overflow-x:auto;overflow-y:visible;
-  scrollbar-width:none;
-}
+/* ── GALLERY — MOBILE-FIRST ── */
+.gallery{display:flex;flex-direction:column;gap:10px;min-width:0;width:100%}
+.gallery-thumbs{display:flex;flex-direction:row;gap:8px;overflow-x:auto;overflow-y:visible;scrollbar-width:none}
 .gallery-thumbs::-webkit-scrollbar{display:none}
-
-/* Main image (right, fills remaining space) */
-.gallery-main{
-  position:relative;
-  width:100%;
-  aspect-ratio:3/4;
-  background:var(--pearl);
-  border-radius:var(--r-lg);
-  overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  cursor:zoom-in;
-  touch-action:pan-y;
-}
-
-/* The <img> inside .gallery-main fills the frame edge-to-edge. */
-.gallery-main img{
-  width:100%;height:100%;object-fit:cover;
-  transition:opacity .3s ease;
-  pointer-events:none;
-  position:relative;z-index:1;
-  touch-action:pan-y;
-}
+.gallery-main{position:relative;width:100%;aspect-ratio:3/4;background:var(--pearl);
+  border-radius:var(--r-lg);overflow:hidden;display:flex;align-items:center;justify-content:center;
+  cursor:zoom-in;touch-action:pan-y}
+.gallery-main img{width:100%;height:100%;object-fit:cover;transition:opacity .3s ease;
+  pointer-events:none;position:relative;z-index:1;touch-action:pan-y}
 .gallery-main img.switching{opacity:0;transform:scale(.97)}
-
-/* Zoomed state — bg-image technique */
 .gallery-main.zoomed img{opacity:0}
-
-.gallery-zoom{
-  position:absolute;bottom:16px;right:16px;z-index:2;
-  width:40px;height:40px;border-radius:50%;
+.gallery-zoom{position:absolute;bottom:16px;right:16px;z-index:2;width:40px;height:40px;border-radius:50%;
   background:rgba(210,210,215,.7);backdrop-filter:blur(8px);
   display:flex;align-items:center;justify-content:center;
-  color:var(--ink);border:none;cursor:pointer;transition:background .15s
-}
+  color:var(--ink);border:none;cursor:pointer;transition:background .15s}
 .gallery-zoom:hover{background:rgba(210,210,215,.95)}
 .gallery-zoom svg{width:18px;height:18px;stroke:var(--ink);stroke-width:1.8;fill:none}
-.gallery-badge{
-  position:absolute;top:16px;left:16px;z-index:2;
+.gallery-badge{position:absolute;top:16px;left:16px;z-index:2;
   background:var(--lime);color:var(--navy);
   font-size:11px;font-weight:700;letter-spacing:.4px;text-transform:uppercase;
-  padding:5px 12px;border-radius:var(--r-pill)
-}
-
-/* Thumbnails — 3:4 portrait to match main frame */
-.thumb{
-  width:72px;height:96px;flex-shrink:0;
-  border-radius:var(--r-md);overflow:hidden;
-  background:var(--pearl);cursor:pointer;
-  border:2px solid transparent;
-  outline:2px solid transparent;
-  transition:border-color .18s,outline-color .18s;
-}
+  padding:5px 12px;border-radius:var(--r-pill)}
+.thumb{width:72px;height:96px;flex-shrink:0;border-radius:var(--r-md);overflow:hidden;
+  background:var(--pearl);cursor:pointer;border:2px solid transparent;outline:2px solid transparent;
+  transition:border-color .18s,outline-color .18s}
 .thumb img{width:100%;height:100%;object-fit:cover;display:block}
 .thumb:hover{border-color:var(--ink-48)}
 .thumb.active{border-color:var(--canvas);outline-color:var(--navy)}
@@ -289,11 +212,9 @@ body.nobar .pdp-page{padding-top:124px}
 /* ── BUY BOX ── */
 .buybox{display:flex;flex-direction:column;gap:0;min-width:0;width:100%}
 .buybox-meta{margin-bottom:6px}
-.buybox-meta .sport-tag{
-  display:inline-flex;align-items:center;gap:6px;
+.buybox-meta .sport-tag{display:inline-flex;align-items:center;gap:6px;
   font-size:11px;font-weight:600;letter-spacing:1.8px;text-transform:uppercase;
-  color:var(--navy);margin-bottom:14px
-}
+  color:var(--navy);margin-bottom:14px}
 .buybox-meta .sport-tag::before{content:"";width:16px;height:1px;background:var(--lime-deep)}
 .buybox h1{font-size:34px;font-weight:600;line-height:1.2;letter-spacing:-.374px;margin-bottom:8px}
 .rating-row{display:flex;align-items:center;gap:10px;margin-bottom:20px}
@@ -303,8 +224,6 @@ body.nobar .pdp-page{padding-top:124px}
 .rating-text a:hover{border-bottom-color:var(--navy)}
 .price-row{display:flex;align-items:baseline;gap:12px;margin-bottom:6px}
 .price-main{font-size:28px;font-weight:600;letter-spacing:-.374px}
-.price-old{font-size:17px;color:var(--ink-48);text-decoration:line-through;font-weight:400}
-.price-save{font-size:12px;font-weight:700;color:var(--navy);background:var(--lime);padding:3px 9px;border-radius:var(--r-pill)}
 .price-note{font-size:13px;color:var(--ink-48);margin-bottom:24px}
 .divider-line{height:1px;background:var(--divider);margin:20px 0}
 
@@ -312,12 +231,9 @@ body.nobar .pdp-page{padding-top:124px}
 .option-label{font-size:14px;font-weight:600;letter-spacing:-.22px;margin-bottom:10px}
 .option-label span{font-weight:400;color:var(--ink-48);margin-left:6px}
 .swatches{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:20px}
-.swatch{
-  width:36px;height:36px;border-radius:50%;cursor:pointer;
+.swatch{width:36px;height:36px;border-radius:50%;cursor:pointer;
   border:2.5px solid transparent;outline:2px solid transparent;
-  transition:border-color .15s,outline-color .15s,transform .12s;
-  position:relative
-}
+  transition:border-color .15s,outline-color .15s,transform .12s;position:relative}
 .swatch:hover{transform:scale(1.08)}
 .swatch.active{border-color:var(--canvas);outline-color:var(--navy)}
 .swatch.s-navy{background:#0A244A}
@@ -326,20 +242,17 @@ body.nobar .pdp-page{padding-top:124px}
 .swatch.s-lime{background:#C4FF0D;border-color:#C4FF0D}
 .swatch.s-pink{background:#FF3D8A}
 
-/* ── SIZE SELECTOR ── */
+/* ── SIZE / AGE SELECTOR ── */
 .sizes{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:8px}
-.size-chip{
-  min-width:50px;height:44px;padding:0 14px;
+.size-chip{min-width:50px;height:44px;padding:0 14px;
   border-radius:var(--r-pill);font-size:14px;font-weight:400;letter-spacing:-.22px;
   color:var(--ink);background:var(--canvas);
   border:1px solid var(--hairline);cursor:pointer;
   transition:background .15s,border-color .15s,color .15s,transform .1s;
-  display:flex;align-items:center;justify-content:center
-}
+  display:flex;align-items:center;justify-content:center}
 .size-chip:hover{border-color:var(--navy)}
 .size-chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
 .size-chip:active{transform:scale(.95)}
-.size-chip.oos{color:var(--ink-48);background:var(--parchment);cursor:not-allowed;text-decoration:line-through}
 .size-guide-link{font-size:13px;color:var(--navy);border-bottom:1px solid transparent;
   transition:border-color .15s;display:inline-flex;align-items:center;gap:5px;margin-bottom:20px}
 .size-guide-link:hover{border-bottom-color:var(--navy)}
@@ -358,25 +271,21 @@ body.nobar .pdp-page{padding-top:124px}
 
 /* ── CTA STACK ── */
 .cta-stack{display:flex;flex-direction:column;gap:12px;margin-bottom:16px}
-.btn-add-cart{
-  width:100%;max-width:100%;box-sizing:border-box;
+.btn-add-cart{width:100%;max-width:100%;box-sizing:border-box;
   padding:16px 24px;border-radius:var(--r-pill);
   background:var(--lime);color:var(--navy);
   font-size:17px;font-weight:600;letter-spacing:-.374px;
   border:none;cursor:pointer;transition:background .15s,transform .12s;
-  display:flex;align-items:center;justify-content:center;gap:10px
-}
+  display:flex;align-items:center;justify-content:center;gap:10px}
 .btn-add-cart:hover{background:var(--lime-deep)}
 .btn-add-cart:active{transform:scale(.98)}
 .btn-add-cart svg{width:20px;height:20px;stroke:var(--navy);stroke-width:2;fill:none;flex-shrink:0}
-.btn-wishlist{
-  width:100%;max-width:100%;box-sizing:border-box;
+.btn-wishlist{width:100%;max-width:100%;box-sizing:border-box;
   padding:14px 24px;border-radius:var(--r-pill);
   background:transparent;color:var(--navy);
   font-size:16px;font-weight:600;
   border:1.5px solid var(--navy);cursor:pointer;transition:background .15s,color .15s,transform .12s;
-  display:flex;align-items:center;justify-content:center;gap:10px
-}
+  display:flex;align-items:center;justify-content:center;gap:10px}
 .btn-wishlist:hover{background:var(--navy);color:#fff}
 .btn-wishlist:active{transform:scale(.98)}
 .btn-wishlist svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;flex-shrink:0}
@@ -391,12 +300,9 @@ body.nobar .pdp-page{padding-top:124px}
 /* ── ACCORDION ── */
 .accordion{border-top:1px solid var(--divider)}
 .acc-item{border-bottom:1px solid var(--divider)}
-.acc-head{
-  width:100%;padding:18px 0;display:flex;align-items:center;justify-content:space-between;
+.acc-head{width:100%;padding:18px 0;display:flex;align-items:center;justify-content:space-between;
   font-size:15px;font-weight:600;letter-spacing:-.3px;color:var(--ink);
-  background:transparent;border:none;cursor:pointer;text-align:left;
-  transition:color .15s
-}
+  background:transparent;border:none;cursor:pointer;text-align:left;transition:color .15s}
 .acc-head:hover{color:var(--navy)}
 .acc-head .ico{width:20px;height:20px;flex-shrink:0;transition:transform .25s ease}
 .acc-head .ico line{stroke:var(--ink);stroke-width:1.8}
@@ -414,25 +320,20 @@ body.nobar .pdp-page{padding-top:124px}
 .spec-table td:first-child{font-weight:600;color:var(--ink);width:140px;padding-right:16px}
 .spec-table td:last-child{color:var(--ink-80)}
 
-/* ── PRODUCT DETAIL TILE (full bleed parchment) ── */
+/* ── PDP DETAIL TILE ── */
 .pdp-detail{background:var(--parchment);padding:64px 0}
 .pdp-detail-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
 .pdp-detail-copy h2{font-size:34px;font-weight:600;line-height:1.2;letter-spacing:-.374px;margin-bottom:20px}
 .pdp-detail-copy p{font-size:17px;line-height:1.6;color:var(--ink-80);margin-bottom:16px}
 .feature-list{list-style:none;display:flex;flex-direction:column;gap:14px;margin-top:24px}
 .feature-list li{display:flex;align-items:flex-start;gap:14px}
-.feature-list li .icon-wrap{
-  width:38px;height:38px;border-radius:50%;background:var(--navy);
-  display:flex;align-items:center;justify-content:center;flex-shrink:0
-}
+.feature-list li .icon-wrap{width:38px;height:38px;border-radius:50%;background:var(--navy);
+  display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .feature-list li .icon-wrap svg{width:18px;height:18px;stroke:var(--lime);stroke-width:2;fill:none}
 .feature-list li .feat-text strong{display:block;font-size:15px;font-weight:600;letter-spacing:-.3px;margin-bottom:2px}
 .feature-list li .feat-text span{font-size:14px;color:var(--ink-48);line-height:1.5}
 .pdp-detail-img{position:relative;display:flex;align-items:center;justify-content:center}
-.pdp-detail-img img{
-  max-width:75%;height:auto;
-  filter:var(--product-shadow);
-}
+.pdp-detail-img img{max-width:75%;height:auto;filter:var(--product-shadow)}
 
 /* ── TECH PANELS ── */
 .tech-strip{background:var(--navy-2);padding:64px 0}
@@ -464,15 +365,11 @@ body.nobar .pdp-page{padding-top:124px}
 .pcard .badge{position:absolute;top:10px;left:10px;background:var(--lime);color:var(--navy);font-size:10px;font-weight:700;padding:3px 8px;border-radius:var(--r-pill)}
 
 /* ── FLOATING STICKY BAR ── */
-.sticky-bar{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  height:64px;
+.sticky-bar{position:fixed;bottom:0;left:0;right:0;z-index:200;height:64px;
   background:rgba(245,243,238,.92);backdrop-filter:saturate(180%) blur(20px);
   border-top:0.5px solid rgba(0,0,0,.08);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 40px;
-  transform:translateY(100%);transition:transform .3s ease
-}
+  display:flex;align-items:center;justify-content:space-between;padding:0 40px;
+  transform:translateY(100%);transition:transform .3s ease}
 .sticky-bar.visible{transform:translateY(0)}
 .sticky-bar-left{display:flex;align-items:center;gap:16px}
 .sticky-bar-left img{height:40px;width:40px;object-fit:cover;border-radius:8px;background:var(--parchment)}
@@ -480,22 +377,18 @@ body.nobar .pdp-page{padding-top:124px}
 .sticky-bar-price{font-size:15px;color:var(--ink-48)}
 .sticky-bar-right{display:flex;align-items:center;gap:12px}
 .sticky-bar-sizes{display:flex;gap:6px}
-.sticky-bar-sizes .chip-sm{
-  height:36px;min-width:60px;padding:0 10px;
+.sticky-bar-sizes .chip-sm{height:36px;min-width:60px;padding:0 10px;
   border-radius:var(--r-pill);font-size:12px;font-weight:400;
   color:var(--ink);background:var(--canvas);
   border:1px solid var(--hairline);cursor:pointer;
   transition:background .15s,border-color .15s,color .15s;
-  display:flex;align-items:center;justify-content:center;white-space:nowrap
-}
+  display:flex;align-items:center;justify-content:center;white-space:nowrap}
 .sticky-bar-sizes .chip-sm:hover{border-color:var(--navy)}
 .sticky-bar-sizes .chip-sm.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-.btn-sticky-cart{
-  padding:12px 24px;border-radius:var(--r-pill);
+.btn-sticky-cart{padding:12px 24px;border-radius:var(--r-pill);
   background:var(--lime);color:var(--navy);
   font-size:15px;font-weight:600;border:none;cursor:pointer;
-  transition:background .15s,transform .12s;white-space:nowrap
-}
+  transition:background .15s,transform .12s;white-space:nowrap}
 .btn-sticky-cart:hover{background:var(--lime-deep)}
 .btn-sticky-cart:active{transform:scale(.97)}
 
@@ -530,9 +423,54 @@ body.nobar .pdp-page{padding-top:124px}
 .fade.d1{transition-delay:.07s}.fade.d2{transition-delay:.14s}.fade.d3{transition-delay:.21s}
 .fade.in{opacity:1;transform:none}
 
-/* ──────────────────────────────────────
-   RESPONSIVE — MOBILE-FIRST
-────────────────────────────────────── */
+/* ── VIDEO SECTION ── */
+.vid-sec{margin-top:32px;padding-top:24px;border-top:1px solid var(--divider)}
+.vid-sec-head{margin-bottom:16px}
+.vid-sec-head h2{font-size:17px;font-weight:600;letter-spacing:-.3px;color:var(--navy);margin-bottom:0;line-height:1.2}
+.vid-grid{display:flex;gap:16px}
+.vid-card{flex:1;border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;background:#000;aspect-ratio:9/16;min-width:0}
+.vid-card video{width:100%;height:100%;object-fit:cover;display:block}
+.vid-play-btn{position:absolute;bottom:14px;left:14px;width:44px;height:44px;border-radius:50%;background:rgba(10,36,74,.72);border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);transition:background .15s,transform .15s;pointer-events:none}
+.vid-play-btn svg{width:18px;height:18px;fill:#fff;margin-left:2px}
+.vid-card:hover .vid-play-btn{background:rgba(10,36,74,.92);transform:scale(1.07)}
+.vid-card-label{position:absolute;bottom:14px;right:14px;background:rgba(10,36,74,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 10px;border-radius:var(--r-pill);backdrop-filter:blur(4px)}
+.vid-lb{display:none;position:fixed;inset:0;z-index:700;background:rgba(7,25,61,.95);flex-direction:column;align-items:center;justify-content:center}
+.vid-lb.open{display:flex}
+.vid-lb-backdrop{position:absolute;inset:0;z-index:0;cursor:zoom-out}
+.vid-lb-close{position:absolute;top:18px;right:18px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
+.vid-lb-close:hover{background:rgba(255,255,255,.25)}
+.vid-lb-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
+.vid-lb-stage{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;max-height:calc(100vh - 80px);max-width:min(420px,calc(100vw - 120px))}
+.vid-lb-stage video{width:100%;max-height:calc(100vh - 80px);border-radius:12px;object-fit:contain;background:#000}
+.vid-lb-prev,.vid-lb-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .15s}
+.vid-lb-prev:hover,.vid-lb-next:hover{background:rgba(196,255,13,.25);color:#C4FF0D;transform:translateY(-50%) scale(1.06)}
+.vid-lb-prev svg,.vid-lb-next svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none}
+.vid-lb-prev{left:16px}
+.vid-lb-next{right:16px}
+
+/* ── LIGHTBOX ── */
+#lightbox{display:none;position:fixed;inset:0;z-index:500;background:rgba(7,25,61,.92);
+  align-items:center;justify-content:center;cursor:zoom-out}
+#lightbox.open{display:flex}
+#lbStage{position:relative;max-width:88vw;max-height:88vh}
+#lbImg{max-width:88vw;max-height:88vh;object-fit:contain;border-radius:var(--r-lg);display:block}
+#lbClose{position:absolute;top:-14px;right:-14px;width:40px;height:40px;border-radius:50%;
+  background:rgba(255,255,255,.15);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;transition:background .15s}
+#lbClose:hover{background:rgba(255,255,255,.3)}
+#lbClose svg{width:20px;height:20px;stroke:#fff;stroke-width:2;fill:none}
+#lbCounter{position:absolute;bottom:-32px;left:50%;transform:translateX(-50%);
+  font-size:12px;color:rgba(255,255,255,.5);white-space:nowrap}
+#lbPrev,#lbNext{position:absolute;top:50%;transform:translateY(-50%);
+  width:48px;height:48px;border-radius:50%;border:none;cursor:pointer;
+  background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;
+  color:#fff;transition:background .15s}
+#lbPrev:hover,#lbNext:hover{background:rgba(196,255,13,.25)}
+#lbPrev svg,#lbNext svg{width:22px;height:22px;stroke:currentColor;stroke-width:2;fill:none}
+#lbPrev{left:-64px}
+#lbNext{right:-64px}
+
+/* ── RESPONSIVE ── */
 @media(min-width:901px){
   .pdp-grid{grid-template-columns:1fr 440px;gap:64px;padding:48px 0 64px}
   .gallery{position:sticky;top:168px;flex-direction:row;align-items:flex-start}
@@ -544,12 +482,8 @@ body.nobar .pdp-page{padding-top:124px}
   .pdp-grid{grid-template-columns:1fr 400px;gap:40px}
   .pdp-detail-inner{gap:48px}
 }
-@media(min-width:1101px){
-  .related-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:1100px){
-  .related-grid{grid-template-columns:repeat(2,1fr)}
-}
+@media(min-width:1101px){.related-grid{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:1100px){.related-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:900px){
   .gallery-main{width:100%;aspect-ratio:3/4}
   .pdp-detail-inner{grid-template-columns:1fr;gap:32px}
@@ -574,31 +508,18 @@ body.nobar .pdp-page{padding-top:124px}
   .buybox h1{font-size:28px}
   .sticky-bar{height:56px}
   .foot-top{grid-template-columns:1fr}
-  /* video section mobile */
-  .vid-grid{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch;padding-bottom:12px;overscroll-behavior-x:contain}
-  .vid-grid::-webkit-scrollbar{height:3px}
-  .vid-grid::-webkit-scrollbar-thumb{background:var(--divider);border-radius:2px}
+  .vid-grid{flex-wrap:nowrap;overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:12px}
   .vid-card{min-width:52vw;scroll-snap-align:start}
-  .vid-lb-stage video{max-height:80vh}
-  .vid-lb-prev{left:6px}
-  .vid-lb-next{right:6px}
-  /* buybox full-width on mobile */
   .buybox{padding:0}
-  .size-grid{grid-template-columns:repeat(4,1fr)}
-  .swatches{gap:8px}
   .price-main{font-size:24px}
   .qty-row{gap:12px}
   .cta-stack{gap:10px}
   .btn-add-cart,.btn-wishlist{width:100%;justify-content:center}
-  .vid-sec-head h2{font-size:15px}
-  .pdp-page{padding-top:110px}
 }
 @media(max-width:430px){
   .buybox h1{font-size:24px}
   .price-main{font-size:22px}
   .size-chip{min-width:36px;height:36px;font-size:12px}
-  .trust-row{flex-wrap:wrap}
-  .trust-item{flex:0 0 calc(50% - 5px)}
 }
 @media(max-width:640px){
   .topbar{height:auto;min-height:38px;padding:9px 40px;flex-wrap:wrap;text-align:center;line-height:1.5;justify-content:center}
@@ -607,36 +528,9 @@ body.nobar .pdp-page{padding-top:124px}
   .sub-nav{top:122px}
   body.nobar .sub-nav{top:72px}
   .pdp-page{padding-top:122px}
+  #lbPrev{left:-50px}
+  #lbNext{right:-50px}
 }
-/* ── VIDEO SECTION (in-column, under accordion) ── */
-.vid-sec{margin-top:32px;padding-top:24px;border-top:1px solid var(--divider)}
-.vid-sec-head{margin-bottom:16px}
-.vid-sec-head h2{font-size:17px;font-weight:600;letter-spacing:-.3px;color:var(--navy);margin-bottom:0;line-height:1.2}
-.vid-grid{display:flex;gap:16px}
-.vid-card{flex:1;border-radius:var(--r-lg);overflow:hidden;position:relative;cursor:pointer;background:#000;aspect-ratio:9/16;min-width:0}
-.vid-card video{width:100%;height:100%;object-fit:cover;display:block}
-.vid-play-btn{position:absolute;bottom:14px;left:14px;width:44px;height:44px;border-radius:50%;background:rgba(10,36,74,.72);border:2px solid rgba(255,255,255,.55);display:flex;align-items:center;justify-content:center;backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);transition:background .15s,transform .15s;pointer-events:none}
-.vid-play-btn svg{width:18px;height:18px;fill:#fff;margin-left:2px}
-.vid-card:hover .vid-play-btn{background:rgba(10,36,74,.92);transform:scale(1.07)}
-.vid-card-label{position:absolute;bottom:14px;right:14px;background:rgba(10,36,74,.7);color:#fff;font-size:11px;font-weight:600;letter-spacing:.5px;padding:4px 10px;border-radius:var(--r-pill);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
-/* video lightbox */
-.vid-lb{display:none;position:fixed;inset:0;z-index:700;background:rgba(7,25,61,.95);flex-direction:column;align-items:center;justify-content:center}
-.vid-lb.open{display:flex}
-.vid-lb-backdrop{position:absolute;inset:0;z-index:0;cursor:zoom-out}
-.vid-lb-close{position:absolute;top:18px;right:18px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
-.vid-lb-close:hover{background:rgba(255,255,255,.25)}
-.vid-lb-close svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
-.vid-lb-mute{position:absolute;top:18px;left:18px;z-index:10;width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.12);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s}
-.vid-lb-mute:hover{background:rgba(255,255,255,.25)}
-.vid-lb-mute svg{width:20px;height:20px;stroke:currentColor;stroke-width:2;fill:none}
-.vid-lb-stage{position:relative;z-index:5;display:flex;align-items:center;justify-content:center;max-height:calc(100vh - 80px);max-width:min(420px,calc(100vw - 120px))}
-.vid-lb-stage video{width:100%;max-height:calc(100vh - 80px);border-radius:12px;object-fit:contain;background:#000}
-.vid-lb-prev,.vid-lb-next{position:absolute;top:50%;transform:translateY(-50%);z-index:10;width:52px;height:52px;border-radius:50%;background:rgba(255,255,255,.1);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#fff;transition:background .15s,transform .15s}
-.vid-lb-prev:hover,.vid-lb-next:hover{background:rgba(196,255,13,.25);color:#C4FF0D;transform:translateY(-50%) scale(1.06)}
-.vid-lb-prev svg,.vid-lb-next svg{width:24px;height:24px;stroke:currentColor;stroke-width:2;fill:none}
-.vid-lb-prev{left:16px}
-.vid-lb-next{right:16px}
-.vid-lb-counter{position:absolute;top:22px;left:50%;transform:translateX(-50%);z-index:10;font-size:13px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.55);font-family:'Inter',system-ui,sans-serif}
 </style>
 </head>
 <body>
@@ -655,11 +549,7 @@ const TenyosCart = {
     this.refreshUI();
     CartDrawer.open();
   },
-  remove(id) {
-    const items = this.get().filter(i => i.id !== id);
-    this.save(items);
-    this.refreshUI();
-  },
+  remove(id) { const items = this.get().filter(i => i.id !== id); this.save(items); this.refreshUI(); },
   updateQty(id, delta) {
     const items = this.get();
     const item = items.find(i => i.id === id);
@@ -670,9 +560,7 @@ const TenyosCart = {
   count() { return this.get().reduce((s, i) => s + i.qty, 0); },
   refreshUI() {
     document.querySelectorAll('.cart-count').forEach(el => {
-      const n = this.count();
-      el.textContent = n;
-      el.style.display = n > 0 ? '' : 'none';
+      const n = this.count(); el.textContent = n; el.style.display = n > 0 ? '' : 'none';
     });
     CartDrawer.render();
   }
@@ -701,95 +589,33 @@ const CartDrawer = {
     const footerEl = document.getElementById('cartFooter');
     if (!itemsEl || !footerEl) return;
     if (items.length === 0) {
-      itemsEl.innerHTML = `<div style="text-align:center;padding:48px 0;color:#888;">
-        <svg viewBox="0 0 24 24" width="48" height="48" stroke="#ccc" stroke-width="1.5" fill="none" style="display:block;margin:0 auto 16px"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
-        <p style="font-size:15px;font-weight:500;color:#444;margin-bottom:6px;">Votre panier est vide</p>
-        <p style="font-size:13px;color:#999;">Découvrez notre collection</p>
-      </div>`;
+      itemsEl.innerHTML = `<div style="text-align:center;padding:48px 0;color:#888;"><svg viewBox="0 0 24 24" width="48" height="48" stroke="#ccc" stroke-width="1.5" fill="none" style="display:block;margin:0 auto 16px"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg><p style="font-size:15px;font-weight:500;color:#444;margin-bottom:6px;">Votre panier est vide</p><p style="font-size:13px;color:#999;">Découvrez notre collection</p></div>`;
       footerEl.innerHTML = '';
       return;
     }
-    itemsEl.innerHTML = items.map(item => `
-      <div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f0f0f4;">
-        <div style="width:72px;height:96px;border-radius:10px;overflow:hidden;background:#f5f5f7;flex-shrink:0;">
-          <img src="${item.thumb}" alt="${item.productName}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.background='#e8e8ec'">
-        </div>
-        <div style="flex:1;min-width:0;">
-          <div style="font-size:14px;font-weight:600;color:#0A244A;margin-bottom:2px;letter-spacing:-.2px;">${item.productName}</div>
-          <div style="font-size:12px;color:#888;margin-bottom:10px;">${item.colorway} · Taille ${item.size}</div>
-          <div style="display:flex;align-items:center;justify-content:space-between;">
-            <div style="display:flex;align-items:center;gap:0;border:1px solid #e0e0e8;border-radius:8px;overflow:hidden;">
-              <button onclick="TenyosCart.updateQty('${item.id}',-1)" style="width:32px;height:32px;border:none;background:none;cursor:pointer;font-size:16px;color:#0A244A;">−</button>
-              <span style="font-size:13px;font-weight:600;min-width:24px;text-align:center;color:#0A244A;">${item.qty}</span>
-              <button onclick="TenyosCart.updateQty('${item.id}',1)" style="width:32px;height:32px;border:none;background:none;cursor:pointer;font-size:16px;color:#0A244A;">+</button>
-            </div>
-            <div style="display:flex;align-items:center;gap:10px;">
-              <span style="font-size:14px;font-weight:700;color:#0A244A;">${(item.price * item.qty).toFixed(0)} MAD</span>
-              <button onclick="TenyosCart.remove('${item.id}')" style="width:28px;height:28px;border:none;background:none;cursor:pointer;color:#bbb;display:flex;align-items:center;justify-content:center;border-radius:6px;" aria-label="Supprimer">
-                <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    `).join('');
+    itemsEl.innerHTML = items.map(item => `<div style="display:flex;gap:12px;padding:14px 0;border-bottom:1px solid #f0f0f4;"><div style="width:72px;height:96px;border-radius:10px;overflow:hidden;background:#f5f5f7;flex-shrink:0;"><img src="${item.thumb}" alt="${item.productName}" style="width:100%;height:100%;object-fit:cover;" onerror="this.style.background='#e8e8ec'"></div><div style="flex:1;min-width:0;"><div style="font-size:14px;font-weight:600;color:#0A244A;margin-bottom:2px;">${item.productName}</div><div style="font-size:12px;color:#888;margin-bottom:10px;">${item.colorway} · Âge ${item.size}</div><div style="display:flex;align-items:center;justify-content:space-between;"><div style="display:flex;align-items:center;gap:0;border:1px solid #e0e0e8;border-radius:8px;overflow:hidden;"><button onclick="TenyosCart.updateQty('${item.id}',-1)" style="width:32px;height:32px;border:none;background:none;cursor:pointer;font-size:16px;color:#0A244A;">−</button><span style="font-size:13px;font-weight:600;min-width:24px;text-align:center;color:#0A244A;">${item.qty}</span><button onclick="TenyosCart.updateQty('${item.id}',1)" style="width:32px;height:32px;border:none;background:none;cursor:pointer;font-size:16px;color:#0A244A;">+</button></div><div style="display:flex;align-items:center;gap:10px;"><span style="font-size:14px;font-weight:700;color:#0A244A;">${(item.price * item.qty).toFixed(0)} MAD</span><button onclick="TenyosCart.remove('${item.id}')" style="width:28px;height:28px;border:none;background:none;cursor:pointer;color:#bbb;display:flex;align-items:center;justify-content:center;border-radius:6px;" aria-label="Supprimer"><svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14H6L5 6"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M9 6V4h6v2"/></svg></button></div></div></div></div>`).join('');
     const total = TenyosCart.total();
-    const FREE_SHIPPING = 600;
-    const pct = Math.min(100, (total / FREE_SHIPPING) * 100);
-    const remaining = Math.max(0, FREE_SHIPPING - total);
-    footerEl.innerHTML = `
-      <div style="margin-bottom:16px;">
-        <div style="display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:6px;">
-          <span>${remaining > 0 ? `Plus que <strong style="color:#0A244A">${remaining.toFixed(0)} MAD</strong> pour la livraison offerte` : '<strong style="color:#1D9E75">✓ Livraison offerte !</strong>'}</span>
-        </div>
-        <div style="height:4px;background:#f0f0f4;border-radius:2px;overflow:hidden;">
-          <div style="height:100%;width:${pct}%;background:#C4FF0D;border-radius:2px;transition:width .4s ease;"></div>
-        </div>
-      </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;">
-        <span style="font-size:15px;font-weight:600;color:#0A244A;">Sous-total</span>
-        <span style="font-size:17px;font-weight:700;color:#0A244A;">${total.toFixed(0)} MAD</span>
-      </div>
-      <div style="display:flex;gap:10px;">
-        <button onclick="CartDrawer.close()" style="flex:1;height:48px;border:2px solid #0A244A;background:#fff;color:#0A244A;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;letter-spacing:.2px;">Voir le panier</button>
-        <button style="flex:1;height:48px;border:none;background:#C4FF0D;color:#0A244A;border-radius:9999px;font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.2px;">Commander</button>
-      </div>
-    `;
+    const FREE_SHIPPING = 600; const pct = Math.min(100,(total/FREE_SHIPPING)*100); const remaining = Math.max(0,FREE_SHIPPING-total);
+    footerEl.innerHTML = `<div style="margin-bottom:16px;"><div style="display:flex;justify-content:space-between;font-size:12px;color:#888;margin-bottom:6px;"><span>${remaining>0?`Plus que <strong style="color:#0A244A">${remaining.toFixed(0)} MAD</strong> pour la livraison offerte`:'<strong style="color:#1D9E75">✓ Livraison offerte !</strong>'}</span></div><div style="height:4px;background:#f0f0f4;border-radius:2px;overflow:hidden;"><div style="height:100%;width:${pct}%;background:#C4FF0D;border-radius:2px;transition:width .4s ease;"></div></div></div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;"><span style="font-size:15px;font-weight:600;color:#0A244A;">Sous-total</span><span style="font-size:17px;font-weight:700;color:#0A244A;">${total.toFixed(0)} MAD</span></div><div style="display:flex;gap:10px;"><button onclick="CartDrawer.close()" style="flex:1;height:48px;border:2px solid #0A244A;background:#fff;color:#0A244A;border-radius:9999px;font-size:14px;font-weight:600;cursor:pointer;">Voir le panier</button><button style="flex:1;height:48px;border:none;background:#C4FF0D;color:#0A244A;border-radius:9999px;font-size:14px;font-weight:700;cursor:pointer;">Commander</button></div>`;
   }
 };
 
 document.addEventListener('DOMContentLoaded', () => {
   if (!document.getElementById('cartDrawer')) {
-    document.body.insertAdjacentHTML('beforeend', `
-      <div id="cartOverlay" style="display:none;position:fixed;inset:0;background:rgba(10,36,74,.45);z-index:800;cursor:pointer;"></div>
-      <aside id="cartDrawer" aria-label="Panier" role="dialog" style="position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;z-index:801;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(10,36,74,.18);">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #e8e8ec;">
-          <span style="font-size:18px;font-weight:700;color:#0A244A;letter-spacing:-.3px;">Panier</span>
-          <button id="cartClose" style="width:36px;height:36px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#0A244A;" aria-label="Fermer le panier">
-            <svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-          </button>
-        </div>
-        <div id="cartItems" style="flex:1;overflow-y:auto;padding:16px 24px;"></div>
-        <div id="cartFooter" style="border-top:1px solid #e8e8ec;padding:16px 24px 24px;"></div>
-      </aside>
-    `);
+    document.body.insertAdjacentHTML('beforeend', `<div id="cartOverlay" style="display:none;position:fixed;inset:0;background:rgba(10,36,74,.45);z-index:800;cursor:pointer;"></div><aside id="cartDrawer" aria-label="Panier" role="dialog" style="position:fixed;top:0;right:0;bottom:0;width:min(420px,100vw);background:#fff;z-index:801;transform:translateX(100%);transition:transform .3s ease;display:flex;flex-direction:column;box-shadow:-8px 0 40px rgba(10,36,74,.18);"><div style="display:flex;align-items:center;justify-content:space-between;padding:20px 24px;border-bottom:1px solid #e8e8ec;"><span style="font-size:18px;font-weight:700;color:#0A244A;">Panier</span><button id="cartClose" style="width:36px;height:36px;border:none;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center;border-radius:50%;color:#0A244A;" aria-label="Fermer le panier"><svg viewBox="0 0 24 24" width="20" height="20" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button></div><div id="cartItems" style="flex:1;overflow-y:auto;padding:16px 24px;"></div><div id="cartFooter" style="border-top:1px solid #e8e8ec;padding:16px 24px 24px;"></div></aside>`);
   }
   document.getElementById('cartOverlay').addEventListener('click', () => CartDrawer.close());
   document.getElementById('cartClose').addEventListener('click', () => CartDrawer.close());
   const cartIcon = document.querySelector('a[aria-label="Panier"]');
   if (cartIcon) cartIcon.addEventListener('click', e => { e.preventDefault(); CartDrawer.toggle(); });
-  document.addEventListener('keydown', e => {
-    const dr = document.getElementById('cartDrawer');
-    if (e.key === 'Escape' && dr && (dr.style.transform === 'translateX(0px)' || dr.style.transform === 'translateX(0)')) CartDrawer.close();
-  });
   TenyosCart.refreshUI();
 });
 </script>
 
-<!-- ── CLUB PROMO BAR ── -->
-<div class="topbar">
+<!-- ── PROMO TOP BAR ── -->
+<div class="topbar" id="topbar">
   <span>Rejoins la <strong>Tenyos Community</strong> — <strong>-10 %</strong> sur ta 1ère commande · <a href="#">S'inscrire</a></span>
-  <button class="x" aria-label="Fermer" onclick="document.body.classList.add('nobar')">×</button>
+  <button class="x" aria-label="Fermer" onclick="document.body.classList.add('nobar');document.getElementById('topbar').style.display='none'">×</button>
 </div>
 
 <!-- ── NAVIGATION ── -->
@@ -803,8 +629,8 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="nav-mega-col">
           <span class="mega-col-head">Padel</span>
           <a href="category.html">Adultes</a>
-          <a href="category-junior.html" class="active">Juniors</a>
-          <a href="category-kids.html">Kids</a>
+          <a href="category-junior.html">Juniors</a>
+          <a href="category-kids.html" class="active">Kids</a>
         </div>
         <div class="nav-mega-sep"></div>
         <div class="nav-mega-col">
@@ -828,7 +654,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l1 13H5L6 7z"/><path d="M9 7a3 3 0 016 0"/></svg>
       <span class="cart-count">2</span>
     </a>
-    <!-- Mobile hamburger -->
     <div class="nav-burger" id="burger" role="button" aria-label="Menu" tabindex="0">
       <span></span><span></span><span></span>
     </div>
@@ -859,12 +684,12 @@ document.addEventListener('DOMContentLoaded', () => {
   <nav class="breadcrumb" aria-label="Fil d'Ariane">
     <a href="index.html">Accueil</a>
     <span class="sep">›</span>
-    <a href="category-junior.html">Padel · Juniors</a>
+    <a href="category-kids.html">Padel · Kids</a>
     <span class="sep">›</span>
-    <span class="current">TenAlpha Junior Smash</span>
+    <span class="current">TenAlpha Kids Smash</span>
   </nav>
   <div class="sub-nav-right">
-    <a href="#">Guide des tailles</a>
+    <a href="#" onclick="openSizeGuide(event)">Guide des tailles</a>
     <a href="#">Retours gratuits</a>
   </div>
 </div>
@@ -877,10 +702,10 @@ document.addEventListener('DOMContentLoaded', () => {
       <!-- ── GALLERY ── -->
       <div class="gallery fade">
         <div class="gallery-main" id="galleryMain">
-          <span class="gallery-badge">Junior</span>
+          <span class="gallery-badge">Kids</span>
           <img id="mainImg"
-            src="assets/img/products/Tenyos_TenAlpha_smash_Green.webp"
-            alt="TenAlpha Junior Smash — Lime, flat produit">
+            src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_OnModel.webp"
+            alt="TenAlpha Kids Smash — Marine, vue avant">
           <button class="gallery-zoom" aria-label="Agrandir l'image">
             <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/><path d="M11 8v6M8 11h6"/></svg>
           </button>
@@ -891,23 +716,18 @@ document.addEventListener('DOMContentLoaded', () => {
       <!-- ── BUY BOX ── -->
       <div class="buybox fade d1">
 
-        <!-- Sport + product name -->
         <div class="buybox-meta">
-          <div class="sport-tag">Junior · Padel &amp; Tennis</div>
-          <h1>TenAlpha Junior<br>Smash</h1>
+          <div class="sport-tag">Kids · Padel &amp; Tennis</div>
+          <h1>TenAlpha Kids<br>Smash</h1>
         </div>
 
-        <!-- Rating -->
         <div class="rating-row">
           <span class="stars">★★★★★</span>
-          <span class="rating-text">
-            4,8 · <a href="#reviews">23 avis</a>
-          </span>
+          <span class="rating-text">4,9 · <a href="#reviews">12 avis</a></span>
         </div>
 
-        <!-- Price -->
         <div class="price-row">
-          <span class="price-main">179 MAD</span>
+          <span class="price-main">149 MAD</span>
         </div>
         <p class="price-note">Prix TTC · Livraison offerte dès 600 MAD</p>
 
@@ -915,28 +735,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
         <!-- Colour swatches -->
         <div>
-          <p class="option-label">Coloris <span id="colorLabel">Lime</span></p>
+          <p class="option-label">Coloris <span id="colorLabel">Marine</span></p>
           <div class="swatches">
-            <button class="swatch s-lime active"  aria-label="Lime"   onclick="selectColor(this,'lime')"></button>
-            <button class="swatch s-navy"          aria-label="Marine" onclick="selectColor(this,'navy')"></button>
+            <button class="swatch s-navy active"  aria-label="Marine" onclick="selectColor(this,'navy')"></button>
             <button class="swatch s-white"         aria-label="Blanc"  onclick="selectColor(this,'white')"></button>
+            <button class="swatch s-lime"          aria-label="Lime"   onclick="selectColor(this,'lime')"></button>
             <button class="swatch s-pink"          aria-label="Rose"   onclick="selectColor(this,'pink')"></button>
           </div>
         </div>
 
-        <!-- Size selector — junior age ranges -->
+        <!-- Âge (Kids) -->
         <div>
-          <p class="option-label">Taille <span id="sizeLabel">—</span></p>
+          <p class="option-label">Âge <span id="sizeLabel">—</span></p>
           <div class="sizes">
-            <button class="size-chip" onclick="selectSize(this,'XS')"><span>XS</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">122–128 cm</small></button>
-            <button class="size-chip" onclick="selectSize(this,'S')"><span>S</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">128–137 cm</small></button>
-            <button class="size-chip" onclick="selectSize(this,'M')"><span>M</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">137–147 cm</small></button>
-            <button class="size-chip" onclick="selectSize(this,'L')"><span>L</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">147–158 cm</small></button>
-            <button class="size-chip" onclick="selectSize(this,'XL')"><span>XL</span><small style="display:block;font-size:10px;opacity:.6;font-weight:400">158–170 cm</small></button>
+            <button class="size-chip active" onclick="selectSize(this,'5 ans')">
+              <span>5 ans</span>
+              <small style="display:block;font-size:10px;opacity:.6;font-weight:400">110–116 cm</small>
+            </button>
+            <button class="size-chip" onclick="selectSize(this,'6 ans')">
+              <span>6 ans</span>
+              <small style="display:block;font-size:10px;opacity:.6;font-weight:400">116–122 cm</small>
+            </button>
           </div>
           <a href="#" class="size-guide-link" onclick="openSizeGuide(event)">
             <svg viewBox="0 0 24 24"><path d="M2 8h20M2 12h8M2 16h6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg>
-            Guide des tailles Junior
+            Guide des tailles Kids
           </a>
         </div>
 
@@ -966,7 +789,7 @@ document.addEventListener('DOMContentLoaded', () => {
           Paiement sécurisé · NAPS · 3D Secure
         </p>
 
-        <!-- Trust badges -->
+        <!-- Trust -->
         <div class="trust-row">
           <div class="trust-item">
             <svg viewBox="0 0 24 24"><path d="M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h11a2 2 0 012 2v3"/><rect x="9" y="11" width="14" height="10" rx="1"/><path d="M12 11v3h4"/></svg>
@@ -991,8 +814,8 @@ document.addEventListener('DOMContentLoaded', () => {
               <svg class="ico" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             </button>
             <div class="acc-body">
-              <p>De l'énergie, du style et du confort. Le TenAlpha Junior Smash — collection Dry-Speed : léger, respirant et conçu pour accompagner chaque mouvement, du court à la cour de récré. Le graphisme éclaboussé qui fait la différence.</p>
-              <p style="margin-top:12px">La matière DryMove™ gère la transpiration pendant les entraînements les plus intenses. La coupe Junior Active laisse toute la liberté de mouvement nécessaire pour les smashes, les volées et les sprints de fond de court. Disponible en quatre coloris.</p>
+              <p>De l'énergie, du style et du confort — en taille Kids (5–6 ans). Le TenAlpha Kids Smash Dry-Speed : léger, respirant, conçu pour les petits champions du court. Les mêmes graphismes éclaboussés que les grands, dans les bonnes proportions.</p>
+              <p style="margin-top:12px">La matière DryMove™ gère la transpiration pendant les entraînements. La coupe Kids Active laisse toute la liberté de mouvement pour les smashes, les volées et les sprints. Disponible en quatre coloris (Marine, Blanc, Lime, Rose).</p>
             </div>
           </div>
 
@@ -1004,7 +827,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <div class="acc-body">
               <table class="spec-table">
                 <tr><td>Matière</td><td>90 % polyester recyclé · 10 % élasthanne</td></tr>
-                <tr><td>Coupe</td><td>Junior Active Fit — ample dans les épaules, coupe droite</td></tr>
+                <tr><td>Coupe</td><td>Kids Active Fit — épaules libres, coupe droite</td></tr>
                 <tr><td>Technologie</td><td>Dry-Speed™ (évacuation de la transpiration)</td></tr>
                 <tr><td>Protection</td><td>UPF 30+ (protection solaire)</td></tr>
                 <tr><td>Étirement</td><td>4 directions</td></tr>
@@ -1026,7 +849,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 <li>Ne pas utiliser d'assouplissant (altère la performance Dry-Speed™)</li>
                 <li>Séchage à l'air libre recommandé pour préserver le graphisme</li>
                 <li>Ne pas repasser directement sur l'impression</li>
-                <li>Ne pas mettre au sèche-linge à haute température</li>
                 <li>Lavage à l'envers pour préserver les couleurs</li>
               </ul>
             </div>
@@ -1049,82 +871,62 @@ document.addEventListener('DOMContentLoaded', () => {
           </div>
 
         </div>
-        <!-- end accordion -->
 
-        <!-- ── VIDEO IN COLUMN — Le TenAlpha Junior en action ── -->
-        <!-- VIDEO: tenalpha-lookbook.mp4 — real Tenyos lookbook clip (1080×1920 portrait 9:16, 21s). Reused across all 3 cards until individual clips are produced. -->
+        <!-- Video section -->
         <div class="vid-sec fade">
           <div class="vid-sec-head">
             <div class="eyebrow" style="display:flex;align-items:center;gap:8px;margin-bottom:8px">Lookbook</div>
             <h2>Le style en mouvement</h2>
           </div>
           <div class="vid-grid" id="vidGrid">
-            <!-- Card 1 -->
             <div class="vid-card" data-index="0" onclick="VidLB.open(0)">
               <video src="assets/videos/tenalpha-lookbook.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <div class="vid-play-btn">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
-              <span class="vid-card-label">Padel · Junior</span>
+              <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
+              <span class="vid-card-label">Padel · Kids</span>
             </div>
-            <!-- Card 2 -->
             <div class="vid-card" data-index="1" onclick="VidLB.open(1)">
               <video src="assets/videos/tenalpha-lookbook.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <div class="vid-play-btn">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
+              <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
               <span class="vid-card-label">Académie · Entraînement</span>
             </div>
-            <!-- Card 3 -->
             <div class="vid-card" data-index="2" onclick="VidLB.open(2)">
               <video src="assets/videos/tenalpha-lookbook.mp4" autoplay muted loop playsinline preload="metadata"></video>
-              <div class="vid-play-btn">
-                <svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              </div>
+              <div class="vid-play-btn"><svg viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg></div>
               <span class="vid-card-label">Dry-Speed™ · Confort</span>
             </div>
           </div>
         </div>
-        <!-- end video in column -->
 
-      </div>
-      <!-- end buybox -->
-
-    </div>
-    <!-- end pdp-grid -->
-  </div>
-  <!-- end wrap -->
+      </div><!-- end buybox -->
+    </div><!-- end pdp-grid -->
+  </div><!-- end wrap -->
 
   <!-- ── VIDEO LIGHTBOX ── -->
-  <div class="vid-lb" id="vidLb" aria-modal="true" role="dialog" aria-label="Vidéo produit">
+  <div class="vid-lb" id="vidLb" aria-modal="true" role="dialog">
     <div class="vid-lb-backdrop" id="vidLbBackdrop"></div>
-    <button class="vid-lb-close" id="vidLbClose" aria-label="Fermer">
+    <button class="vid-lb-close" id="vidLbClose">
       <svg viewBox="0 0 24 24" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
     </button>
-    <button class="vid-lb-mute" id="vidLbMute" aria-label="Couper le son">
-      <svg id="vidMuteIcon" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/></svg>
-    </button>
-    <div class="vid-lb-counter" id="vidLbCounter"></div>
-    <button class="vid-lb-prev" id="vidLbPrev" aria-label="Vidéo précédente">
+    <button class="vid-lb-prev" id="vidLbPrev">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
     </button>
     <div class="vid-lb-stage">
       <video id="vidLbVideo" src="" playsinline controls></video>
     </div>
-    <button class="vid-lb-next" id="vidLbNext" aria-label="Vidéo suivante">
+    <button class="vid-lb-next" id="vidLbNext">
       <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
     </button>
   </div>
 
-  <!-- ── PRODUCT DETAIL TILE (parchment) ── -->
+  <!-- ── PRODUCT DETAIL TILE ── -->
   <section class="pdp-detail fade">
     <div class="wrap">
       <div class="pdp-detail-inner">
         <div class="pdp-detail-copy fade">
           <div class="eyebrow">Dry-Speed Technology</div>
-          <h2>Fait pour bouger.<br>Fait pour gagner.</h2>
-          <p>Le TenAlpha Junior Smash n'est pas juste un t-shirt de sport — c'est l'équipement qui accompagne chaque progression. La coupe Junior Active Fit laisse les épaules libres pour les smashes sans tirer sur le dos, et les coutures flatlock éliminent toute irritation pendant les longues sessions.</p>
-          <p>Le tissu Dry-Speed™ est 40 % plus léger que notre ligne adulte — pensé pour les corps en mouvement constant.</p>
+          <h2>Fait pour bouger.<br>Fait pour s'amuser.</h2>
+          <p>Le TenAlpha Kids Smash n'est pas juste un t-shirt de sport — c'est l'équipement qui accompagne chaque progrès. La coupe Kids Active Fit laisse les épaules libres pour les smashes sans tirer sur le dos, et les coutures flatlock éliminent toute irritation.</p>
+          <p>Le tissu Dry-Speed™ est ultra-léger — pensé pour les petits corps en mouvement constant. Du court de padel à la récré.</p>
           <ul class="feature-list">
             <li>
               <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2z"/><path d="M12 8v4l3 3"/></svg></div>
@@ -1137,7 +939,7 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg></div>
               <div class="feat-text">
                 <strong>Liberté de mouvement totale</strong>
-                <span>Stretch 4D, coupe Junior Active — aucune résistance sur les smashes.</span>
+                <span>Stretch 4D, coupe Kids Active — aucune gêne sur les smashes.</span>
               </div>
             </li>
             <li>
@@ -1151,14 +953,14 @@ document.addEventListener('DOMContentLoaded', () => {
               <div class="icon-wrap"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
               <div class="feat-text">
                 <strong>Graphisme durable</strong>
-                <span>Impression résistante aux lavages répétés. Le style tient aussi longtemps que le joueur.</span>
+                <span>Impression résistante aux lavages répétés. Le style tient aussi longtemps que l'énergie.</span>
               </div>
             </li>
           </ul>
         </div>
         <div class="pdp-detail-img fade d1">
           <img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Action_heygen.webp"
-               alt="TenAlpha Junior Smash — action sur le court">
+               alt="TenAlpha Kids Smash — action sur le court">
         </div>
       </div>
     </div>
@@ -1171,17 +973,17 @@ document.addEventListener('DOMContentLoaded', () => {
         <div class="tpanel">
           <div class="tnum">01</div>
           <h3>Dry-Speed™ Wicking</h3>
-          <p>Fibres à micro-canal ultra-fines. La transpiration s'évapore avant la fin du point — garde le junior au sec du premier au dernier set.</p>
+          <p>Fibres à micro-canal ultra-fines. La transpiration s'évapore avant la fin du point — garde le Kids au sec du premier au dernier set.</p>
         </div>
         <div class="tpanel">
           <div class="tnum">02</div>
           <h3>Stretch 4 directions</h3>
-          <p>Tissage croisé à 4 axes, allégé pour les corpulences juniors. Aucune restriction sur les smashes ni les sprints.</p>
+          <p>Tissage croisé à 4 axes, allégé pour les plus petits. Aucune restriction sur les smashes ni les sprints.</p>
         </div>
         <div class="tpanel">
           <div class="tnum">03</div>
           <h3>UPF 30+</h3>
-          <p>Trame serrée qui bloque 97 % des UV — essentiel pour les académies et entraînements en plein soleil.</p>
+          <p>Trame serrée qui bloque 97 % des UV — essentiel pour les entraînements en plein soleil.</p>
         </div>
       </div>
     </div>
@@ -1195,38 +997,38 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="eyebrow">Vous aimerez aussi</div>
           <h2>Complète la tenue</h2>
         </div>
-        <a href="#">Voir la collection Junior →</a>
+        <a href="category-kids.html">Voir la collection Kids →</a>
       </div>
       <div class="related-grid">
-        <a class="pcard" href="#">
-          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_OnModel.webp" alt="TenAlpha Junior Smash — Marine"></div>
-          <div class="pname">TenAlpha Junior Smash</div>
-          <div class="pcat">Junior · Marine</div>
-          <div class="pprice">179 MAD</div>
+        <a class="pcard" href="product-kids.html?color=navy">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_OnModel.webp" alt="TenAlpha Kids Smash — Marine"></div>
+          <div class="pname">TenAlpha Kids Smash</div>
+          <div class="pcat">Kids · Marine</div>
+          <div class="pprice">149 MAD</div>
         </a>
-        <a class="pcard" href="#">
-          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_White_OnModel.webp" alt="TenAlpha Junior Smash — Blanc"></div>
-          <div class="pname">TenAlpha Junior Smash</div>
-          <div class="pcat">Junior · Blanc</div>
-          <div class="pprice">179 MAD</div>
+        <a class="pcard" href="product-kids.html?color=white">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_White_OnModel.webp" alt="TenAlpha Kids Smash — Blanc"></div>
+          <div class="pname">TenAlpha Kids Smash</div>
+          <div class="pcat">Kids · Blanc</div>
+          <div class="pprice">149 MAD</div>
         </a>
-        <a class="pcard" href="#">
-          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Pink_OnModel.webp" alt="TenAlpha Junior Smash — Rose"></div>
-          <div class="pname">TenAlpha Junior Smash</div>
-          <div class="pcat">Junior · Rose</div>
-          <div class="pprice">179 MAD</div>
+        <a class="pcard" href="product-kids.html?color=pink">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Pink_OnModel.webp" alt="TenAlpha Kids Smash — Rose"></div>
+          <div class="pname">TenAlpha Kids Smash</div>
+          <div class="pcat">Kids · Rose</div>
+          <div class="pprice">149 MAD</div>
         </a>
-        <a class="pcard" href="product.html">
-          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Navy_Blue_Front.webp" alt="TenAlpha Tee — Adulte"></div>
-          <div class="pname">TenAlpha Tee</div>
-          <div class="pcat">Adultes · Padel &amp; Tennis</div>
-          <div class="pprice">249 MAD</div>
+        <a class="pcard" href="product-junior.html">
+          <div class="ph"><img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_OnModel.webp" alt="TenAlpha Junior Smash"></div>
+          <div class="pname">TenAlpha Junior Smash</div>
+          <div class="pcat">Junior · Padel &amp; Tennis</div>
+          <div class="pprice">179 MAD</div>
         </a>
       </div>
     </div>
   </section>
 
-</main><!-- end pdp-page -->
+</main>
 
 <!-- ── FOOTER ── -->
 <footer class="foot">
@@ -1263,20 +1065,16 @@ document.addEventListener('DOMContentLoaded', () => {
         <li><a href="#">Grossiste</a></li><li><a href="#">Carrières</a></li><li><a href="#">Presse</a></li>
       </ul></div>
     </div>
-
     <div class="foot-pay">
       <span class="secure">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
         Paiement sécurisé — NAPS · 3D Secure
       </span>
       <span class="pays">
-        <span class="pay-badge">NAPS</span>
-        <span class="pay-badge">VISA</span>
-        <span class="pay-badge">Mastercard</span>
-        <span class="pay-badge">CMI</span>
+        <span class="pay-badge">NAPS</span><span class="pay-badge">VISA</span>
+        <span class="pay-badge">Mastercard</span><span class="pay-badge">CMI</span>
       </span>
     </div>
-
     <div class="foot-bottom">
       <span>© 2026 Tenyos. Tous droits réservés.</span>
       <div class="foot-bottom-links">
@@ -1290,25 +1088,21 @@ document.addEventListener('DOMContentLoaded', () => {
 <!-- ── FLOATING STICKY BAR ── -->
 <div class="sticky-bar" id="stickyBar">
   <div class="sticky-bar-left">
-    <img src="assets/img/products/Tenyos_TenAlpha_smash_Green.webp" id="stickyImg" alt="TenAlpha Junior Smash">
+    <img src="assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_OnModel.webp" id="stickyImg" alt="TenAlpha Kids Smash">
     <div>
-      <div class="sticky-bar-name">TenAlpha Junior Smash — Lime</div>
-      <div class="sticky-bar-price">179 MAD</div>
+      <div class="sticky-bar-name" id="stickyName">TenAlpha Kids Smash — Marine</div>
+      <div class="sticky-bar-price">149 MAD</div>
     </div>
   </div>
   <div class="sticky-bar-right">
     <div class="sticky-bar-sizes">
-      <button class="chip-sm" onclick="selectStickySize(this,'XS')">XS</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'S')">S</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'M')">M</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'L')">L</button>
-      <button class="chip-sm" onclick="selectStickySize(this,'XL')">XL</button>
+      <button class="chip-sm active" onclick="selectStickySize(this,'5 ans')">5 ans</button>
+      <button class="chip-sm" onclick="selectStickySize(this,'6 ans')">6 ans</button>
     </div>
-    <button class="btn-sticky-cart">Ajouter au panier</button>
+    <button class="btn-sticky-cart" onclick="handleStickyCart()">Ajouter au panier</button>
   </div>
 </div>
 
-<!-- ── LIGHTBOX ── -->
 <!-- ── SIZE GUIDE MODAL ── -->
 <div id="sizeGuideModal" aria-modal="true" role="dialog" aria-label="Guide des tailles"
   style="display:none;position:fixed;inset:0;z-index:900;background:rgba(10,36,74,.5);align-items:center;justify-content:center;padding:20px">
@@ -1319,6 +1113,17 @@ document.addEventListener('DOMContentLoaded', () => {
     </div>
     <div style="padding:24px 28px">
       <p style="font-size:13px;color:var(--ink-48);margin-bottom:24px">Mesurez la hauteur et comparez avec le tableau ci-dessous.</p>
+      <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Kids</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:28px">
+        <thead><tr style="background:var(--parchment)">
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Âge</th>
+          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Hauteur (cm)</th>
+        </tr></thead>
+        <tbody>
+          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">5 ans</td><td style="padding:10px 14px">110–116</td></tr>
+          <tr><td style="padding:10px 14px;background:var(--pearl)">6 ans</td><td style="padding:10px 14px;background:var(--pearl)">116–122</td></tr>
+        </tbody>
+      </table>
       <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Juniors</h3>
       <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:28px">
         <thead><tr style="background:var(--parchment)">
@@ -1333,157 +1138,38 @@ document.addEventListener('DOMContentLoaded', () => {
           <tr><td style="padding:10px 14px">XL</td><td style="padding:10px 14px">158–170</td></tr>
         </tbody>
       </table>
-      <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Kids</h3>
-      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px">
-        <thead><tr style="background:var(--parchment)">
-          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Âge</th>
-          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Hauteur (cm)</th>
-        </tr></thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">5 ans</td><td style="padding:10px 14px">110–116</td></tr>
-          <tr><td style="padding:10px 14px;background:var(--pearl)">6 ans</td><td style="padding:10px 14px;background:var(--pearl)">116–122</td></tr>
-        </tbody>
-      </table>
-      <h3 style="font-size:13px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--navy);margin-bottom:12px;margin-top:28px;padding-bottom:8px;border-bottom:2px solid var(--lime)">Adultes</h3>
-      <table style="width:100%;border-collapse:collapse;font-size:14px;margin-bottom:8px">
-        <thead><tr style="background:var(--parchment)">
-          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Taille</th>
-          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Poitrine (cm)</th>
-          <th style="text-align:left;padding:10px 14px;font-weight:600;color:var(--navy)">Taille (cm)</th>
-        </tr></thead>
-        <tbody>
-          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">XS</td><td style="padding:10px 14px">82–86</td><td style="padding:10px 14px">64–68</td></tr>
-          <tr style="border-bottom:1px solid var(--hairline);background:var(--pearl)"><td style="padding:10px 14px">S</td><td style="padding:10px 14px">86–90</td><td style="padding:10px 14px">68–72</td></tr>
-          <tr style="border-bottom:1px solid var(--hairline)"><td style="padding:10px 14px">M</td><td style="padding:10px 14px">90–95</td><td style="padding:10px 14px">72–77</td></tr>
-          <tr style="border-bottom:1px solid var(--hairline);background:var(--pearl)"><td style="padding:10px 14px">L</td><td style="padding:10px 14px">95–102</td><td style="padding:10px 14px">77–84</td></tr>
-          <tr><td style="padding:10px 14px">XL</td><td style="padding:10px 14px">102–110</td><td style="padding:10px 14px">84–92</td></tr>
-        </tbody>
-      </table>
     </div>
   </div>
 </div>
 
+<!-- ── LIGHTBOX ── -->
 <div id="lightbox" aria-modal="true" role="dialog" aria-label="Galerie produit">
-  <div id="lbBackdrop"></div>
-  <button id="lbClose" aria-label="Fermer">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-  </button>
-  <div id="lbCounter"></div>
-  <button id="lbPrev" aria-label="Image précédente">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
-  </button>
-  <button id="lbNext" aria-label="Image suivante">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-  </button>
   <div id="lbStage">
     <img id="lbImg" src="" alt="">
+    <button id="lbClose" aria-label="Fermer">
+      <svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="lbCounter"></div>
+    <button id="lbPrev" aria-label="Image précédente">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button id="lbNext" aria-label="Image suivante">
+      <svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
   </div>
-  <div id="lbRail"></div>
 </div>
-
-<style>
-/* ── LIGHTBOX ── */
-#lightbox{
-  display:none;
-  position:fixed;inset:0;z-index:600;
-  background:rgba(7,25,61,.96);
-  flex-direction:column;
-  align-items:center;justify-content:center;
-}
-#lightbox.open{display:flex}
-#lbBackdrop{position:absolute;inset:0;z-index:0;cursor:zoom-out}
-#lbClose{
-  position:absolute;top:20px;right:20px;z-index:10;
-  width:44px;height:44px;border-radius:50%;
-  background:rgba(255,255,255,.1);border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;transition:background .15s;
-}
-#lbClose:hover{background:rgba(255,255,255,.22)}
-#lbClose svg{width:20px;height:20px}
-#lbCounter{
-  position:absolute;top:24px;left:50%;transform:translateX(-50%);z-index:10;
-  font-size:13px;font-weight:600;letter-spacing:.5px;color:rgba(255,255,255,.6);
-  font-family:'Inter',system-ui,sans-serif;
-}
-#lbPrev,#lbNext{
-  position:absolute;top:50%;transform:translateY(-50%);z-index:10;
-  width:52px;height:52px;border-radius:50%;
-  background:rgba(255,255,255,.1);border:none;cursor:pointer;
-  display:flex;align-items:center;justify-content:center;
-  color:#fff;transition:background .15s,transform .15s;
-}
-#lbPrev:hover,#lbNext:hover{background:rgba(196,255,13,.25);color:#C4FF0D;transform:translateY(-50%) scale(1.06)}
-#lbPrev:active,#lbNext:active{transform:translateY(-50%) scale(.96)}
-#lbPrev svg,#lbNext svg{width:24px;height:24px}
-#lbPrev{left:24px}
-#lbNext{right:24px}
-#lbPrev:disabled,#lbNext:disabled{opacity:.2;pointer-events:none}
-#lbStage{
-  position:relative;z-index:5;
-  display:flex;align-items:center;justify-content:center;
-  max-height:calc(100vh - 160px);
-  max-width:calc(100vw - 140px);
-  flex:1;
-}
-#lbImg{
-  max-width:100%;max-height:100%;
-  width:auto;height:auto;
-  object-fit:contain;
-  border-radius:6px;
-  transition:opacity .2s ease,transform .2s ease;
-  cursor:default;
-}
-#lbImg.lb-switching{opacity:0;transform:scale(.97)}
-#lbRail{
-  position:relative;z-index:10;
-  display:flex;gap:8px;
-  padding:12px 24px 20px;
-  overflow-x:auto;scrollbar-width:none;
-  max-width:100vw;flex-shrink:0;
-}
-#lbRail::-webkit-scrollbar{display:none}
-.lb-thumb{
-  width:56px;height:74px;flex-shrink:0;
-  border-radius:6px;overflow:hidden;
-  border:2px solid rgba(255,255,255,.15);
-  outline:2px solid transparent;
-  cursor:pointer;
-  transition:border-color .15s,outline-color .15s,transform .15s;
-  background:#1a2a40;
-}
-.lb-thumb img{width:100%;height:100%;object-fit:cover;display:block}
-.lb-thumb:hover{border-color:rgba(255,255,255,.5);transform:scale(1.06)}
-.lb-thumb.active{border-color:#C4FF0D;outline-color:rgba(196,255,13,.3)}
-@media(max-width:600px){
-  #lbPrev{left:8px;width:44px;height:44px}
-  #lbNext{right:8px;width:44px;height:44px}
-  #lbStage{max-width:100vw;max-height:calc(100vh - 180px)}
-}
-</style>
 
 <script>
 /* ────────────────────────────────────────────
-   JUNIOR COLORWAY DATA
-   4 colorways × 4 images each:
-   [OnModel (front), Side, Back, Action]
+   KIDS COLORWAY DATA
+   Placeholder: reusing Junior Smash imagery
+   4 colorways × 5 images each
 ──────────────────────────────────────────── */
 const COLORWAYS = {
-  lime: {
-    label: 'Lime',
-    images: [
-      { src:'assets/img/products/Tenyos_TenAlpha_smash_Green.webp',                    alt:'Flat produit — Lime' },
-      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_OnModel.webp',       alt:'Vue avant — Lime' },
-      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Side_heygen.webp',   alt:'Vue côté — Lime' },
-      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Back_heygen.webp',   alt:'Vue dos — Lime' },
-      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Action_heygen.webp', alt:'Action court — Lime' },
-    ]
-  },
   navy: {
     label: 'Marine',
     images: [
-      { src:'assets/img/products/Tenyos_TenAlpha_smash_Navy_blue.webp',                 alt:'Flat produit — Marine' },
-      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_OnModel.webp',        alt:'Vue avant — Marine' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_OnModel.webp',       alt:'Vue avant — Marine' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_Side_heygen.webp',    alt:'Vue côté — Marine' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_Back_heygen.webp',    alt:'Vue dos — Marine' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Navy_Action_heygen.webp',  alt:'Action court — Marine' },
@@ -1492,17 +1178,24 @@ const COLORWAYS = {
   white: {
     label: 'Blanc',
     images: [
-      { src:'assets/img/products/Tenyos_TenAlpha_smash_White.webp',                     alt:'Flat produit — Blanc' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_White_OnModel.webp',       alt:'Vue avant — Blanc' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_White_Side_heygen.webp',   alt:'Vue côté — Blanc' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_White_Back_heygen.webp',   alt:'Vue dos — Blanc' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_White_Action_heygen.webp', alt:'Action court — Blanc' },
     ]
   },
+  lime: {
+    label: 'Lime',
+    images: [
+      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_OnModel.webp',        alt:'Vue avant — Lime' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Side_heygen.webp',    alt:'Vue côté — Lime' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Back_heygen.webp',    alt:'Vue dos — Lime' },
+      { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Lime_Action_heygen.webp',  alt:'Action court — Lime' },
+    ]
+  },
   pink: {
     label: 'Rose',
     images: [
-      { src:'assets/img/products/Tenyos_TenAlpha_smash_Pink.webp',                      alt:'Flat produit — Rose' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Pink_OnModel.webp',        alt:'Vue avant — Rose' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Pink_Side_heygen.webp',    alt:'Vue côté — Rose' },
       { src:'assets/img/products/Tenyos_TenAlpha_Junior_Smash_Pink_Back_heygen.webp',    alt:'Vue dos — Rose' },
@@ -1511,455 +1204,237 @@ const COLORWAYS = {
   }
 };
 
-/* ── INIT GALLERY (Lime on page load) ── */
-function initGallery(){
-  const cw = COLORWAYS.lime;
+let currentColor = 'navy';
+let currentSize  = '5 ans';
+let qty          = 1;
+let stickySize   = '5 ans';
+let lbImages     = [];
+let lbIdx        = 0;
+
+/* ── GALLERY ── */
+function initGallery(colorKey) {
+  const cw = COLORWAYS[colorKey];
   const container = document.getElementById('galleryThumbs');
   container.innerHTML = '';
+  lbImages = cw.images;
   cw.images.forEach((imgData, i) => {
     const b = document.createElement('button');
     b.className = 'thumb' + (i === 0 ? ' active' : '');
     b.setAttribute('aria-label', imgData.alt);
     b.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}">`;
-    b.addEventListener('click', () => switchImg(b, imgData.src, imgData.alt));
+    b.addEventListener('click', () => switchImg(b, imgData.src, imgData.alt, i));
     container.appendChild(b);
   });
+  switchImgDirect(cw.images[0].src, cw.images[0].alt);
 }
-document.addEventListener('DOMContentLoaded', function(){
-  initGallery();
-  /* ── COLORWAY DEEP-LINK: ?color=navy|white|lime|pink ── */
+
+function switchImgDirect(src, alt) {
+  const img = document.getElementById('mainImg');
+  img.classList.add('switching');
+  setTimeout(() => { img.src = src; img.alt = alt; img.classList.remove('switching'); }, 180);
+}
+
+function switchImg(btn, src, alt, idx) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  lbIdx = idx;
+  switchImgDirect(src, alt);
+}
+
+/* ── COLOR SELECT ── */
+function selectColor(btn, colorKey) {
+  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
+  btn.classList.add('active');
+  currentColor = colorKey;
+  const cw = COLORWAYS[colorKey];
+  document.getElementById('colorLabel').textContent = cw.label;
+  initGallery(colorKey);
+  const stickyImg = document.getElementById('stickyImg');
+  if (stickyImg) stickyImg.src = cw.images[0].src;
+  const stickyName = document.getElementById('stickyName');
+  if (stickyName) stickyName.textContent = 'TenAlpha Kids Smash — ' + cw.label;
+}
+
+/* ── SIZE SELECT ── */
+function selectSize(btn, size) {
+  document.querySelectorAll('.size-chip').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  currentSize = size;
+  document.getElementById('sizeLabel').textContent = size;
+}
+
+/* ── STICKY SIZE ── */
+function selectStickySize(btn, size) {
+  document.querySelectorAll('.chip-sm').forEach(c => c.classList.remove('active'));
+  btn.classList.add('active');
+  stickySize = size;
+  const mainChip = document.querySelector(`.size-chip`);
+  document.querySelectorAll('.size-chip').forEach(c => {
+    if (c.querySelector('span')?.textContent === size || c.textContent.trim().startsWith(size)) {
+      c.click();
+    }
+  });
+}
+
+/* ── QTY ── */
+function changeQty(delta) {
+  qty = Math.max(1, Math.min(10, qty + delta));
+  document.getElementById('qtyVal').textContent = qty;
+}
+
+/* ── ADD TO CART ── */
+function handleAddToCart() {
+  const productName = 'TenAlpha Kids Smash';
+  const price = 149;
+  const cw = COLORWAYS[currentColor];
+  if (!currentSize || currentSize === '—') {
+    const firstChip = document.querySelector('.size-chip:not(.oos)');
+    if (firstChip) { firstChip.click(); }
+    firstChip?.classList.add('active');
+  }
+  const size = currentSize || '5 ans';
+  const id = `kids-smash-${currentColor}-${size.replace(/\s+/g,'-')}`;
+  TenyosCart.add({ id, productName, colorway: cw.label, size, price, qty, thumb: cw.images[0].src });
+}
+
+function handleStickyCart() {
+  const productName = 'TenAlpha Kids Smash';
+  const price = 149;
+  const cw = COLORWAYS[currentColor];
+  const size = stickySize;
+  const id = `kids-smash-${currentColor}-${size.replace(/\s+/g,'-')}`;
+  TenyosCart.add({ id, productName, colorway: cw.label, size, price, qty: 1, thumb: cw.images[0].src });
+}
+
+/* ── ACCORDION ── */
+function toggleAcc(btn) {
+  const item = btn.closest('.acc-item');
+  item.classList.toggle('open');
+}
+
+/* ── SIZE GUIDE MODAL ── */
+function openSizeGuide(e) {
+  if (e) e.preventDefault();
+  const modal = document.getElementById('sizeGuideModal');
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+function closeSizeGuide() {
+  document.getElementById('sizeGuideModal').style.display = 'none';
+  document.body.style.overflow = '';
+}
+document.getElementById('sizeGuideModal').addEventListener('click', function(e) {
+  if (e.target === this) closeSizeGuide();
+});
+
+/* ── LIGHTBOX ── */
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+
+function openLB(idx) {
+  lbIdx = idx;
+  lbImg.src = lbImages[lbIdx].src;
+  lbImg.alt = lbImages[lbIdx].alt;
+  lbCounter.textContent = (lbIdx + 1) + ' / ' + lbImages.length;
+  lb.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLB() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbNav(dir) {
+  lbIdx = (lbIdx + dir + lbImages.length) % lbImages.length;
+  lbImg.src = lbImages[lbIdx].src;
+  lbImg.alt = lbImages[lbIdx].alt;
+  lbCounter.textContent = (lbIdx + 1) + ' / ' + lbImages.length;
+}
+document.getElementById('galleryMain').addEventListener('click', function(e) {
+  if (!e.target.closest('.gallery-zoom')) return;
+  openLB(lbIdx);
+});
+document.getElementById('lbClose').addEventListener('click', closeLB);
+lb.addEventListener('click', function(e) { if (e.target === this || e.target.id === 'lbStage') closeLB(); });
+document.getElementById('lbPrev').addEventListener('click', () => lbNav(-1));
+document.getElementById('lbNext').addEventListener('click', () => lbNav(1));
+
+/* ── VIDEO LIGHTBOX ── */
+const VidLB = {
+  videos: [],
+  current: 0,
+  open(idx) {
+    this.videos = [];
+    document.querySelectorAll('#vidGrid .vid-card video').forEach(v => this.videos.push(v.src));
+    this.current = idx;
+    const lb = document.getElementById('vidLb');
+    const video = document.getElementById('vidLbVideo');
+    video.src = this.videos[this.current];
+    video.play();
+    lb.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  },
+  close() {
+    document.getElementById('vidLbVideo').pause();
+    document.getElementById('vidLb').classList.remove('open');
+    document.body.style.overflow = '';
+  },
+  nav(dir) {
+    this.current = (this.current + dir + this.videos.length) % this.videos.length;
+    const video = document.getElementById('vidLbVideo');
+    video.src = this.videos[this.current];
+    video.play();
+  }
+};
+document.getElementById('vidLbClose').addEventListener('click', () => VidLB.close());
+document.getElementById('vidLbBackdrop').addEventListener('click', () => VidLB.close());
+document.getElementById('vidLbPrev').addEventListener('click', () => VidLB.nav(-1));
+document.getElementById('vidLbNext').addEventListener('click', () => VidLB.nav(1));
+
+/* ── INIT ── */
+document.addEventListener('DOMContentLoaded', function() {
+  initGallery('navy');
+  document.getElementById('sizeLabel').textContent = '5 ans';
+
+  /* ── COLOR DEEP-LINK: ?color=navy|white|lime|pink ── */
   const param = new URLSearchParams(location.search).get('color');
-  if(param && COLORWAYS[param] && param !== 'lime'){
+  if (param && COLORWAYS[param] && param !== 'navy') {
     const swatch = document.querySelector('.swatch.s-' + param);
-    if(swatch) selectColor(swatch, param);
+    if (swatch) selectColor(swatch, param);
   }
 });
 
 /* ── SCROLL FADE ── */
 const io = new IntersectionObserver(es => es.forEach(e => {
-  if(e.isIntersecting) e.target.classList.add('in');
-}), {threshold:.1});
+  if (e.isIntersecting) e.target.classList.add('in');
+}), { threshold: 0.08 });
 document.querySelectorAll('.fade').forEach(el => io.observe(el));
-
-/* ── GALLERY SWITCH ── */
-function switchImg(btn, src, alt){
-  setMainImg(src, alt);
-  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-  btn.classList.add('active');
-}
-
-function setMainImg(src, alt){
-  const img = document.getElementById('mainImg');
-  const gm  = document.getElementById('galleryMain');
-  img.classList.add('switching');
-  gm.style.backgroundImage = '';
-  gm.classList.remove('zoomed');
-  setTimeout(() => {
-    img.src = src;
-    if(alt) img.alt = alt;
-    img.classList.remove('switching');
-  }, 260);
-}
-
-/* ── COLOUR SELECT — swaps ALL gallery images for chosen colorway ── */
-function selectColor(btn, colorKey){
-  const cw = COLORWAYS[colorKey];
-  if(!cw) return;
-
-  document.querySelectorAll('.swatch').forEach(s => s.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('colorLabel').textContent = cw.label;
-
-  const thumbContainer = document.querySelector('.gallery-thumbs');
-  thumbContainer.innerHTML = '';
-  cw.images.forEach((imgData, i) => {
-    const b = document.createElement('button');
-    b.className = 'thumb' + (i === 0 ? ' active' : '');
-    b.setAttribute('aria-label', imgData.alt);
-    b.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}">`;
-    b.addEventListener('click', () => switchImg(b, imgData.src, imgData.alt));
-    thumbContainer.appendChild(b);
-  });
-
-  setMainImg(cw.images[0].src, cw.images[0].alt);
-  document.getElementById('stickyImg').src = cw.images[0].src;
-
-  // update sticky bar name
-  document.querySelector('.sticky-bar-name').textContent =
-    'TenAlpha Junior Smash — ' + cw.label;
-}
-
-/* ── SIZE SELECT ── */
-function selectSize(btn, size){
-  document.querySelectorAll('.size-chip:not(.oos)').forEach(s => s.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('sizeLabel').textContent = size;
-  document.querySelectorAll('.chip-sm').forEach(c => {
-    c.classList.toggle('active', c.dataset.size === size);
-  });
-}
-function selectStickySize(btn, size){
-  document.querySelectorAll('.chip-sm').forEach(c => c.classList.remove('active'));
-  btn.classList.add('active');
-  document.querySelectorAll('.size-chip:not(.oos)').forEach(c => {
-    c.classList.toggle('active', c.textContent.replace('–','-') === size);
-  });
-  document.getElementById('sizeLabel').textContent = size;
-}
-
-/* ── QUANTITY ── */
-let qty = 1;
-function changeQty(d){ qty = Math.max(1, Math.min(10, qty + d)); document.getElementById('qtyVal').textContent = qty; }
-
-/* ── ADD TO CART ── */
-function handleAddToCart(){
-  const sizeEl = document.querySelector('.size-chip.active');
-  if (!sizeEl) {
-    document.querySelectorAll('.size-chip:not(.oos)').forEach(c => {
-      c.style.borderColor = '#c0392b';
-      setTimeout(() => c.style.borderColor = '', 900);
-    });
-    return;
-  }
-  const color = document.getElementById('colorLabel')?.textContent || 'Lime';
-  const size = sizeEl.textContent.trim();
-  const qty = parseInt(document.getElementById('qtyVal')?.textContent || '1');
-  const thumb = document.getElementById('mainImg')?.src || '';
-  const productName = 'TenAlpha Junior Smash';
-  const price = 179;
-  const id = `${productName.replace(/\s+/g,'-').toLowerCase()}-${color}-${size}`;
-  TenyosCart.add({ id, productName, colorway: color, size, price, qty, thumb });
-  const btn = document.querySelector('.btn-add-cart');
-  const orig = btn.innerHTML;
-  btn.textContent = '✓ Ajouté au panier';
-  btn.style.background = 'var(--navy)'; btn.style.color = '#fff';
-  setTimeout(() => { btn.innerHTML = orig; btn.style.background = ''; btn.style.color = ''; }, 1800);
-}
-
-/* ── ACCORDION ── */
-function toggleMobAcc(id){const el=document.getElementById(id);if(!el)return;el.classList.toggle('open');}
-function openSizeGuide(e){e.preventDefault();const m=document.getElementById('sizeGuideModal');if(m){m.style.display='flex';document.body.style.overflow='hidden';}}
-function closeSizeGuide(){const m=document.getElementById('sizeGuideModal');if(m){m.style.display='none';document.body.style.overflow='';}}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')closeSizeGuide();});
-function toggleAcc(btn){ btn.closest('.acc-item').classList.toggle('open'); }
 
 /* ── STICKY BAR ── */
 const stickyBar = document.getElementById('stickyBar');
-const buyBox    = document.querySelector('.buybox');
-const stickyObs = new IntersectionObserver(([e]) => {
-  stickyBar.classList.toggle('visible', !e.isIntersecting);
-}, {threshold:0, rootMargin:'0px 0px -100px 0px'});
-if(buyBox) stickyObs.observe(buyBox);
+const buybox    = document.querySelector('.buybox');
+const stickyObs = new IntersectionObserver(es => {
+  if (!es[0].isIntersecting) stickyBar.classList.add('visible');
+  else stickyBar.classList.remove('visible');
+}, { threshold: 0 });
+if (buybox) stickyObs.observe(buybox);
 
-/* ────────────────────────────────────────────
-   HOVER ZOOM (adidas-style, desktop only)
-──────────────────────────────────────────── */
-(function(){
-  const gm = document.getElementById('galleryMain');
-  if(!gm) return;
-  const isFine = window.matchMedia('(pointer:fine)').matches;
-  if(!isFine) return;
+/* ── MOBILE BURGER ── */
+const burger     = document.getElementById('burger');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileClose= document.getElementById('mobileClose');
+burger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
+burger.addEventListener('keydown', e => { if (e.key === 'Enter') mobileMenu.classList.toggle('open'); });
 
-  gm.addEventListener('mouseenter', function(){
-    const src = document.getElementById('mainImg').src;
-    gm.style.backgroundImage  = `url('${src}')`;
-    gm.style.backgroundSize   = '220%';
-    gm.style.backgroundRepeat = 'no-repeat';
-    gm.style.cursor           = 'crosshair';
-    gm.classList.add('zoomed');
-  });
-  gm.addEventListener('mousemove', function(e){
-    if(!gm.classList.contains('zoomed')) return;
-    const rect = gm.getBoundingClientRect();
-    const xPct = ((e.clientX - rect.left)  / rect.width)  * 100;
-    const yPct = ((e.clientY - rect.top)   / rect.height) * 100;
-    gm.style.backgroundPosition = `${xPct}% ${yPct}%`;
-  });
-  gm.addEventListener('mouseleave', function(){
-    gm.classList.remove('zoomed');
-    gm.style.backgroundImage    = '';
-    gm.style.backgroundSize     = '';
-    gm.style.backgroundRepeat   = '';
-    gm.style.backgroundPosition = '';
-    gm.style.cursor             = 'zoom-in';
-  });
-})();
-
-/* ────────────────────────────────────────────
-   LIGHTBOX — navigable multi-image gallery
-──────────────────────────────────────────── */
-const LB = {
-  images: [],
-  index:  0,
-
-  open(images, startIndex){
-    this.images = images;
-    this.index  = startIndex;
-    this._buildRail();
-    this._showImage(startIndex, false);
-    document.getElementById('lightbox').classList.add('open');
-    document.body.style.overflow = 'hidden';
-    this._updateArrows();
-  },
-  close(){
-    document.getElementById('lightbox').classList.remove('open');
-    document.body.style.overflow = '';
-  },
-  go(newIndex){
-    if(newIndex < 0 || newIndex >= this.images.length) return;
-    this._showImage(newIndex, true);
-    this.index = newIndex;
-    this._updateArrows();
-    this._updateRailActive();
-  },
-  prev(){ this.go(this.index - 1); },
-  next(){ this.go(this.index + 1); },
-
-  _showImage(idx, animate){
-    const img     = document.getElementById('lbImg');
-    const counter = document.getElementById('lbCounter');
-    const data    = this.images[idx];
-    if(animate){
-      img.classList.add('lb-switching');
-      setTimeout(() => {
-        img.src = data.src; img.alt = data.alt;
-        img.classList.remove('lb-switching');
-      }, 180);
-    } else {
-      img.src = data.src; img.alt = data.alt;
-    }
-    counter.textContent = `${idx + 1} / ${this.images.length}`;
-  },
-  _buildRail(){
-    const rail = document.getElementById('lbRail');
-    rail.innerHTML = '';
-    this.images.forEach((imgData, i) => {
-      const btn = document.createElement('button');
-      btn.className = 'lb-thumb' + (i === this.index ? ' active' : '');
-      btn.setAttribute('aria-label', imgData.alt);
-      btn.innerHTML = `<img src="${imgData.src}" alt="${imgData.alt}" loading="lazy">`;
-      btn.addEventListener('click', (e) => { e.stopPropagation(); LB.go(i); });
-      rail.appendChild(btn);
-    });
-  },
-  _updateRailActive(){
-    document.querySelectorAll('.lb-thumb').forEach((t, i) =>
-      t.classList.toggle('active', i === this.index));
-    const active = document.querySelector('.lb-thumb.active');
-    if(active) active.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
-  },
-  _updateArrows(){
-    document.getElementById('lbPrev').disabled = this.images.length <= 1;
-    document.getElementById('lbNext').disabled = this.images.length <= 1;
-  }
-};
-
-function getLightboxState(){
-  const activeSwatch = document.querySelector('.swatch.active');
-  let colorKey = 'lime';
-  if(activeSwatch){
-    if(activeSwatch.classList.contains('s-navy'))  colorKey = 'navy';
-    else if(activeSwatch.classList.contains('s-white')) colorKey = 'white';
-    else if(activeSwatch.classList.contains('s-pink'))  colorKey = 'pink';
-  }
-  const images = COLORWAYS[colorKey].images;
-  const currentFile = document.getElementById('mainImg').src.split('/').pop();
-  let startIndex = images.findIndex(img => img.src.split('/').pop() === currentFile);
-  if(startIndex < 0) startIndex = 0;
-  return { images, startIndex };
-}
-
-document.querySelector('.gallery-zoom').addEventListener('click', function(e){
-  e.stopPropagation();
-  const { images, startIndex } = getLightboxState();
-  LB.open(images, startIndex);
-});
-/* Open lightbox — tap/click on main image with scroll-gesture guard */
-(function(){
-  var touchStartX = null, touchStartY = null;
-  var gm = document.getElementById('galleryMain');
-  gm.addEventListener('touchstart', function(e){
-    touchStartX = e.touches[0].clientX;
-    touchStartY = e.touches[0].clientY;
-  }, {passive: true});
-  gm.addEventListener('click', function(e){
-    if(e.target.closest('#lbClose, .gallery-zoom')) return;
-    if(touchStartY !== null){
-      var dx = e.clientX - touchStartX, dy = e.clientY - touchStartY;
-      touchStartX = null; touchStartY = null;
-      if(Math.sqrt(dx*dx + dy*dy) > 12) return;
-    }
-    var state = getLightboxState();
-    LB.open(state.images, state.startIndex);
-  });
-})();
-document.getElementById('lbBackdrop').addEventListener('click', () => LB.close());
-document.getElementById('lbPrev').addEventListener('click', (e) => { e.stopPropagation(); LB.prev(); });
-document.getElementById('lbNext').addEventListener('click', (e) => { e.stopPropagation(); LB.next(); });
-document.getElementById('lbClose').addEventListener('click', (e) => { e.stopPropagation(); LB.close(); });
-
+/* ── ESCAPE KEY ── */
 document.addEventListener('keydown', e => {
-  const lb = document.getElementById('lightbox');
-  if(!lb.classList.contains('open')) return;
-  if(e.key === 'Escape')      LB.close();
-  if(e.key === 'ArrowLeft')  { e.preventDefault(); LB.prev(); }
-  if(e.key === 'ArrowRight') { e.preventDefault(); LB.next(); }
-});
-
-(function(){
-  let startX = 0;
-  const stage = document.getElementById('lbStage');
-  stage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  stage.addEventListener('touchend',   e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if(Math.abs(dx) > 50){ dx < 0 ? LB.next() : LB.prev(); }
-  });
-})();
-
-/* Mobile burger */
-(function(){
-  const burger = document.getElementById('burger');
-  const mobileMenu = document.getElementById('mobileMenu');
-  const mobileClose = document.getElementById('mobileClose');
-  if(burger){ burger.addEventListener('click', () => mobileMenu.classList.toggle('open')); burger.addEventListener('keydown', e => { if(e.key==='Enter') mobileMenu.classList.toggle('open'); }); }
-  if(mobileClose) mobileClose.addEventListener('click', () => mobileMenu.classList.remove('open'));
-})();
-
-/* ── VIDEO LIGHTBOX ── */
-const VID_SRCS = [
-  { src: 'assets/videos/tenalpha-lookbook.mp4', label: 'Padel · Junior' },
-  { src: 'assets/videos/tenalpha-lookbook.mp4', label: 'Académie · Entraînement' },
-  { src: 'assets/videos/tenalpha-lookbook.mp4', label: 'Dry-Speed™ · Confort' }
-];
-
-const VidLB = {
-  idx: 0,
-  muted: false,
-
-  open(idx){
-    this.idx = idx;
-    const lb = document.getElementById('vidLb');
-    const vid = document.getElementById('vidLbVideo');
-    lb.classList.add('open');
-    document.body.style.overflow = 'hidden';
-    vid.src = VID_SRCS[idx].src;
-    vid.muted = this.muted;
-    vid.play().catch(()=>{});
-    this._updateCounter();
-    this._updateMuteIcon();
-    this._pauseCards();
-  },
-
-  close(){
-    const lb = document.getElementById('vidLb');
-    const vid = document.getElementById('vidLbVideo');
-    lb.classList.remove('open');
-    document.body.style.overflow = '';
-    vid.pause();
-    vid.src = '';
-    this._resumeCards();
-  },
-
-  go(newIdx){
-    this.idx = ((newIdx % VID_SRCS.length) + VID_SRCS.length) % VID_SRCS.length;
-    const vid = document.getElementById('vidLbVideo');
-    vid.src = VID_SRCS[this.idx].src;
-    vid.muted = this.muted;
-    vid.play().catch(()=>{});
-    this._updateCounter();
-    this._updateMuteIcon();
-  },
-
-  toggleMute(){
-    this.muted = !this.muted;
-    const vid = document.getElementById('vidLbVideo');
-    vid.muted = this.muted;
-    this._updateMuteIcon();
-  },
-
-  _updateCounter(){
-    document.getElementById('vidLbCounter').textContent = `${this.idx + 1} / ${VID_SRCS.length}`;
-  },
-
-  _updateMuteIcon(){
-    const icon = document.getElementById('vidMuteIcon');
-    if(this.muted){
-      icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>';
-    } else {
-      icon.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 010 14.14"/><path d="M15.54 8.46a5 5 0 010 7.07"/>';
-    }
-  },
-
-  _pauseCards(){
-    document.querySelectorAll('.vid-card video').forEach(v => v.pause());
-  },
-
-  _resumeCards(){
-    document.querySelectorAll('.vid-card video').forEach(v => { v.muted = true; v.play().catch(()=>{}); });
-  }
-};
-
-document.getElementById('vidLbBackdrop').addEventListener('click', () => VidLB.close());
-document.getElementById('vidLbClose').addEventListener('click', () => VidLB.close());
-document.getElementById('vidLbMute').addEventListener('click', () => VidLB.toggleMute());
-document.getElementById('vidLbPrev').addEventListener('click', () => VidLB.go(VidLB.idx - 1));
-document.getElementById('vidLbNext').addEventListener('click', () => VidLB.go(VidLB.idx + 1));
-
-document.addEventListener('keydown', e => {
-  const lb = document.getElementById('vidLb');
-  if(!lb.classList.contains('open')) return;
-  if(e.key === 'Escape')      VidLB.close();
-  if(e.key === 'ArrowLeft')  { e.preventDefault(); VidLB.go(VidLB.idx - 1); }
-  if(e.key === 'ArrowRight') { e.preventDefault(); VidLB.go(VidLB.idx + 1); }
-});
-
-/* touch-swipe for video lightbox */
-(function(){
-  let startX = 0;
-  const stage = document.querySelector('.vid-lb-stage');
-  if(!stage) return;
-  stage.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive:true});
-  stage.addEventListener('touchend', e => {
-    const dx = e.changedTouches[0].clientX - startX;
-    if(Math.abs(dx) > 48){ dx < 0 ? VidLB.go(VidLB.idx + 1) : VidLB.go(VidLB.idx - 1); }
-  });
-})();
-
-/* ── MOBILE: accordions closed by default ── */
-document.addEventListener('DOMContentLoaded', function(){
-  if(window.matchMedia('(max-width:768px)').matches){
-    document.querySelectorAll('.acc-item').forEach(function(item){
-      item.classList.remove('open');
-    });
+  if (e.key === 'Escape') {
+    closeLB(); closeSizeGuide(); VidLB.close();
+    const dr = document.getElementById('cartDrawer');
+    if (dr && (dr.style.transform === 'translateX(0px)' || dr.style.transform === 'translateX(0)')) CartDrawer.close();
   }
 });
-
-/* ── VIDEO: play only when in view (prevents scroll jank from offscreen decode) ── */
-(function(){
-  var isMobile = window.matchMedia('(max-width:768px)').matches;
-  if(!isMobile) return;
-
-  document.querySelectorAll('.vid-card video').forEach(function(v){
-    v.autoplay = false;
-    v.pause();
-  });
-
-  var vidObs = new IntersectionObserver(function(entries){
-    entries.forEach(function(entry){
-      var v = entry.target;
-      if(entry.isIntersecting){
-        v.muted = true;
-        v.play().catch(function(){});
-      } else {
-        v.pause();
-      }
-    });
-  }, { threshold: 0.25 });
-
-  document.querySelectorAll('.vid-card video').forEach(function(v){
-    vidObs.observe(v);
-  });
-})();
 </script>
 </body>
 </html>
