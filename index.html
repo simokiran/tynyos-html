@@ -362,6 +362,19 @@ a.nav-promos-link:hover{color:var(--lime)}
 .member .perks{display:flex;gap:28px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;color:var(--ink-80);font-size:14px;font-weight:500}
 .member .perks span{display:inline-flex;align-items:center;gap:8px}
 .member .perks svg{color:var(--lime-deep)}
+/* Member perks — styled as brand chips */
+.member .perks span{background:var(--navy);color:#fff;border-radius:var(--r-pill);padding:8px 16px;gap:8px;font-size:13px;font-weight:600;letter-spacing:.3px}
+.member .perks svg{color:var(--lime);flex-shrink:0}
+/* Member signup form (email → inscription.html) */
+.member-form{display:flex;gap:12px;max-width:460px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.member-form input{flex:1;min-width:200px;border:1.5px solid var(--hairline);border-radius:var(--r-pill);padding:13px 22px;font-size:16px;font-family:var(--f);color:var(--ink);background:#fff;transition:border-color .15s}
+.member-form input:focus{outline:none;border-color:var(--navy)}
+/* Parchment testimonials — override dark-tile defaults */
+.tile-parch .rev{background:#fff;border:1px solid var(--hairline)}
+.tile-parch .rev .nm{color:var(--navy)}
+.tile-parch .rev .sp{color:var(--ink-48);opacity:1}
+.tile-parch .rev p{color:var(--ink-80)}
+.tile-parch .rev .av{background:rgba(10,36,74,.08);color:var(--navy)}
 
 @media(max-width:900px){
   .topbar{font-size:11px;padding:0 36px}
@@ -685,7 +698,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- CLUB PROMO BAR -->
 <div class="topbar">
-  <span>Rejoins la <strong>Tenyos Community</strong> — <strong>-10 %</strong> sur ta 1ère commande · <a href="#">S'inscrire</a></span>
+  <span>Rejoins la <strong>Tenyos Community</strong> — <strong>-10 %</strong> sur ta 1ère commande · <a href="inscription.html">S'inscrire</a></span>
   <button class="x" aria-label="Close" onclick="document.body.classList.add('nobar')">×</button>
 </div>
 
@@ -885,10 +898,10 @@ document.addEventListener('DOMContentLoaded', () => {
 </section>
 
 <!-- REVIEWS -->
-<section class="tile tile-navy">
+<section class="tile tile-parch">
   <div class="wrap">
-    <div class="head fade"><div class="eyebrow on-dark">Joueurs</div>
-      <h2 class="t-display" style="color:#fff">Ce que dit le club</h2></div>
+    <div class="head fade"><div class="eyebrow">Joueurs</div>
+      <h2 class="t-display" style="color:var(--navy)">Ce que dit la communauté</h2></div>
     <div class="rev-grid fade d1">
       <div class="rev"><div class="stars">★★★★★</div><div class="who"><div class="av">KA</div><div><div class="nm">Karim A.</div><div class="sp">Padel · Casablanca</div></div></div><p>« Resté totalement au sec sur un match en 3 sets à 32°C. L'élasticité ne gêne pas du tout mon geste. »</p></div>
       <div class="rev"><div class="stars">★★★★★</div><div class="who"><div class="av">SR</div><div><div class="nm">Sofia R.</div><div class="sp">Tennis · Rabat</div></div></div><p>« Une qualité nettement meilleure que les grandes marques à ce prix. Le coloris lime est parfait. »</p></div>
@@ -897,29 +910,40 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<!-- MEMBERSHIP / CLUB -->
+<!-- MEMBERSHIP / TENYOS COMMUNITY -->
 <section class="member" id="member">
   <div class="wrap fade">
-    <div class="eyebrow">Club Tenyos</div>
-    <h2 class="t-display">Deviens membre — profite de -10 %</h2>
-    <p>Rejoins le Club Tenyos : -10 % sur ta première commande, accès anticipé aux drops, prix membres et livraison prioritaire.</p>
+    <div class="eyebrow">Tenyos Community</div>
+    <h2 class="t-display">Rejoins la Tenyos Community</h2>
+    <p>-10 % sur ta 1ère commande, accès anticipé aux drops, prix membres et livraison prioritaire.</p>
     <div class="perks">
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>-10 % 1ʳᵉ commande</span>
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Accès anticipé aux drops</span>
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Prix membres</span>
       <span><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 6L9 17l-5-5"/></svg>Livraison prioritaire</span>
     </div>
-    <a class="btn btn-primary" href="#">S'inscrire gratuitement</a>
+    <form class="member-form" onsubmit="joinCommunity(event)">
+      <input type="email" placeholder="Votre email" aria-label="Email" id="memberEmail" required>
+      <button class="btn btn-primary" type="submit">Je m'inscris</button>
+    </form>
   </div>
 </section>
+<script>
+function joinCommunity(e) {
+  e.preventDefault();
+  const email = document.getElementById('memberEmail').value;
+  window.location.href = 'inscription.html' + (email ? '?email=' + encodeURIComponent(email) : '');
+}
+</script>
 
 <!-- NEWSLETTER -->
 <section class="tile tile-navy center">
   <div class="wrap">
-    <div class="eyebrow on-dark" style="justify-content:center">Rejoins le club</div>
+    <div class="eyebrow on-dark" style="justify-content:center">Tenyos Community</div>
     <h2 class="t-display" style="color:#fff">Try it. Make it. Play it.</h2>
-    <p class="t-body" style="color:var(--muted-dark);margin-top:8px">Drops en avant-première, réassorts &amp; culture padel — directement dans ta boîte mail.</p>
-    <form class="news" onsubmit="return false"><input type="email" placeholder="Votre email" aria-label="Email"><button class="btn btn-primary" type="submit">Je m'inscris</button></form>
+    <p class="t-body" style="color:var(--muted-dark);margin-top:8px">Drops en avant-première, accès anticipé &amp; prix membres — directement dans ta boîte mail.</p>
+    <form class="news" onsubmit="joinNewsletterCommunity(event)"><input type="email" placeholder="Votre email" aria-label="Email" id="newsEmail" required><button class="btn btn-primary" type="submit">Je m'inscris</button></form>
+    <script>function joinNewsletterCommunity(e){e.preventDefault();const em=document.getElementById('newsEmail').value;window.location.href='inscription.html'+(em?'?email='+encodeURIComponent(em):'');}</script>
   </div>
 </section>
 
