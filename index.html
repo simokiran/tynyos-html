@@ -81,12 +81,16 @@ a{text-decoration:none;color:inherit}
 
 /* Hero — full-bleed photographic */
 .hero{position:relative;min-height:94vh;background:var(--navy);color:#fff;overflow:hidden}
-.hero-slide{position:absolute;inset:0;display:flex;align-items:flex-end;background:center/cover no-repeat;
+.hero-slide{position:absolute;inset:0;display:flex;align-items:flex-end;
   opacity:0;transition:opacity 1s ease;pointer-events:none}
 .hero-slide.on{opacity:1;pointer-events:auto}
-.hero-slide::after{content:"";position:absolute;inset:0;
+.hero-slide::after{content:"";position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,rgba(7,25,61,.5) 0%,rgba(7,25,61,.05) 18%,transparent 30%),
              linear-gradient(95deg,rgba(7,25,61,.82) 0%,rgba(7,25,61,.45) 38%,rgba(7,25,61,.05) 68%,transparent 100%)}
+/* hero media — picture + video both fill the slide */
+.hero-pic{position:absolute;inset:0;z-index:0;overflow:hidden;display:block}
+.hero-pic img{width:100%;height:100%;object-fit:cover;display:block}
+.hero-vid{position:absolute;inset:0;z-index:0;width:100%;height:100%;object-fit:cover;display:block}
 .hero-dots{position:absolute;left:40px;bottom:30px;z-index:4;display:flex;gap:8px}
 .hero-dots button{width:9px;height:9px;border-radius:50%;border:none;background:rgba(255,255,255,.45);cursor:pointer;padding:0;transition:.25s}
 .hero-dots button.on{background:var(--lime);width:26px;border-radius:5px}
@@ -759,7 +763,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <!-- HERO (slider mode — hero.type='slider'; single-photo = one slide) -->
 <header class="hero" id="hero" data-autoplay="6000">
-  <div class="hero-slide on" style="background-image:url('assets/img/hero.jpg');background-position:center center">
+  <!-- Slide 1 — Padel full layout (badge + heading + description + 2 CTAs) -->
+  <div class="hero-slide on">
+    <picture class="hero-pic">
+      <source media="(max-width:768px)" srcset="assets/img/hero-mobile-padel.jpg">
+      <img src="assets/img/hero.jpg" alt="Tenyos — Collection Padel &amp; Tennis" loading="eager" style="object-position:center center">
+    </picture>
     <div class="hero-in">
       <div class="hero-badge"><span class="dot"></span>Nouvelle saison · Padel &amp; Tennis</div>
       <h1 class="t-hero">Try it. Make it.<br>Play it.</h1>
@@ -767,15 +776,23 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="hero-cta"><a class="btn btn-primary" href="category.html">Voir le Padel</a><a class="btn btn-ghost-dark" href="category.html">Voir le Tennis</a></div>
     </div>
   </div>
-  <div class="hero-slide" style="background-image:url('assets/img/hero-man-smash.jpg');background-position:65% center">
+  <!-- Slide 2 — Man Smash MINIMAL layout (heading + single CTA only, no badge/description) -->
+  <div class="hero-slide">
+    <picture class="hero-pic">
+      <source media="(max-width:768px)" srcset="assets/img/hero-mobile-smash.jpg">
+      <img src="assets/img/hero-man-smash.jpg" alt="Tenyos — TenAlpha Smash" loading="lazy" style="object-position:65% center">
+    </picture>
     <div class="hero-in">
-      <div class="hero-badge"><span class="dot"></span>Collection Smash</div>
       <h1 class="t-hero">Affirme ton jeu.</h1>
-      <p class="t-lead">Le TenAlpha Smash — le graphisme éclaboussé qui ne passe pas inaperçu, du court à la ville.</p>
       <div class="hero-cta"><a class="btn btn-primary" href="category.html">Voir la collection Smash</a></div>
     </div>
   </div>
-  <div class="hero-slide" style="background-image:url('assets/img/hero-junior.jpg');background-position:40% center">
+  <!-- Slide 3 — Junior full layout (badge + heading + description + CTA) -->
+  <div class="hero-slide">
+    <picture class="hero-pic">
+      <source media="(max-width:768px)" srcset="assets/img/hero-mobile-junior.jpg">
+      <img src="assets/img/hero-junior.jpg" alt="Tenyos — Collection Junior" loading="lazy" style="object-position:40% center">
+    </picture>
     <div class="hero-in">
       <div class="hero-badge"><span class="dot"></span>Collection Junior</div>
       <h1 class="t-hero">La relève entre<br>en jeu.</h1>
@@ -783,12 +800,15 @@ document.addEventListener('DOMContentLoaded', () => {
       <div class="hero-cta"><a class="btn btn-primary" href="category-junior.html">Voir la collection Junior</a></div>
     </div>
   </div>
-  <div class="hero-slide" style="background-image:url('assets/img/hero-junior-navy.jpg');background-position:65% center">
+  <!-- Slide 4 — Video slide (replaces redundant hero-junior-navy.jpg) -->
+  <div class="hero-slide hero-slide--video">
+    <video class="hero-vid" muted loop playsinline autoplay preload="metadata" poster="assets/img/hero.jpg">
+      <source src="assets/videos/tenalpha-lookbook.mp4" type="video/mp4">
+    </video>
     <div class="hero-in">
-      <div class="hero-badge"><span class="dot"></span>Collection Junior</div>
-      <h1 class="t-hero">Prêts à en<br>découdre.</h1>
-      <p class="t-lead">Le TenAlpha Smash junior, désormais en marine — pour les futurs champions du court.</p>
-      <div class="hero-cta"><a class="btn btn-primary" href="category-junior.html">Voir la collection Junior</a></div>
+      <div class="hero-badge"><span class="dot"></span>Lookbook 2026</div>
+      <h1 class="t-hero">Dans le mouvement.<br>Dans le style.</h1>
+      <div class="hero-cta"><a class="btn btn-primary" href="category.html">Découvrir la collection</a></div>
     </div>
   </div>
   <div class="hero-dots" id="heroDots"></div>
@@ -1035,7 +1055,14 @@ function scrollCar(id,dir){const c=document.getElementById(id);c.scrollBy({left:
   let i=0,timer; const ms=+hero.dataset.autoplay||0;
   slides.forEach((_,n)=>{const b=document.createElement('button');b.setAttribute('aria-label','Slide '+(n+1));b.onclick=()=>go(n);dots.appendChild(b);});
   const ds=[...dots.children]; ds[0].classList.add('on');
-  function go(n){slides[i].classList.remove('on');ds[i].classList.remove('on');i=n;slides[i].classList.add('on');ds[i].classList.add('on');reset();}
+  function go(n){
+    slides[i].classList.remove('on');ds[i].classList.remove('on');
+    var pv=slides[i].querySelector('video');if(pv)pv.pause();
+    i=n;
+    slides[i].classList.add('on');ds[i].classList.add('on');
+    var nv=slides[i].querySelector('video');if(nv)nv.play();
+    reset();
+  }
   function reset(){clearInterval(timer);if(ms)timer=setInterval(()=>go((i+1)%slides.length),ms);}
   reset();
 })();
