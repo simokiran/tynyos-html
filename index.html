@@ -315,8 +315,9 @@ a.nav-promos-link:hover{color:var(--lime)}
 
 /* Recommendation banner row — §9 "On vous recommande" diamond frames */
 .reco-row{display:flex;gap:48px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
-.reco-item{display:flex;flex-direction:column;align-items:center;gap:20px;text-decoration:none;
+.reco-item{display:flex;flex-direction:column;align-items:center;gap:56px;text-decoration:none;
   transition:transform .25s ease}
+/* gap=56px: 200px gem rotated 45° → bottom vertex protrudes (200*√2-200)/2 ≈ 41px below box; 41+15 buffer=56 */
 .reco-item:hover{transform:translateY(-5px)}
 .reco-gem{position:relative;width:200px;height:200px;flex-shrink:0}
 .reco-gem::before{content:'';position:absolute;inset:0;border:3px solid var(--lime);transform:rotate(45deg);
@@ -331,6 +332,8 @@ a.nav-promos-link:hover{color:var(--lime)}
 @media(max-width:700px){
   .reco-row{gap:28px}
   .reco-gem{width:150px;height:150px}
+  .reco-item{gap:44px}
+  /* 150px gem → vertex protrudes ≈31px; 31+13 buffer=44 */
   .reco-gem-img{inset:12px}
   .reco-lbl{font-size:15px}
 }
