@@ -313,6 +313,28 @@ a.nav-promos-link:hover{color:var(--lime)}
   padding:18px 0;border-bottom:1px solid rgba(255,255,255,.08);transition:color .15s}
 .mob-promos-link:hover{color:var(--lime)}
 
+/* Recommendation banner row — §9 "On vous recommande" diamond frames */
+.reco-row{display:flex;gap:48px;justify-content:center;align-items:flex-start;flex-wrap:wrap}
+.reco-item{display:flex;flex-direction:column;align-items:center;gap:20px;text-decoration:none;
+  transition:transform .25s ease}
+.reco-item:hover{transform:translateY(-5px)}
+.reco-gem{position:relative;width:200px;height:200px;flex-shrink:0}
+.reco-gem::before{content:'';position:absolute;inset:0;border:3px solid var(--lime);transform:rotate(45deg);
+  border-radius:8px;z-index:2;pointer-events:none;transition:border-color .2s,border-width .2s}
+.reco-item:hover .reco-gem::before{border-color:var(--navy);border-width:4px}
+.reco-gem--alt::before{border-color:var(--navy)}
+.reco-item:hover .reco-gem--alt::before{border-color:var(--lime)}
+.reco-gem-img{position:absolute;inset:16px;overflow:hidden;transform:rotate(45deg);border-radius:4px}
+.reco-gem-img img{position:absolute;width:144%;height:144%;top:-22%;left:-22%;object-fit:cover;transform:rotate(-45deg);display:block}
+.reco-lbl{font-size:17px;font-weight:600;color:var(--navy);letter-spacing:.2px;text-align:center}
+.reco-item:hover .reco-lbl{color:var(--lime-deep)}
+@media(max-width:700px){
+  .reco-row{gap:28px}
+  .reco-gem{width:150px;height:150px}
+  .reco-gem-img{inset:12px}
+  .reco-lbl{font-size:15px}
+}
+
 /* Carousels (shared) */
 .car-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:28px;flex-wrap:wrap}
 .tabs{display:flex;gap:8px}
@@ -860,18 +882,56 @@ document.addEventListener('DOMContentLoaded', () => {
   </div>
 </section>
 
-<!-- PRODUCTS — tabbed carousel -->
-<section class="tile tile-light">
+<!-- RECOMMENDATIONS — "On vous recommande" diamond banner row (§9) -->
+<section class="tile tile-light" id="reco-section">
+  <div class="wrap">
+    <div class="head fade">
+      <div class="eyebrow">Sélection du moment</div>
+      <h2 class="t-display">On vous recommande</h2>
+    </div>
+    <div class="reco-row fade d1">
+      <!-- Banner 1: Nouveautés -->
+      <a class="reco-item" href="category.html?orderby=date">
+        <div class="reco-gem">
+          <div class="reco-gem-img">
+            <img src="assets/img/banners/reco-nouveautes.jpg" alt="Nouveautés">
+          </div>
+        </div>
+        <span class="reco-lbl">Nouveautés</span>
+      </a>
+      <!-- Banner 2: Meilleures ventes -->
+      <a class="reco-item" href="category.html?orderby=popularity">
+        <div class="reco-gem reco-gem--alt">
+          <div class="reco-gem-img">
+            <img src="assets/img/banners/reco-meilleures-ventes.jpg" alt="Meilleures ventes">
+          </div>
+        </div>
+        <span class="reco-lbl">Meilleures ventes</span>
+      </a>
+      <!-- Banner 3: Promos -->
+      <a class="reco-item" href="category.html?on_sale=1">
+        <div class="reco-gem">
+          <div class="reco-gem-img">
+            <img src="assets/img/banners/reco-promos.jpg" alt="Promos">
+          </div>
+        </div>
+        <span class="reco-lbl">Promos</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- PRODUCTS CAROUSEL (tab-less reusable component — also for PDP produits associés) -->
+<section class="tile tile-light" style="padding-top:0" id="products-carousel">
   <div class="wrap">
     <div class="car-head fade">
       <div>
         <div class="eyebrow">La nouveauté</div>
         <h2 class="t-display">Découvrez le TenAlpha</h2>
       </div>
-      <div class="tabs" id="ptabs">
-        <button class="tab active" data-tab="new">Nouveautés</button>
-        <button class="tab" data-tab="best">Meilleures ventes</button>
-        <button class="tab" data-tab="sale">Promos</button>
+      <div class="car-nav">
+        <button class="car-arrow" onclick="scrollCar('pcar',-1)" aria-label="Précédent">‹</button>
+        <button class="car-arrow" onclick="scrollCar('pcar',1)" aria-label="Suivant">›</button>
       </div>
     </div>
     <div class="car fade d1" id="pcar">
@@ -880,10 +940,6 @@ document.addEventListener('DOMContentLoaded', () => {
       <a class="pcard-link" href="product.html?color=lime"><div class="pcard"><div class="ph"><span class="badge">-20%</span><img src="assets/img/product-green.png" alt="TenAlpha Lime"><button class="qadd">Ajout rapide</button></div><div class="pb"><div class="pn">TenAlpha Performance — Lime</div><div class="pc">Padel &amp; Tennis</div><div class="pr sale">199 MAD<span class="po">249 MAD</span></div></div></div></a>
       <a class="pcard-link" href="product.html?color=pink"><div class="pcard"><div class="ph"><img src="assets/img/product-pink.png" alt="TenAlpha Rose"><button class="qadd">Ajout rapide</button></div><div class="pb"><div class="pn">TenAlpha Performance — Rose</div><div class="pc">Padel &amp; Tennis</div><div class="pr">249 MAD</div></div></div></a>
       <a class="pcard-link" href="product.html?color=navy"><div class="pcard"><div class="ph"><img src="assets/img/product-navy.png" alt="TenAlpha Marine"><button class="qadd">Ajout rapide</button></div><div class="pb"><div class="pn">TenAlpha Performance — Marine</div><div class="pc">Padel &amp; Tennis</div><div class="pr">279 MAD</div></div></div></a>
-    </div>
-    <div class="car-nav fade" style="margin-top:18px">
-      <button class="car-arrow" onclick="scrollCar('pcar',-1)" aria-label="Previous">‹</button>
-      <button class="car-arrow" onclick="scrollCar('pcar',1)" aria-label="Next">›</button>
     </div>
   </div>
 </section>
@@ -1024,10 +1080,6 @@ if(burger){burger.addEventListener('click',()=>mobileMenu.classList.toggle('open
 if(mobileClose)mobileClose.addEventListener('click',()=>mobileMenu.classList.remove('open'));
 /* mobile nav accordion */
 function toggleMobAcc(id){const el=document.getElementById(id);if(!el)return;el.classList.toggle('open');}
-/* product tabs (visual) */
-document.querySelectorAll('#ptabs .tab').forEach(t=>t.addEventListener('click',()=>{
-  document.querySelectorAll('#ptabs .tab').forEach(x=>x.classList.remove('active'));t.classList.add('active');
-}));
 /* carousel arrows */
 function scrollCar(id,dir){const c=document.getElementById(id);c.scrollBy({left:dir*c.clientWidth*0.8,behavior:'smooth'});}
 /* hero slider (mode = slider; single-photo = one slide, dots auto-hide) */
